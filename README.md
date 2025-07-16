@@ -4,7 +4,7 @@
 
 <p align="left">
 
-![status](https://dcbadge.vercel.app/api/shield/889312376036425810?bot=true?logoColor=presence&theme=discord)
+![status](https://dcbadge.limes.pink/api/shield/889312376036425810?bot=true?logoColor=presence&theme=discord)
 
 ![version](https://img.shields.io/badge/version-2.0.0-brightgreen)
 ![estrellas](https://img.shields.io/github/stars/NLGS2907/Alg1-Lector-de-Ejercicios?label=Estrellas&style=social)
