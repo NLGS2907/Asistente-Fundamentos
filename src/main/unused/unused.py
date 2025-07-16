@@ -1,5 +1,5 @@
 """
-Módulo para cosas si uso aparente que por gracia divina aún no fue erradicado,
+Módulo para cosas sin uso aparente que por gracia divina aún no fue erradicado,
 o tiene usos posteriores.
 """
 
