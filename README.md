@@ -38,7 +38,7 @@ de la Facultad de Ingeniería de la UBA, aunque puede utilizarse para cualquier 
 
 ## Cómo Ejecutar
 
-> [!TIP]
+> [!NOTE]
 > Se recomienda usar una versión de Python de al menos **`3.12`**, pero funciona con versiones anteriores también.
 
 Pararse dentro de la carpeta [`run`](run), o de la carpeta raíz, y ejecutar uno de los dos
