@@ -4,7 +4,7 @@ Módulo para tests de la clase 'LetraAhorcado'.
 
 import unittest
 
-from src.main.ahorcado.letra_ahorcado import *
+from asistente.ahorcado.letra_ahorcado import *
 
 
 class TestLetraAhorcado(unittest.TestCase):

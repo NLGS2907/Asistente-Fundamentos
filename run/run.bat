@@ -1,7 +1,7 @@
 @echo off
 set possible_ver= python3.11 python3.10 py python3 python
 set pyupdate= -m pip install --upgrade -r requirements.txt
-set pyargs= -m src.main.main
+set pyargs= -m asistente
 
 @REM debería de pararse en la carpeta raíz del proyecto
 if %CD:~-3% == run (

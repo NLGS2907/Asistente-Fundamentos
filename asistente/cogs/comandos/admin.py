@@ -122,7 +122,7 @@ class CogAdmin(CogGeneral):
                                                 ephemeral=True)
         self.bot.log.info(mensaje)
 
-        execl(sys_executable, sys_executable, "-m", "src.main.main")
+        execl(sys_executable, sys_executable, "-m", "asistente")
 
 
     @appcommand(name="flush",

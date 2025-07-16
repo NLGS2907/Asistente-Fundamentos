@@ -5,7 +5,7 @@ Módulo para tests de la clase 'Ahorcado'.
 import unittest
 from os import remove as arch_remove
 
-from src.main.ahorcado.ahorcado import *
+from asistente.ahorcado.ahorcado import *
 
 
 class TestAhorcado(unittest.TestCase):
@@ -19,7 +19,7 @@ class TestAhorcado(unittest.TestCase):
         Carga una colección de palabras de prueba.
         """
 
-        arch_temp = "src/tests/ahorcado/json_simple.json"
+        arch_temp = "tests/ahorcado/json_simple.json"
 
         with open(arch_temp, mode='w', encoding="utf-8") as arch:
 

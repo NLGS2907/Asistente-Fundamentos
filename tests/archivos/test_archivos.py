@@ -5,7 +5,7 @@ Módulo para tests del módulo 'archivos'.
 import unittest
 from os import remove as arch_remove
 
-from src.main.archivos.archivos import *
+from asistente.archivos.archivos import *
 
 
 class TestArchivos(unittest.TestCase):
@@ -18,7 +18,7 @@ class TestArchivos(unittest.TestCase):
         Guarda y carga un archivo JSON simple
         """
 
-        arch_temp = "src/tests/archivos/json_simple.json"
+        arch_temp = "tests/archivos/json_simple.json"
         dic_simple = {'a': 1, 'b': 2, 'c': 3, 'd': [4, 5]}
 
         guardar_json(dic_simple, arch_temp, sangria=None)

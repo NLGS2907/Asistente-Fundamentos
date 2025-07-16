@@ -20,4 +20,4 @@ jobs:
         python -m pip install -r requirements.txt
     - name: Corriendo Tests
       run: |
-        python -m unittest src.tests
+        python -m unittest tests
