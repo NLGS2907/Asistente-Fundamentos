@@ -10,26 +10,6 @@ Permissions Integer: 19327560768
 
 Enlace para invitar bot: https://discord.com/api/oauth2/authorize?client_id=889312376036425810&permissions=294205467712&scope=bot%20applications.commands
 Repositorio: https://github.com/NLGS2907/Alg1-Lector-de-Ejercicios
-
-[12/28/21] Reboot requerido.
-[01/12/22] Reboot requerido.
-[02/11/22] Reboot requerido.
-[03/14/22] Reboot requerido.
-[04/21/22] Reboot requerido.
-[04/21/22] Segundo Reboot requerido.
-[04/21/22] Tercer Reboot requerido.
-[04/24/22] Reboot requerido.
-[08/07/22] Reboot Requerido.
-[01/08/22] Reboot Manual Requerido.
-[09/05/22] Reboot Manual.
-[09/29/22] Reboot.
-[10/01/22] Reboot.
-[10/06/22] Reboot.
-[12/24/22] Reboot.
---  mm/dd/yy -> dd/mm/yy  --
-[05/03/23] Reboot.
-[17/03/23] Reboot.
-[03/06/23] Reboot.
 """
 
 from os import getenv
