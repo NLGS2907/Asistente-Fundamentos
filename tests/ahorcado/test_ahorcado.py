@@ -5,7 +5,7 @@ Módulo para tests de la clase 'Ahorcado'.
 import unittest
 from os import remove as arch_remove
 
-from asistente.ahorcado.ahorcado import *
+from asistente.ahorcado.ahorcado import Ahorcado
 
 
 class TestAhorcado(unittest.TestCase):
