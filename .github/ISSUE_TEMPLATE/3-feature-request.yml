@@ -1,0 +1,33 @@
+name: Petición de Feature
+description: Proponer una nueva característica o mejora al proyecto
+title: "🚀 "
+labels: ["🚀 feature", "📚 documentación"]
+body:
+- type: input
+  attributes:
+    label: Descripción
+    description: Introducir brevemente la idea.
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Motivo
+    description: Explicar por qué se piensa que esto podría ser beneficioso para el proyecto.
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Implementación
+    description: Escribir más en detalle la idea y cómo la implementaría concretamente en el proyecto.
+  validations:
+    required: true
+- type: markdown
+  attributes:
+    value: |
+      > [!WARNING]
+      > Si no se puede expresar la implementación concreta, considere una
+      > propuesta de diseño en su lugar.
+- type: textarea
+  attributes:
+    label: Contexto Adicional
+    description: Cualquier información extra, como capturas de pantalla, etc.

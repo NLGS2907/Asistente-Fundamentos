@@ -1,0 +1,21 @@
+name: Refactorización
+description: Un cambio que debería ser aplicado al código internamente
+title: "🚧 "
+labels: ["🚀 feature", "❗ ayuda"]
+body:
+- type: input
+  attributes:
+    label: Descripción
+    description: Introducir brevemente la idea de diseño.
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Motivo
+    description: Explicar por qué es necesaria o beneficiosa esta refactorización.
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Contexto Adicional
+    description: Cualquier información extra, como capturas de pantalla, etc.

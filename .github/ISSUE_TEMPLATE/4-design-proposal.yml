@@ -1,0 +1,21 @@
+name: Propuesta de Diseño
+description: Proponer un cambio en el diseño del proyecto que noes ni una feature ni un cambio de documentación
+title: "🎨 "
+labels: ["🚀 feature", "❗ ayuda"]
+body:
+- type: input
+  attributes:
+    label: Descripción
+    description: Introducir brevemente la idea de diseño.
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Motivo
+    description: Explicar por qué se piensa que esto podría ser beneficioso para el proyecto.
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Contexto Adicional
+    description: Cualquier información extra, como capturas de pantalla, etc.

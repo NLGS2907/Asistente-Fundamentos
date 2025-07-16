@@ -1,0 +1,56 @@
+name: Reporte de Bugs
+description: Reportar errores de programación o 'bugs'
+title: "🐞 "
+labels: ["🐞 bug", "❗ ayuda"]
+body:
+- type: input
+  attributes:
+    label: Introducción
+    description: Descripción breve del bug encontrado.
+    placeholder: El bot no responde cuando ejecuto X comando en Y situación.
+- type: markdown
+  attributes:
+    value: "# Pasos para reproducir el Bug"
+- type: textarea
+  attributes:
+    label: Snippet Causante
+    description: Si es posible, indicar la parte del código donde se detectó la causa.
+    placeholder: Describir el lugar o añadir captura de pantalla arrastrando imágenes aquí.
+- type: textarea
+  attributes:
+    label: Mensaje de Error
+    description: Lo que sale en el mensaje de error, o una imagen del mismo.
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: ¿Qué debería ocurrir?
+    description: Explicar en detalle el comportamiento esperado.
+    placeholder: El asistente debería mandarme un mensaje de confirmación.
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: ¿Qué ocurre en realidad?
+    description: Describir el comportamiento erróneo que ocurre en vez de lo esperado.
+    placeholder: El mensaje nunca llega.
+  validations:
+    required: true
+- type: markdown
+  attributes:
+    value: "# Información Extra"
+- type: dropdown
+  attributes:
+    label: Sistema Operativo
+    description: ¿Qué sistema operativo se usa?
+    multiple: false
+    options:
+      - Windows
+      - Linux
+      - MacOS
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Info extra
+    description: ¿Algo más que se quiera contar?

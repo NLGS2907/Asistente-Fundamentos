@@ -1,0 +1,21 @@
+name: Mejora de Documentación
+description: Nueva documentación o edición de documentación existente
+title: "📚 "
+labels: ["📚 documentación"]
+body:
+- type: textarea
+  attributes:
+    label: Motivo
+    description: Explicar por qué se debería incluir la documentación.
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Partes Afectadas
+    description: ¿Qué partes del proyecto cambia/afecta la documentación?
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Contexto Adicional
+    description: Cualquier información extra, como capturas de pantalla, etc.
