@@ -1,0 +1,3 @@
+[tool.ruff.lint.extend-per-file-ignores]
+# Ignore star-imports in __init__ files
+"__init__.py" = ["F403"]
