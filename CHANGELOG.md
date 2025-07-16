@@ -28,6 +28,9 @@ Historial con detalles de cambios entre versiones del asistente.
   - Nuevo ejercicios **11.7** y **11.8**.
   - El enunciado del ejercicio **17.11** fue reemplazado por otro diferente.
   - Nuevos ejercicios del **17.12** al **17.18**.
+* **Actualizadas las dependencias.**
+  - discord.py (2.2.2 → **2.5.2**)
+  - python-dotenv (1.0.0 → **1.1.1**)
 
 <hr style="height:4px" />
 

@@ -24,8 +24,8 @@ de la Facultad de Ingeniería de la UBA, aunque puede utilizarse para cualquier 
 
   | Nombre | Versión | Extra Info. |
   | :-: | :-: | :-: |
-  | [discord.py](https://pypi.org/project/discord.py/) | 2.2.2 |  |
-  | [python-dotenv](https://pypi.org/project/python-dotenv/) | 1.0.0 |  |
+  | [discord.py](https://pypi.org/project/discord.py/) | 2.5.2 |  |
+  | [python-dotenv](https://pypi.org/project/python-dotenv/) | 1.1.1 |  |
 
 * **[Changelog](./CHANGELOG.md)**
 
