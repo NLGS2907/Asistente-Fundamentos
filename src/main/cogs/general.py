@@ -91,9 +91,10 @@ class CogGeneral(Cog):
         Maneja un error de forma predeterminada para todos los cogs.
         """
 
-        await interaccion.response.send_message(f"**[ERROR]** Parece que hubo un error.",
+        await interaccion.response.send_message("**[ERROR]** Parece que hubo un error.",
                                                 ephemeral=True)
-        error_bello = "\n\t|\t".join(f"Excepción en app_commands lanzada:\n{format_exc()}".split("\n"))
+        error_bello = "\n\t|\t".join("Excepción en app_commands "
+                                     "lanzada:\n{format_exc()}".split("\n"))
         self.bot.log.error(error_bello)
 
 
@@ -103,7 +104,9 @@ class CogGeneral(Cog):
         """
 
         hay_guild = ("" if ctx.guild is None else f" en {ctx.guild.name!r}")
-        hay_mensaje = ("un mensaje sin contenido" if not ctx.message.content else f"el mensaje {ctx.message.content!r}")
+        hay_mensaje = ("un mensaje sin contenido"
+                       if not ctx.message.content
+                       else f"el mensaje {ctx.message.content!r}")
         self.bot.log.info((f"[CMD] {ctx.author.name!r} está tratando de ejecutar el comando " +
                            f"{ctx.command.name!r}{hay_guild}, mediante {hay_mensaje}."))
 
@@ -114,7 +117,9 @@ class CogGeneral(Cog):
         """
 
         hay_guild = ("" if ctx.guild is None else f" en {ctx.guild.name!r}")
-        hay_mensaje = ("un mensaje sin contenido" if not ctx.message.content else f"el mensaje {ctx.message.content!r}")
+        hay_mensaje = ("un mensaje sin contenido"
+                       if not ctx.message.content
+                       else f"el mensaje {ctx.message.content!r}")
         self.bot.log.info((f"[CMD] {ctx.author.name!r} ejecutó el comando " +
                            f"{ctx.command.name!r}{hay_guild}, mediante {hay_mensaje}."))
 
@@ -124,4 +129,4 @@ async def setup(_bot: "Lector"):
     Agrega el cog de este módulo al Lector.
     """
 
-    ... # Este Cog no está pensado para agregarse.
+    # Este Cog no está pensado para agregarse.
