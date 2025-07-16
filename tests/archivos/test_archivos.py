@@ -5,15 +5,14 @@ Módulo para tests del módulo 'archivos'.
 import unittest
 from os import remove as arch_remove
 
-from asistente.archivos.archivos import (
+from asistente.archivos.general import (
     archivos_guia,
     cargar_guia,
-    cargar_json,
-    guardar_json,
     lista_ejercicios,
     lista_unidades,
     version_es_valida,
 )
+from asistente.archivos.json import cargar_json, guardar_json
 
 
 class TestArchivos(unittest.TestCase):

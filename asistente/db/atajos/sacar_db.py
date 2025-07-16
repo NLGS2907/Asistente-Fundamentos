@@ -67,12 +67,6 @@ def get_fmt_fecha() -> str:
     return get_propiedad("fmt_fecha")
 
 
-def get_guia_ext() -> str:
-    "Consigue la extensión esperada para las unidades de las guías."
-
-    return get_propiedad("guia_ext")
-
-
 def get_ruta_de_db(nombre_ruta: str) -> PathLike:
     "Consigue una ruta de la DB."
 
