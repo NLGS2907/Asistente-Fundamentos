@@ -30,7 +30,7 @@ Historial con detalles de cambios entre versiones del asistente.
   - Nuevos ejercicios del **17.12** al **17.18**.
 * **Actualizadas las dependencias.**
   - discord.py (2.2.2 → **2.5.2**)
-  - python-dotenv (1.0.0 → **1.1.1**)
+  - python-dotenv **fue eliminada**
 
 <hr style="height:4px" />
 
