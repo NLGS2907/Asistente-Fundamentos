@@ -4,7 +4,8 @@ Historial con detalles de cambios entre versiones del asistente.
 
 |       Version     |
 |     :---------:   |
-|**[v1.4.1](#v141)**|
+|**[v2.0.0](#v200)**|
+|  [v1.4.1](#v141)  |
 |  [v1.4.0](#v140)  |
 |  [v1.3.0](#v130)  |
 |  [v1.2.1](#v121)  |
@@ -17,6 +18,18 @@ Historial con detalles de cambios entre versiones del asistente.
 |  [v1.0.0](#v100)  |
 
 <hr/>
+
+## v2.0.0
+
+* Cambiados los estilos de nombre de guías de `1c2024` a `2024C1`.
+* **Actualizada la versión de la guía** a la revisión del 7 de Marzo de 2024, bajo la denominación `2024C1`.
+  - Ediciones en el enunciado del ejercicio **11.2**.
+  - El enunciado del ejercicio **11.6** fue reemplazado por otro completamente distinto.
+  - Nuevo ejercicios **11.7** y **11.8**.
+  - El enunciado del ejercicio **17.11** fue reemplazado por otro diferente.
+  - Nuevos ejercicios del **17.12** al **17.18**.
+
+<hr style="height:4px" />
 
 ### v1.4.1
 
