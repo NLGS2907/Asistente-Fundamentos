@@ -14,13 +14,10 @@ Repositorio: https://github.com/NLGS2907/Alg1-Lector-de-Ejercicios
 
 from os import getenv
 
-from dotenv import load_dotenv
-
+from .archivos import leer_y_cargar_envs
 from .lector import Lector
 
-load_dotenv()
-
-
+leer_y_cargar_envs()
 TOKEN = getenv("DISCORD_TOKEN")
 
 
