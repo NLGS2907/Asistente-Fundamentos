@@ -7,10 +7,10 @@
 ![status](https://dcbadge.limes.pink/api/shield/889312376036425810?bot=true?logoColor=presence&theme=discord)
 
 ![version](https://img.shields.io/badge/version-2.0.0-brightgreen)
-![estrellas](https://img.shields.io/github/stars/NLGS2907/Alg1-Lector-de-Ejercicios?label=Estrellas&style=social)
-![forks](https://img.shields.io/github/forks/NLGS2907/Alg1-Lector-de-Ejercicios?style=social)
-![Tests](https://github.com/NLGS2907/Alg1-Lector-de-Ejercicios/actions/workflows/tests.yml/badge.svg)
-![Pylint](https://github.com/NLGS2907/Alg1-Lector-de-Ejercicios/actions/workflows/pylint.yml/badge.svg)
+![estrellas](https://img.shields.io/github/stars/NLGS2907/Asistente-Fundamentos?label=Estrellas&style=social)
+![forks](https://img.shields.io/github/forks/NLGS2907/Asistente-Fundamentos?style=social)
+![Tests](https://github.com/NLGS2907/Asistente-Fundamentos/actions/workflows/tests.yml/badge.svg)
+![Pylint](https://github.com/NLGS2907/Asistente-Fundamentos/actions/workflows/pylint.yml/badge.svg)
 
 Este bot de discord está pensado para usarse principalmente en el discord de la materia Algoritmos y Programación I,
 de la Facultad de Ingeniería de la UBA, aunque puede utilizarse para cualquier servidor que lo quiera.
