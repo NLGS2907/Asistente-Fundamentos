@@ -1,0 +1,139 @@
+{
+    "titulo": "Algunos Conceptos Básicos",
+    "1": {
+        "titulo": [
+
+        ],
+        "descripcion": [
+            "Escribir una función que reciba dos números y devuelva su producto."
+        ],
+        "campos": {
+
+        },
+        "pie": [
+
+        ]
+    },
+    "2": {
+        "titulo": [
+
+        ],
+        "descripcion": [
+            "Utilizando la función del ejercicio anterior, escribir un *programa* (un archivo .py)",
+            "que pida al usuario dos números, y luego muestre el producto."
+        ],
+        "campos": {
+
+        },
+        "pie": [
+
+        ]
+    },
+    "3": {
+        "titulo": [
+
+        ],
+        "descripcion": [
+            "Escribir funciones que permitan:"
+        ],
+        "campos": {
+            "a)": [
+                "Calcular el perímetro de un rectángulo dada su base y su altura."
+            ],
+            "b)": [
+                "Calcular el área de un rectángulo dada su base y su altura."
+            ],
+            "c)": [
+                "Calcular el área de un rectángulo (alineado con los ejes *x* e *y*) dadas sus coordenadas *x1*, *y1*, *x2*, *y2*."
+            ],
+            "d)": [
+                "Calcular el perímetro de un círculo dado su radio."
+            ],
+            "e)": [
+                "Calcular el área de un círculo dado su radio."
+            ],
+            "f)": [
+                "Calcular el volumen de una esfera dado su radio."
+            ],
+            "g)": [
+                "Dados los catetos de un triángulo rectángulo, calcular su hipotenusa."
+            ]
+        },
+        "pie": [
+
+        ]
+    },
+    "4": {
+        "titulo": [
+
+        ],
+        "descripcion": [
+            "Analizar los siguientes bloques de código. ¿Cuál será el resultado de ejecutarlos? Verificar la respuesta con el intérprete."
+        ],
+        "campos": {
+            "a)": [
+                "```python",
+                "for i in range(5):",
+                "\tprint(i * i)",
+                "```"
+            ],
+            "b)": [
+                "```python",
+                "for i in range(2, 6):",
+                "\tprint(i, 2 ** i)",
+                "```"
+            ]
+        },
+        "pie": [
+
+        ]
+    },
+    "5": {
+        "titulo": [
+
+        ],
+        "descripcion": [
+            "Escribir una función que, dado un número entero, permita calcular su factorial."
+        ],
+        "campos": {
+
+        },
+        "pie": [
+
+        ]
+    },
+    "6": {
+        "titulo": [
+
+        ],
+        "descripcion": [
+            "Escribir funciones que resuelvan los siguientes problemas:"
+        ],
+        "campos": {
+            "a)": [
+                "Dados dos números, imprimir la suma, resta, división y multiplicación de ambos."
+            ],
+            "b)": [
+                "Dado un número entero 𝑛, imprimir su tabla de multiplicar."
+            ]
+        },
+        "pie": [
+
+        ]
+    },
+    "7": {
+        "titulo": [
+
+        ],
+        "descripcion": [
+            "Escribir un programa que le pida una palabra al usuario, para luego imprimirla 1000 veces,",
+            "en una única línea, con espacios intermedios."
+        ],
+        "campos": {
+
+        },
+        "pie": [
+            "Ayuda: Investigar acerca del parámetro `end` de la función `print`."
+        ]
+    }
+}
