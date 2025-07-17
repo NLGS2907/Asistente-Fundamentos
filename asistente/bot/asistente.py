@@ -3,15 +3,14 @@ Módulo dedicado a contener la clase personalizada 'CustomBot'.
 """
 
 from platform import system
-from typing import TYPE_CHECKING, Callable, Optional, TypeAlias
+from typing import TYPE_CHECKING, Optional, TypeAlias
 
-from discord import Game, Intents, Message
+from discord import Intents, Message
 from discord.ext.commands import Bot
 from discord.utils import utcnow
 
 from ..ahorcado import Ahorcado
 from ..archivos import buscar_archivos
-from ..auxiliar import get_prefijo
 from ..db.atajos import actualizar_guild, get_asist_id, get_ruta_cogs
 from ..logger import AsistLogger
 
@@ -27,7 +26,6 @@ except ImportError:
     AsistLogger().warning("No se pudo importar 'WindowsSelectorEventLoopPolicy', "
                            "probablemente porque esto no es Windows.")
 
-PrefixCallable: TypeAlias = Callable[["Asistente", Message], str]
 DiccionarioPartidas: TypeAlias = dict[str, Ahorcado]
 
 
@@ -51,15 +49,12 @@ class Asistente(Bot):
 
 
     def __init__(self,
-                 cmd_prefix: PrefixCallable=get_prefijo,
-                 actividad=Game(name="leer ejercicios"),
                  **opciones) -> None:
         """
         Inicializa una instancia de tipo 'Asistente'.
         """
 
-        super().__init__(cmd_prefix,
-                         activity=actividad,
+        super().__init__("!", # Por legacy se eligió esto, pero n ose va a usar nunca
                          intents=Asistente.intents_asistente(),
                          application_id=get_asist_id(),
                          options=opciones)
@@ -138,16 +133,6 @@ class Asistente(Bot):
         """
 
         return not self.es_ultimo_mensaje(msg) and msg.author == self.user
-
-
-    def es_mensaje_comando(self, msg: Message) -> bool:
-        """
-        Verifica si un mensaje escrito por un usuario o
-        bot es un comando.
-        """
-
-        return ((not self.es_ultimo_mensaje(msg) and msg.content.startswith(get_prefijo(self, msg)))
-                or self.es_mensaje_de_bot(msg))
 
 
     def encontrar_partida(self, id_a_encontrar: str) -> Optional[Ahorcado]:

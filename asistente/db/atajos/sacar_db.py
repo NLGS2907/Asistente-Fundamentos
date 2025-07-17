@@ -31,12 +31,6 @@ def get_asist_id() -> int:
     return int(get_propiedad("asist_id"))
 
 
-def get_prefijo_default() -> str:
-    "Consigue el prefijo por defecto del asistente."
-
-    return get_propiedad("prefijo_default")
-
-
 def get_sv_algo1_id() -> int:
     "Consigue el ID del servidor de 'Algoritmos y Programación 1 - Essaya'"
 
@@ -87,19 +81,6 @@ def get_rutas_de_db(nombre_ruta: str) -> Tuple[PathLike, ...]:
 
     # Los valores siempre serán la tercera columna
     return tuple(col[2] for col in res)
-
-
-def get_prefijo_guild(guild_id: int) -> str:
-    "Devuelve un prefijo por id del guild."
-
-    res = sacar_datos_de_tabla("prefijos",
-                               sacar_uno=True,
-                               guild_id=guild_id)
-
-    if not res:
-        return get_prefijo_default()
-
-    return res[2]
 
 
 def get_ruta_guia() -> PathLike:

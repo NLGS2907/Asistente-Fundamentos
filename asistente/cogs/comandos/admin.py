@@ -12,7 +12,7 @@ from discord.app_commands import command as appcommand
 from discord.app_commands import describe
 
 from ...auxiliar import es_rol_valido
-from ...db.atajos import actualizar_prefijo, get_prefijo_guild, get_ruta_log
+from ...db.atajos import get_ruta_log
 from ..general import CogGeneral
 
 if TYPE_CHECKING:
@@ -23,30 +23,6 @@ class CogAdmin(CogGeneral):
     """
     Cog de comandos que requieren permisos.
     """
-
-    @appcommand(name="prefix",
-                description="Cambia el prefijo de los comandos.")
-    @describe(nuevo_prefijo="El nuevo prefijo a usar")
-    @es_rol_valido()
-    async def cambiar_prefijo(self, interaccion: Interaction, nuevo_prefijo: str) -> None:
-        """
-        Cambia el prefijo utilizado para convocar a los comandos, solamente del
-        servidor de donde el comando fue escrito.
-
-        Se da por hecho que el servidor ya está memorizado en el diccionario.
-        """
-
-        prefijo_viejo = get_prefijo_guild(interaccion.guild_id)
-        actualizar_prefijo(nuevo_prefijo, interaccion.guild.id)
-
-        await interaccion.response.send_message("**[AVISO]** El prefijo de los comandos fue " +
-                                                f"cambiado de `{prefijo_viejo}` a " +
-                                                f"`{nuevo_prefijo}` exitosamente.",
-                                                ephemeral=True)
-
-        self.bot.log.info(f"El prefijo en '{interaccion.guild.name}' fue cambiado " +
-                          f"de '{prefijo_viejo}' a '{nuevo_prefijo}'")
-
 
     @appcommand(name="clear",
                 description="Limpia el canal de mensajes del bot.")
@@ -68,10 +44,8 @@ class CogAdmin(CogGeneral):
         mensajes de los usuarios que invocan los comandos.
         """
 
-        funcion_check = (self.bot.es_mensaje_comando
-                         if completo
-                         else self.bot.es_mensaje_de_bot)
-        eliminados = await interaccion.channel.purge(limit=limite + 1, check=funcion_check)
+        eliminados = await interaccion.channel.purge(limit=limite + 1,
+                                                     check=self.bot.es_mensaje_de_bot)
 
         mensaje = (f"`{len(eliminados)}` mensaje/s fueron eliminados de " +
                    f"{interaccion.channel.name} en {interaccion.guild.name}")

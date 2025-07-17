@@ -2,25 +2,20 @@
 
 Historial con detalles de cambios entre versiones del asistente.
 
-|       Version     |
-|     :---------:   |
-|**[v2.0.0](#v200)**|
-|  [v1.4.1](#v141)  |
-|  [v1.4.0](#v140)  |
-|  [v1.3.0](#v130)  |
-|  [v1.2.1](#v121)  |
-|  [v1.2.0](#v120)  |
-|  [v1.1.0](#v110)  |
-|  [v1.0.4](#v104)  |
-|  [v1.0.3](#v103)  |
-|  [v1.0.2](#v102)  |
-|  [v1.0.1](#v101)  |
-|  [v1.0.0](#v100)  |
+|                  |                  |                  |                  |      Version     |
+|:----------------:|:----------------:|:----------------:|:----------------:|:----------------:|
+|                  |                  |                  |  [1.4.1](#v141)  |**[2.0.0](#v200)**|
+|                  |                  |                  |                  |**[1.4.0](#v140)**|
+|                  |                  |                  |  [1.2.1](#v121)  |**[1.3.0](#v130)**|
+|                  |                  |                  |                  |**[1.2.0](#v120)**|
+|  [1.0.1](#v101)  |  [1.0.2](#v102)  |  [1.0.3](#v103)  |  [1.0.4](#v104)  |**[1.1.0](#v110)**|
+|                  |                  |                  |                  |**[1.0.0](#v100)**|
 
 <hr/>
 
 ## v2.0.0
 
+* **El bot ahora se llama *"Asistente de Fundamentos"*, ya no *"Lector de Ejercicios"***. Esto es para ser más conforme con futuras características.
 * Cambiados los estilos de nombre de guías de `1c2024` a `2024C1`.
 * **Actualizada la versión de la guía** a la revisión del 7 de Marzo de 2024, bajo la denominación `2024C1`.
   - Ediciones en el enunciado del ejercicio **11.2**.
@@ -33,6 +28,7 @@ Historial con detalles de cambios entre versiones del asistente.
   - python-dotenv **fue eliminada**
 * Remodularizados los módulos `main` y `tests` del proyecto. Ahora están como carpetas aparte en el directorio raíz.
   - `main` ahora se llama `asistente`, para ser consistente con la nueva forma de invocar al bot.
+* Limpiada toda mención de los "prefijos". Ahora el bot usa exclusivamente _app commands_ con `/`.
 
 <hr style="height:4px" />
 
