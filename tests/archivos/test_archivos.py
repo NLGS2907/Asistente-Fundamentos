@@ -5,7 +5,7 @@ Módulo para tests del módulo 'archivos'.
 import unittest
 from os import remove as arch_remove
 
-from asistente.archivos.general import (
+from asistente.archivos.guias import (
     archivos_guia,
     cargar_guia,
     lista_ejercicios,
