@@ -30,7 +30,7 @@ class ModalAdivinacion(Modal):
 
     def __init__(self, vista: "VistaAdivinacion") -> None:
         """
-        Inicializa una instancia de 'CommandDB'.
+        Inicializa una instancia de 'ModalAdivinacion'.
         """
 
         super().__init__(timeout=None,

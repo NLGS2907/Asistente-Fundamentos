@@ -1,4 +1,4 @@
-# Lector de Ejercicios
+# Asistente de Fundamentos
 
 <img alt="exercise_reader.png" align="left" src="img/exercise_reader.png" height=128 width=128 />
 
@@ -12,8 +12,9 @@
 ![Tests](https://github.com/NLGS2907/Asistente-Fundamentos/actions/workflows/tests.yml/badge.svg)
 ![Pylint](https://github.com/NLGS2907/Asistente-Fundamentos/actions/workflows/pylint.yml/badge.svg)
 
-Este bot de discord está pensado para usarse principalmente en el discord de la materia Algoritmos y Programación I,
-de la Facultad de Ingeniería de la UBA, aunque puede utilizarse para cualquier servidor que lo quiera.
+El Asistente de Fundamentos es una app de Discord con _bot user_ incluido para cumplir varias funciones misceláneas; entre ellas guardar y leer de la guía de ejercicios de la materia TB021 "Fundamentos de Programación" (curso Essaya) de la FIUBA.
+
+Está pensado para usarse en el servidor de Discord de dicha materia, pero puede invitarse a cualquier servidor que lo quiera.
 </p>
 
 <hr/>

@@ -7,7 +7,7 @@ from typing import TYPE_CHECKING, Optional, TypeAlias, Union
 
 from ..db import existe_dato_en_tabla, sacar_datos_de_tabla
 from ..db.atajos import get_guia_default, get_ruta_guia
-from ..logger import LectorLogger
+from ..logger import AsistLogger
 from .general import lista_carpetas
 from .json import cargar_json
 
@@ -116,7 +116,7 @@ def get_guia_por_sv(guild_id: int, version: Optional[str]=None) -> "DiccionarioG
 
     version = version or get_version_guia_por_sv(guild_id)
     version_a_usar = cargar_guia(version)
-    log = LectorLogger()
+    log = AsistLogger()
 
     if version_a_usar is None:
         formato_log = {"version": version,

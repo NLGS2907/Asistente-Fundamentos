@@ -22,7 +22,7 @@ from ..general import CogGeneral, GroupsList, GrupoGeneral
 
 if TYPE_CHECKING:
     from ...db import FetchResult
-    from ...lector import Lector
+    from ...bot import Asistente
 
 
 class GrupoDB(GrupoGeneral):
@@ -30,7 +30,7 @@ class GrupoDB(GrupoGeneral):
     Grupo para comandos que ejecutan comandos de SQLite3.
     """
 
-    def __init__(self, bot: "Lector") -> None:
+    def __init__(self, bot: "Asistente") -> None:
         """
         Inicializa una instancia de 'GrupoDB'.
         """
@@ -411,9 +411,9 @@ class CogDB(CogGeneral):
         return [GrupoDB]
 
 
-async def setup(bot: "Lector"):
+async def setup(bot: "Asistente"):
     """
-    Agrega el cog de este módulo al Lector.
+    Agrega el cog de este módulo al Asistente.
     """
 
     await bot.add_cog(CogDB(bot))

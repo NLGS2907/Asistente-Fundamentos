@@ -11,7 +11,7 @@ from ...db.atajos import actualizar_guild
 from ..general import CogGeneral
 
 if TYPE_CHECKING:
-    from ...lector import Lector
+    from ...bot import Asistente
 
 
 class CogEventos(CogGeneral):
@@ -97,9 +97,9 @@ class CogEventos(CogGeneral):
             await after.delete()
 
 
-async def setup(bot: "Lector"):
+async def setup(bot: "Asistente"):
     """
-    Agrega el cog de este módulo al Lector.
+    Agrega el cog de este módulo al Asistente.
     """
 
     await bot.add_cog(CogEventos(bot))

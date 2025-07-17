@@ -15,7 +15,7 @@ if TYPE_CHECKING:
     from discord import Permissions
     from discord.app_commands import locale_str
 
-    from ..lector import Lector
+    from ..bot import Asistente
 
 class GrupoGeneral(Group):
     """
@@ -23,7 +23,7 @@ class GrupoGeneral(Group):
     """
 
     def __init__(self,
-                 bot: "Lector",
+                 bot: "Asistente",
                  *,
                  name: Union[str, "locale_str"] = MISSING,
                  description: Union[str, "locale_str"] = MISSING,
@@ -47,7 +47,7 @@ class GrupoGeneral(Group):
                          auto_locale_strings=auto_locale_strings,
                          default_permissions=default_permissions,
                          extras=extras)
-        self.bot: "Lector" = bot
+        self.bot: "Asistente" = bot
 
 
 GroupsList: TypeAlias = list[type[GrupoGeneral]]
@@ -57,12 +57,12 @@ class CogGeneral(Cog):
     Cog General, para que se herede de él.
     """
 
-    def __init__(self, bot: "Lector") -> None:
+    def __init__(self, bot: "Asistente") -> None:
         """
         Inicializa una instancia de 'CogGeneral'.
         """
 
-        self.bot: "Lector" = bot
+        self.bot: "Asistente" = bot
         self._cargar_grupos()
 
 
@@ -124,9 +124,9 @@ class CogGeneral(Cog):
                            f"{ctx.command.name!r}{hay_guild}, mediante {hay_mensaje}."))
 
 
-async def setup(_bot: "Lector"):
+async def setup(_bot: "Asistente"):
     """
-    Agrega el cog de este módulo al Lector.
+    Agrega el cog de este módulo al Asistente.
     """
 
     # Este Cog no está pensado para agregarse.

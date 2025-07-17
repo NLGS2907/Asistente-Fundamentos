@@ -12,7 +12,7 @@ from ...db.atajos import get_version
 from ..general import CogGeneral
 
 if TYPE_CHECKING:
-    from ...lector import Lector
+    from ...bot import Asistente
 
 
 class CogMisc(CogGeneral):
@@ -32,10 +32,10 @@ class CogMisc(CogGeneral):
 
 
     @appcommand(name="invite",
-                description="Muestra el link de invitación del lector.")
+                description="Muestra el link de invitación del asistente.")
     async def invitar_bot(self, interaccion: Interaction) -> None:
         """
-        Manda un mensaje indicando cuál es el enlace de invitación del lector.
+        Manda un mensaje indicando cuál es el enlace de invitación del asistente.
         """
 
         link = oauth_url(self.bot.application_id,
@@ -47,9 +47,9 @@ class CogMisc(CogGeneral):
                                                 ephemeral=True)
 
 
-async def setup(bot: "Lector"):
+async def setup(bot: "Asistente"):
     """
-    Agrega el cog de este módulo al Lector.
+    Agrega el cog de este módulo al Asistente.
     """
 
     await bot.add_cog(CogMisc(bot))

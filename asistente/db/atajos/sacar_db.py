@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 
 
 def get_propiedad(propiedad: str) -> "FetchResult":
-    "Consigue alguna propiedad del lector."
+    "Consigue alguna propiedad del asistente."
 
     return sacar_datos_de_tabla("propiedades",
                                 sacar_uno=True,
@@ -20,19 +20,19 @@ def get_propiedad(propiedad: str) -> "FetchResult":
 
 
 def get_version() -> str:
-    "Consigue la versión del lector."
+    "Consigue la versión del asistente."
 
     return get_propiedad("version")
 
 
-def get_lector_id() -> int:
-    "Consigue el ID del lector."
+def get_asist_id() -> int:
+    "Consigue el ID del asistente."
 
-    return int(get_propiedad("lector_id"))
+    return int(get_propiedad("asist_id"))
 
 
 def get_prefijo_default() -> str:
-    "Consigue el prefijo por defecto del lector."
+    "Consigue el prefijo por defecto del asistente."
 
     return get_propiedad("prefijo_default")
 
@@ -62,7 +62,7 @@ def get_guia_default() -> str:
 
 
 def get_fmt_fecha() -> str:
-    "Consigue el formato de fecha personalizado para el lector."
+    "Consigue el formato de fecha personalizado para el asistente."
 
     return get_propiedad("fmt_fecha")
 

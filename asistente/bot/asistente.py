@@ -12,8 +12,8 @@ from discord.utils import utcnow
 from ..ahorcado import Ahorcado
 from ..archivos import buscar_archivos
 from ..auxiliar import get_prefijo
-from ..db.atajos import actualizar_guild, get_lector_id, get_ruta_cogs
-from ..logger import LectorLogger
+from ..db.atajos import actualizar_guild, get_asist_id, get_ruta_cogs
+from ..logger import AsistLogger
 
 if TYPE_CHECKING:
     from datetime import datetime, timedelta
@@ -24,24 +24,24 @@ try:
     if system() == "Windows":
         set_event_loop_policy(WindowsSelectorEventLoopPolicy())
 except ImportError:
-    LectorLogger().warning("No se pudo importar 'WindowsSelectorEventLoopPolicy', " +
+    AsistLogger().warning("No se pudo importar 'WindowsSelectorEventLoopPolicy', "
                            "probablemente porque esto no es Windows.")
 
-PrefixCallable: TypeAlias = Callable[["Lector", Message], str]
+PrefixCallable: TypeAlias = Callable[["Asistente", Message], str]
 DiccionarioPartidas: TypeAlias = dict[str, Ahorcado]
 
 
 # pylint: disable=abstract-method
-class Lector(Bot):
+class Asistente(Bot):
     """
     Clase pasa sobrecargar y agregar cosas a la clase 'Bot'.
     """
 
 
     @staticmethod
-    def intents_lector() -> Intents:
+    def intents_asistente() -> Intents:
         """
-        Crea un objeto `Intents` personalizado para este lector.
+        Crea un objeto `Intents` personalizado para este asistente.
         """
 
         intents = Intents.default()
@@ -55,19 +55,19 @@ class Lector(Bot):
                  actividad=Game(name="leer ejercicios"),
                  **opciones) -> None:
         """
-        Inicializa una instancia de tipo 'Lector'.
+        Inicializa una instancia de tipo 'Asistente'.
         """
 
         super().__init__(cmd_prefix,
                          activity=actividad,
-                         intents=Lector.intents_lector(),
-                         application_id=get_lector_id(),
+                         intents=Asistente.intents_asistente(),
+                         application_id=get_asist_id(),
                          options=opciones)
 
         self.inicializado_en: "datetime" = utcnow()
         "El momento exacto en que el bot fue inicializado."
 
-        self.log: LectorLogger = LectorLogger()
+        self.log: AsistLogger = AsistLogger()
         "Devuelve el logger del bot."
 
         self.partidas: DiccionarioPartidas = {}

@@ -10,10 +10,10 @@ from ..db.atajos import get_prefijo_default, get_prefijo_guild
 
 if TYPE_CHECKING:
 
-    from ..lector import Lector
+    from ..bot import Asistente
 
 
-def get_prefijo(_bot: "Lector", mensaje: Message) -> str:
+def get_prefijo(_bot: "Asistente", mensaje: Message) -> str:
     """
     Se fija en el diccionario de prefijos y devuelve el que
     corresponda al servidor de donde se convoca el comando.

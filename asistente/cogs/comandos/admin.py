@@ -16,7 +16,7 @@ from ...db.atajos import actualizar_prefijo, get_prefijo_guild, get_ruta_log
 from ..general import CogGeneral
 
 if TYPE_CHECKING:
-    from ...lector import Lector
+    from ...bot import Asistente
 
 
 class CogAdmin(CogGeneral):
@@ -109,7 +109,7 @@ class CogAdmin(CogGeneral):
 
         if not sys_executable:
 
-            mensaje = "[ERROR] No se pudo reiniciar el lector."
+            mensaje = "[ERROR] No se pudo reiniciar el asistente."
 
             await interaccion.response.send_message(content=mensaje,
                                                     ephemeral=True)
@@ -173,9 +173,9 @@ class CogAdmin(CogGeneral):
                                                 ephemeral=True)
 
 
-async def setup(bot: "Lector"):
+async def setup(bot: "Asistente"):
     """
-    Agrega el cog de este módulo al Lector.
+    Agrega el cog de este módulo al Asistente.
     """
 
     await bot.add_cog(CogAdmin(bot))

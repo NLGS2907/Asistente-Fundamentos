@@ -12,20 +12,19 @@ if TYPE_CHECKING:
     from logging import Logger
 
 
-class LectorLogger:
+class AsistLogger:
     """
     Clase que registra eventos del bot.
-    Hecho con patrón singleton.
     """
 
     def __init__(self,
                  *,
-                 nombre_log: str="lector",
+                 nombre_log: str="asistente",
                  nivel_log: int=INFO,
                  fmt: str="%(asctime)s - %(levelname)s - %(message)s",
                  fmt_fecha: str="%d-%m-%Y %I:%M:%S %p") -> None:
         """
-        Crea una instancia de 'LectorLogger'.
+        Crea una instancia de 'AsistLogger'.
         """
 
         super().__init__()

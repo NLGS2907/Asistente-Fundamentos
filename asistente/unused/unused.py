@@ -11,7 +11,7 @@ PHRASES = ["Conque sí, ¿Eh? Veo que estás listo para otra derrota...",
 "¡Agh, nunca me sale! ¡Da igual!",
 "Voy a ver si te gano con los ojos cerrados.",
 "A jugar, pibe.",
-"Y pensar que yo era un lector de ejercicios nomás...\n\nMeh, un easter egg o dos no están mal.",
+"Y pensar que yo era un asistente de ejercicios nomás...\n\nMeh, un easter egg o dos no están mal.",
 "¿Quién viene a perder? Vos. Sí, vos.",
 "Si sigues intentando puede que encuentres otro secreto... " +
 "si no los husmeas en el código fuente, claro.",

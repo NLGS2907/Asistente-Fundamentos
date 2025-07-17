@@ -9,13 +9,13 @@ Permisos necesarios: 'Send Messages' - 'Manage Messages' - "Read Message History
 Permissions Integer: 19327560768
 
 Enlace para invitar bot: https://discord.com/api/oauth2/authorize?client_id=889312376036425810&permissions=294205467712&scope=bot%20applications.commands
-Repositorio: https://github.com/NLGS2907/Alg1-Lector-de-Ejercicios
+Repositorio: https://github.com/NLGS2907/Asistente-Fundamentos
 """
 
 from os import getenv
 
 from .archivos import leer_y_cargar_envs
-from .lector import Lector
+from .bot import Asistente
 
 leer_y_cargar_envs()
 TOKEN = getenv("DISCORD_TOKEN")
@@ -24,7 +24,7 @@ TOKEN = getenv("DISCORD_TOKEN")
 def main() -> int:
     "Función principal."
 
-    Lector().run(TOKEN)
+    Asistente().run(TOKEN)
     return 0
 
 

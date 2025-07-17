@@ -15,7 +15,7 @@ from ..general import CogGeneral
 
 if TYPE_CHECKING:
 
-    from ...lector import Lector
+    from ...bot import Asistente
 
 
 class CogHanged(CogGeneral):
@@ -64,9 +64,9 @@ class CogHanged(CogGeneral):
                         view=VistaAdivinacion(self.bot))
 
 
-async def setup(bot: "Lector"):
+async def setup(bot: "Asistente"):
     """
-    Agrega el cog de este módulo al Lector.
+    Agrega el cog de este módulo al Asistente.
     """
 
     await bot.add_cog(CogHanged(bot))
