@@ -2,10 +2,10 @@
 Tipos de datos de SQLite.
 """
 
-from enum import Enum
+from enum import StrEnum
 
 
-class TiposDB(Enum):
+class TiposDB(StrEnum):
     """
     Tipos de datos de una base de datos de SQLite.
     """

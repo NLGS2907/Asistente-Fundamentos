@@ -7,12 +7,12 @@ from sys import executable as sys_executable
 from typing import TYPE_CHECKING
 
 from discord import Interaction
-from discord.app_commands import Choice, choices
+from discord.app_commands import Choice, choices, describe
 from discord.app_commands import command as appcommand
-from discord.app_commands import describe
 
-from ...auxiliar import es_rol_valido
+from ...auxiliar import permisos_de_al_menos_nivel
 from ...db.atajos import get_ruta_log
+from ...db.enums import NivelPermisos
 from ..general import CogGeneral
 
 if TYPE_CHECKING:
@@ -21,7 +21,7 @@ if TYPE_CHECKING:
 
 class CogAdmin(CogGeneral):
     """
-    Cog de comandos que requieren permisos.
+    Cog de comandos generales que requieren permisos.
     """
 
     @appcommand(name="clear",
@@ -31,7 +31,7 @@ class CogAdmin(CogGeneral):
         Choice(name="Sí", value=1),
         Choice(name="No", value=0)
     ])
-    @es_rol_valido()
+    @permisos_de_al_menos_nivel(NivelPermisos.MODERADOR)
     async def limpiar_mensajes(self,
                                interaccion: Interaction,
                                limite: int,
@@ -57,8 +57,8 @@ class CogAdmin(CogGeneral):
 
 
     @appcommand(name="shutdown",
-                description="Apaga el bot. Uso para moderadores.")
-    @es_rol_valido()
+                description="Apaga el bot. Uso para administradores.")
+    @permisos_de_al_menos_nivel(NivelPermisos.ADMINISTRADOR)
     async def shutdown(self, interaccion: Interaction) -> None:
         """
         Apaga el bot y lo desconecta.
@@ -74,8 +74,8 @@ class CogAdmin(CogGeneral):
 
 
     @appcommand(name="reboot",
-                description="Reinicia el bot. Uso para moderadores.")
-    @es_rol_valido()
+                description="Reinicia el bot. Uso para administradores.")
+    @permisos_de_al_menos_nivel(NivelPermisos.ADMINISTRADOR)
     async def reboot(self, interaccion: Interaction) -> None:
         """
         Reinicia el bot, apagándolo y volviéndolo a conectar.
@@ -101,7 +101,7 @@ class CogAdmin(CogGeneral):
 
     @appcommand(name="flush",
                 description="Vacía el archivo de registro. Uso para moderadores.")
-    @es_rol_valido()
+    @permisos_de_al_menos_nivel(NivelPermisos.MODERADOR)
     async def logflush(self, interaccion: Interaction):
         """
         Vacía el contenido del archivo de registro.
@@ -117,7 +117,7 @@ class CogAdmin(CogGeneral):
 
     @appcommand(name="uptime",
                 description="Calcula el tiempo que el bot estuvo activo.")
-    @es_rol_valido()
+    @permisos_de_al_menos_nivel(NivelPermisos.MODERADOR)
     async def calcular_uptime(self, interaccion: Interaction) -> None:
         """
         Calcula el tiempo que el bot estuvo corriendo.

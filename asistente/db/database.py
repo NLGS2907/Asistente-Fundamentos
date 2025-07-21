@@ -6,9 +6,9 @@ from os import PathLike
 from sqlite3 import OperationalError, connect
 from typing import Any, Dict, List, Literal, Optional, Tuple, TypeAlias, Union
 
-from .db_tipos import TiposDB
+from .enums import TiposDB
 
-DictConds: TypeAlias = Any
+DictConds: TypeAlias = dict[str, Any]
 ValoresResolucion: TypeAlias = Literal["ABORT", "FAIL", "IGNORE", "REPLACE", "ROLLBACK"]
 _SingularResult: TypeAlias = Tuple[Union[None, int, str]]
 FetchResult: TypeAlias = Union[List[_SingularResult], _SingularResult]

@@ -13,9 +13,10 @@ from discord.app_commands import describe
 from ...archivos import (DiccionarioGuia, cargar_guia, get_guia_por_sv,
                          lista_carpetas, lista_ejercicios, lista_unidades,
                          version_es_valida)
-from ...auxiliar import es_rol_valido
+from ...auxiliar import permisos_de_al_menos_nivel
 from ...db.atajos import (actualizar_version_guia, get_guia_default,
                           get_ruta_guia)
+from ...db.enums import NivelPermisos
 from ...embebido import Embebido
 from ...interfaces import (TITLE_FORMAT, USER_CONSULT, NavegadorEjercicios,
                            SelectorEjercicios, SelectorGuia, SelectorUnidad)
@@ -252,7 +253,7 @@ class CogEjercicios(CogGeneral):
     @describe(nueva_version="La nueva versión de la guía a configurar.")
     @choices(nueva_version=[Choice(name=nombre_unidad, value=nombre_unidad)
                             for nombre_unidad in lista_carpetas(get_ruta_guia())])
-    @es_rol_valido()
+    @permisos_de_al_menos_nivel(NivelPermisos.MODERADOR)
     async def cambiar_version_guia(self,
                                   interaccion: Interaction,
                                   nueva_version: Optional[str]=None) -> None:

@@ -8,21 +8,24 @@ from typing import TYPE_CHECKING, Any, Optional
 from zipfile import ZIP_DEFLATED, ZipFile
 
 from discord import File, Interaction
-from discord.app_commands import Choice, autocomplete, choices
+from discord.app_commands import Choice, autocomplete, choices, describe
 from discord.app_commands import command as appcommand
-from discord.app_commands import describe
 from discord.app_commands.errors import AppCommandError, CheckFailure
 
-from ...auxiliar import autocompletado_nombres_tablas_db, verificar_rol
-from ...db import (actualizar_dato_de_tabla, borrar_datos_de_tabla,
-                   ejecutar_linea, insertar_datos_en_tabla,
-                   sacar_datos_de_tabla)
+from ...auxiliar import autocompletado_nombres_tablas_db, tiene_permisos
+from ...db import (
+    actualizar_dato_de_tabla,
+    borrar_datos_de_tabla,
+    ejecutar_linea,
+    insertar_datos_en_tabla,
+    sacar_datos_de_tabla,
+)
 from ...interfaces import LineaDB, ScriptDB
 from ..general import CogGeneral, GroupsList, GrupoGeneral
 
 if TYPE_CHECKING:
-    from ...db import FetchResult
     from ...bot import Asistente
+    from ...db import FetchResult
 
 
 class GrupoDB(GrupoGeneral):
@@ -45,7 +48,7 @@ class GrupoDB(GrupoGeneral):
         Verifica si el usuario está autorizado.
         """
 
-        return verificar_rol(interaccion)
+        return tiene_permisos(interaccion)
 
 
     async def on_error(self, interaccion: Interaction, error: AppCommandError) -> None:

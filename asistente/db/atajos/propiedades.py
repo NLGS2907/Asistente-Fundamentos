@@ -33,24 +33,6 @@ def get_asist_id() -> int:
     return int(get_propiedad("asist_id"))
 
 
-def get_sv_algo1_id() -> int:
-    "Consigue el ID del servidor de 'Algoritmos y Programación 1 - Essaya'"
-
-    return int(get_propiedad("sv_algo1_id"))
-
-
-def get_rol_diego_id() -> int:
-    "Consigue el ID del rol de Diego."
-
-    return int(get_propiedad("rol_diego_id"))
-
-
-def get_rol_docente_id() -> int:
-    "Consigue el ID del rol de docente."
-
-    return int(get_propiedad("rol_docente_id"))
-
-
 def get_guia_default() -> str:
     "Consigue la versión predeterminada de la guía."
 
