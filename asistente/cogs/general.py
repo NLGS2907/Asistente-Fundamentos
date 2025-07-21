@@ -94,7 +94,7 @@ class CogGeneral(Cog):
         await interaccion.response.send_message("**[ERROR]** Parece que hubo un error.",
                                                 ephemeral=True)
         error_bello = "\n\t|\t".join("Excepción en app_commands "
-                                     "lanzada:\n{format_exc()}".split("\n"))
+                                     f"lanzada:\n{format_exc()}".split("\n"))
         self.bot.log.error(error_bello)
 
 
