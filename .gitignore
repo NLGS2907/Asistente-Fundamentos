@@ -591,3 +591,12 @@ FodyWeavers.xsd
 # End of https://www.toptal.com/developers/gitignore/api/python,visualstudio,visualstudiocode,git,windows
 
 .vscode/
+
+### Cosas Personales ###
+
+# La DB ya no debería subirse
+**/*.sqlite3
+
+# Notas personales como TODO
+notes.md
+todo.md
