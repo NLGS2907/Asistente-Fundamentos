@@ -2,8 +2,6 @@
 Módulo para funciones de autocompletado.
 """
 
-from typing import TYPE_CHECKING
-
 from discord import Interaction
 from discord.app_commands import Choice
 
