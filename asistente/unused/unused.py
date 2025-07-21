@@ -24,7 +24,7 @@ PHRASES = ["Conque sí, ¿Eh? Veo que estás listo para otra derrota...",
 "Si alguien te dice que no estoy hecho en python, es que miente.",
 "|| Míralo al clickea-spoilers, ¡Estarás contento! ||",
 "Yo solía estar hosteado en ***Heroku***, hasta que mantenerme dejó de ser gratis. " +
-"También solía en un servidor por SSH, y ahora esoty alojado en PythonAnywhere.",
+"También solía en un servidor por SSH, y después en PythonAnywhere.",
 """```python
 def aprobar_materia(nota: int) -> bool:
 
