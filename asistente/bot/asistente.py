@@ -11,7 +11,8 @@ from discord.utils import utcnow
 
 from ..ahorcado import Ahorcado
 from ..archivos import buscar_archivos
-from ..db.atajos import actualizar_guild, get_asist_id, get_ruta_cogs
+from ..db.atajos import actualizar_guild, get_asist_id, get_ruta_cogs, op_usuario
+from ..db.enums import NivelPermisos
 from ..logger import AsistLogger
 
 if TYPE_CHECKING:
@@ -42,9 +43,7 @@ class Asistente(Bot):
         Crea un objeto `Intents` personalizado para este asistente.
         """
 
-        intents = Intents.default()
-        intents.message_content = True # pylint: disable=assigning-non-slot
-
+        intents = Intents.all()
         return intents
 
 
@@ -104,8 +103,24 @@ class Asistente(Bot):
 
         self.log.info("[DB] Actualizando guilds...")
         for guild in self.guilds:
-            actualizar_guild(guild.id, guild.name)
+            if not actualizar_guild(guild.id, guild.name):
+                self.log.info(f"[DB] Nuevo Guild '{guild.name}' detectado y registrado en DB")
 
+            # Por definición, el dueño del servidor siempre tiene permisos
+            owner_perms: Optional[NivelPermisos] = op_usuario(guild.owner_id,
+                                                              NivelPermisos.ADMINISTRADOR,
+                                                              guild.id)
+
+            if owner_perms is None:
+                self.log.info(f"[DB] Guild '{guild.name}' no tiene al dueño actual registrado"
+                              " en la lista de permisos."
+                              f" Registrado el usuario '{guild.owner.global_name}'")
+
+            # El dueño no tenía el nivel más alto de permisos por algún motivo
+            elif not owner_perms.superior_a(NivelPermisos.ADMINISTRADOR):
+                self.log.warning(f"[DB] El usuario dueño '{guild.owner.global_name}' del"
+                                 f" guild '{guild.name}' no tenía el nivel más alto de permisos."
+                                 " Se cambió el permiso a administrador.")
 
     @property
     def uptime(self) -> "timedelta":
