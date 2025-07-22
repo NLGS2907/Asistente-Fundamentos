@@ -57,7 +57,7 @@ def _perms_dict(perms_lvl: NivelPermisos, por_lo_menos: bool=True) -> "DictConds
 
     if por_lo_menos:
         # 'where' es una clave especial en estos diccionarios
-        return dict(where=f"op_level <= {perms_lvl.value}")
+        return dict(where=(f"op_level <= {perms_lvl.value}",))
 
     return dict(op_level=perms_lvl)
 

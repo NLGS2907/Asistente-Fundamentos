@@ -8,7 +8,7 @@ from typing import Any, Dict, List, Literal, Optional, Tuple, TypeAlias, Union
 
 from .enums import TiposDB
 
-DictConds: TypeAlias = dict[str, Any]
+DictConds: TypeAlias = dict[Union[str, Literal["where"]], Any]
 ValoresResolucion: TypeAlias = Literal["ABORT", "FAIL", "IGNORE", "REPLACE", "ROLLBACK"]
 _SingularResult: TypeAlias = Tuple[Union[None, int, str]]
 FetchResult: TypeAlias = Union[List[_SingularResult], _SingularResult]
@@ -64,7 +64,16 @@ def ejecutar_script(comando: str, db_path: PathLike[str]="") -> CursorDesc:
 
 
 def _condiciones_where(**condiciones: DictConds) -> str:
-    "Crea una expresión SQL con todas las condiciones en el kwargs."
+    """
+    Crea una expresión SQL con todas las condiciones en el kwargs.
+
+    Las condiciones también pueden tener una clave especial 'where', que funciona
+    un poco distinto: en vez de representar un par clave-valor como otros items, se espera que
+    `condiciones["where"]` tenga como valor un tupla de strings del formato "k=v", "k<v",
+    "k IN BETWEEN v" o cualquier otra sintaxis que SQLite3 permita.
+
+    Esto es para permitir un control más 'manual' de las condiciones de consulta.
+    """
 
     extra = None
 
