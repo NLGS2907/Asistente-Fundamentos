@@ -73,14 +73,18 @@ class Asistente(Bot):
         Reliza acciones iniciales que el bot necesita.
         """
 
+        sep = "=" * 25
+        self.log.info(f"{sep} Iniciando Asistente {sep}")
+
         await self.cargar_cogs()
 
 
     async def cargar_cogs(self) -> None:
         """
-        Busca y carga recursivamente todos los cogs
-        del bot.
+        Busca y carga recursivamente todos los cogs del bot.
         """
+
+        self.log.info("Cargando cogs:")
 
         ext = "py"
 
@@ -88,7 +92,7 @@ class Asistente(Bot):
                                         nombre_ruta=get_ruta_cogs(),
                                         ignorar_patrones=("__init__.*", "*_abc.*", "general.")):
 
-            self.log.info(f"[COG] Cargando cog {ruta_cog!r}")
+            self.log.debug(f"[COG] Cargando cog {ruta_cog!r}")
             await self.load_extension(ruta_cog.removesuffix(f".{ext}").replace("/", "."))
 
         self.log.info("Sincronizando arbol de comandos...")
