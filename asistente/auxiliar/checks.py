@@ -13,8 +13,8 @@ def _verificar_permisos(interaccion: Interaction,
                         nivel: NivelPermisos,
                         al_menos: bool) -> bool:
     if interaccion.guild is None:
-            # Esto no es un guild, abortar
-            return False
+        # Esto no es un guild, abortar
+        return False
 
     candidatos_usuarios, candidatos_roles = get_admins_por_nivel_y_guild(nivel,
                                                                          interaccion.guild_id,
