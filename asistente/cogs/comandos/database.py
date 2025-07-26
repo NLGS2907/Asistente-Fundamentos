@@ -21,11 +21,12 @@ from ...db import (
     sacar_datos_de_tabla,
 )
 from ...interfaces import LineaDB, ScriptDB
-from ..general import CogGeneral, GroupsList, GrupoGeneral
+from ..general import CogGeneral, GrupoGeneral
 
 if TYPE_CHECKING:
     from ...bot import Asistente
     from ...db import FetchResult
+    from ..general import GroupsList
 
 
 class GrupoDB(GrupoGeneral):
@@ -57,7 +58,7 @@ class GrupoDB(GrupoGeneral):
         """
 
         if isinstance(error, CheckFailure):
-            mensaje = f"Nope, {interaccion.user.mention}, vos no podés tocar la base de datos "
+            mensaje = f"Nope, {interaccion.user.mention}, vos no podés tocar la base de datos."
             await interaccion.response.send_message(content=mensaje,
                                                     ephemeral=True)
             return
@@ -406,7 +407,7 @@ class CogDB(CogGeneral):
     """
 
     @classmethod
-    def grupos(cls) -> GroupsList:
+    def grupos(cls) -> "GroupsList":
         """
         Devuelve la lista de grupos asociados a este Cog.
         """
