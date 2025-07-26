@@ -36,7 +36,7 @@ class NivelPermisos(IntEnum):
         Compara manualmente si un nivel de permisos es estrictamente superior a otro.
         """
 
-        self.value < otro.value
+        return self.value < otro.value
 
 
     def inferior_a(self, otro: "NivelPermisos") -> bool:
@@ -44,4 +44,4 @@ class NivelPermisos(IntEnum):
         Compara manualmente si un nivel de permisos es estrictamente inferior a otro.
         """
 
-        self.value > otro.value
+        return self.value > otro.value
