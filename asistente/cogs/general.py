@@ -35,7 +35,7 @@ class GrupoGeneral(Group):
                  default_permissions: Optional["Permissions"] = MISSING,
                  extras: dict[Any, Any] = MISSING) -> None:
         """
-        Inicializa una instancia de '_GrupoABC', o una hija.
+        Inicializa una instancia de 'GrupoGeneral', o el una clase hija.
         """
 
         super().__init__(name=name,
@@ -59,7 +59,7 @@ class CogGeneral(Cog):
 
     def __init__(self, bot: "Asistente") -> None:
         """
-        Inicializa una instancia de 'CogGeneral'.
+        Inicializa una instancia de 'CogGeneral', o una clase hija.
         """
 
         self.bot: "Asistente" = bot
