@@ -25,7 +25,7 @@ class CogEventos(CogGeneral):
         El bot se conectó y está listo para usarse.
         """
 
-        self.bot.log.info("Actualizando base de datos...")
+        self.bot.log.info("Actualizando base de datos:")
         self.bot.actualizar_db()
 
         self.bot.log.info("¡%s conectado y listo para utilizarse!", self.bot.user)
