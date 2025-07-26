@@ -25,7 +25,7 @@ class CogAdmin(CogGeneral):
     """
 
     @appcommand(name="clear",
-                description="Limpia el canal de mensajes del bot.")
+                description="[MOD] Limpia el canal de mensajes del bot.")
     @describe(limite="Cuántos mensajes inspeccionar para borrar")
     @choices(completo=[
         Choice(name="Sí", value=1),
@@ -57,7 +57,7 @@ class CogAdmin(CogGeneral):
 
 
     @appcommand(name="shutdown",
-                description="Apaga el bot. Uso para administradores.")
+                description="[ADMIN] Apaga el bot.")
     @permisos_de_al_menos_nivel(NivelPermisos.ADMINISTRADOR)
     async def shutdown(self, interaccion: Interaction) -> None:
         """
@@ -74,7 +74,7 @@ class CogAdmin(CogGeneral):
 
 
     @appcommand(name="reboot",
-                description="Reinicia el bot. Uso para administradores.")
+                description="[ADMIN] Reinicia el bot.")
     @permisos_de_al_menos_nivel(NivelPermisos.ADMINISTRADOR)
     async def reboot(self, interaccion: Interaction) -> None:
         """
@@ -100,7 +100,7 @@ class CogAdmin(CogGeneral):
 
 
     @appcommand(name="flush",
-                description="Vacía el archivo de registro. Uso para moderadores.")
+                description="[MOD] Vacía el archivo de registro.")
     @permisos_de_al_menos_nivel(NivelPermisos.MODERADOR)
     async def logflush(self, interaccion: Interaction):
         """
@@ -116,7 +116,7 @@ class CogAdmin(CogGeneral):
 
 
     @appcommand(name="uptime",
-                description="Calcula el tiempo que el bot estuvo activo.")
+                description="[MOD] Calcula el tiempo que el bot estuvo activo.")
     @permisos_de_al_menos_nivel(NivelPermisos.MODERADOR)
     async def calcular_uptime(self, interaccion: Interaction) -> None:
         """
