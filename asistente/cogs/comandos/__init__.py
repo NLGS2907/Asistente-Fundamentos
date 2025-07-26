@@ -7,3 +7,4 @@ from .database import *
 from .ejercicios import *
 from .hanged import *
 from .misc import *
+from .perms import *
