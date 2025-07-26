@@ -2,7 +2,21 @@
 Módulo para contener Embeds personalizados.
 """
 
+from typing import Union, TypeAlias
+
 from discord import Colour, Embed
+
+Lineas: TypeAlias = list[str]
+"""
+Lista de líneas, pensadas para que cada elemento de la lista sea una cadena
+separada de las demás por un salto de línea. '`\\n`'.
+"""
+CamposDict: TypeAlias = dict[str, list[str]]
+OpcionesDict: TypeAlias = dict[str, Union[Lineas, CamposDict]]
+FormatosDict: TypeAlias = dict[str, str]
+"""
+Diccionario de la forma "{clave}": "valor", tal que se le pueda aplicar `.format()` después.
+"""
 
 
 class Embebido(Embed):
@@ -12,19 +26,19 @@ class Embebido(Embed):
 
     def __init__(self,
                  *,
-                 opciones,
-                 formatos: dict[str, str]=None) -> None:
+                 opciones: OpcionesDict,
+                 formatos: FormatosDict=None) -> None:
         """
         Inicializa una instancia de 'Embebido'.
         """
 
         self.formatos = {} if formatos is None else formatos
 
-        titulo: list[str] = opciones.get("titulo", [])
-        descripcion: list[str] = opciones.get("descripcion", [])
+        titulo: Lineas = opciones.get("titulo", [])
+        descripcion: Lineas = opciones.get("descripcion", [])
         color: int = opciones.get("color", Colour.dark_grey())
-        campos: dict[str, list[str]] = opciones.get("campos", {})
-        pie: list[str] = opciones.get("pie", [])
+        campos: CamposDict = opciones.get("campos", {})
+        pie: Lineas = opciones.get("pie", [])
 
         super().__init__(title=self.custom_format(Embebido.unir(titulo)),
                          description=self.custom_format(Embebido.unir(descripcion)),
