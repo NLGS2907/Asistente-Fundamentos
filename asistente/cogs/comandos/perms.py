@@ -2,9 +2,10 @@
 Cog que agrupa comandos de permisos.
 """
 
+from random import randint
 from typing import TYPE_CHECKING
 
-from discord import Interaction, Member, Role
+from discord import Colour, Interaction, Member, Role
 from discord.app_commands import Choice, choices, describe
 from discord.app_commands import command as appcommand
 from discord.app_commands.errors import AppCommandError, CheckFailure
@@ -19,6 +20,7 @@ from ...db.atajos import (
     op_usuario,
 )
 from ...db.enums import NivelPermisos
+from ...embebido import Embebido
 from ..general import CogGeneral, GrupoGeneral
 
 if TYPE_CHECKING:
@@ -181,6 +183,51 @@ class GrupoPermsOp(GrupoGeneral):
 
         self.bot.log.debug(log_msg)
         await interaccion.response.send_message(content=msg, ephemeral=True)
+
+
+    @appcommand(name="list",
+                description=("Devuelve una lista de todos los usuarios (y roles) que tienen"
+                             " un nivel de permisos en este servidor."))
+    @permisos_de_al_menos_nivel(NivelPermisos.MODERADOR)
+    async def perms_list(self, interaccion: Interaction) -> None:
+        """
+        Crea una lista de permisos y la envía en forma de embebido.
+        """
+
+        if interaccion.guild_id is None:
+            await interaccion.response.send_message(
+                content="No se pudo completar la operación porque no se puede detectar el ID del"
+                        " servidor actual. ¿Estás seguro de que estamos es un servidor?",
+                ephemeral=True)
+            return
+
+        perms_usuarios, perms_roles = get_admins_por_guild(interaccion.guild_id)
+        perms_usuarios = {clave: NivelPermisos(valor) for clave, valor in perms_usuarios.items()}
+        perms_roles = {clave: NivelPermisos(valor) for clave, valor in perms_roles.items()}
+
+        perms_owner = perms_usuarios.pop(interaccion.guild.owner.id, None)
+        owner_str = ("" if perms_owner is None else f" - **{perms_owner.name}**"
+                     f" (`{perms_owner.value}`)")
+
+        embebido = Embebido(opciones=dict(
+            titulo=[f"Permisos del guild **{interaccion.guild.name}**"],
+            descripcion=[f"Owner: {interaccion.guild.owner.mention}{owner_str}"],
+            # No me podía decidir, que lo decida el destino
+            color=Colour.from_rgb(randint(0, 255), randint(0, 255), randint(0, 255)),
+            campos=dict(
+                usuarios=(["* _N/A_"] if not perms_usuarios else [
+                    # mención manual
+                    f"* <@{id_usuario}> - **{perms_usuario.name}** (`{perms_usuario.value}`)"
+                    for id_usuario, perms_usuario in perms_usuarios.items()
+                ]),
+                roles=(["* _N/A_"] if not perms_roles else {
+                    f"* <@&{id_rol}> - **{perms_rol.name}** (`{perms_rol.value}`)"
+                    for id_rol, perms_rol in perms_roles.items()
+                })
+            )
+        ))
+
+        await interaccion.response.send_message(embed=embebido, ephemeral=True)
 
 
 class GrupoPermsDeOp(GrupoGeneral):
