@@ -2,7 +2,7 @@
 Módulo para atajos de operaciones sobre permisos de comandos.
 """
 
-from typing import TYPE_CHECKING, Optional, TypeAlias
+from typing import TYPE_CHECKING, Optional, TypeAlias, Iterable
 
 from ..database import (
     actualizar_dato_de_tabla,
@@ -15,8 +15,8 @@ from ..enums import NivelPermisos
 if TYPE_CHECKING:
     from ..database import DictConds
 
-UserIDs: TypeAlias = tuple[int, ...]
-RoleIDs: TypeAlias = tuple[int, ...]
+UserIDs: TypeAlias = dict[int, int]
+RoleIDs: TypeAlias = dict[int, int]
 Perms: TypeAlias = tuple[UserIDs, RoleIDs]
 
 PERMISOS_IDS: str = "op_list"
@@ -31,9 +31,6 @@ def _get_admins(*, conds_usuarios: "DictConds", conds_roles: "DictConds") -> Per
     Intenta buscar todos los administradores con privilegios según condiciones dadas.
     """
 
-    id_usuarios = []
-    id_roles = []
-
     res_usuarios = sacar_datos_de_tabla(PERMISOS_IDS,
                                         sacar_uno=False,
                                         **conds_usuarios)
@@ -43,8 +40,8 @@ def _get_admins(*, conds_usuarios: "DictConds", conds_roles: "DictConds") -> Per
                                      **conds_roles)
 
     # Los IDs son siempre la segunda columna
-    id_usuarios = tuple(u[1] for u in res_usuarios)
-    id_roles = tuple(r[1] for r in res_roles)
+    id_usuarios = {u[1]: u[2] for u in res_usuarios}
+    id_roles = {r[1]: r[2] for r in res_roles}
 
     return id_usuarios, id_roles
 
@@ -89,7 +86,7 @@ def get_admins_por_nivel(perms_lvl: NivelPermisos, *, por_lo_menos: bool=True) -
 
 
 def get_admins_por_nivel_y_guild(perms_lvl: NivelPermisos,
-                                 guild_id: Optional[int]=None,
+                                 guild_id: int,
                                  *,
                                  por_lo_menos: bool=True) -> Perms:
     """
@@ -110,6 +107,44 @@ def get_admins_por_nivel_y_guild(perms_lvl: NivelPermisos,
                        conds_roles=permisos_conds_roles)
 
 
+def get_nivel_de_admin(user_id: int,
+                       roles: Iterable[int],
+                       guild_id: int,
+                       *,
+                       ignorar_usuarios: bool=False,
+                       ignorar_roles: bool=False) -> Optional[NivelPermisos]:
+    """
+    Consigue el nivel de permisos de un usuario en particular en un guild dado.
+    Devuelve `None` si el usuario no tiene permisos.
+
+    El permiso individual tiene precedencia: si el usuario pertenece a un rol con rol
+    `ADMINISTRADOR`, pero el usuario en sí tiene permiso individual `MODERADOR`, esta función
+    devolverá `MODERADOR`.
+    Dicho eso, hay opciones para ignorar uno u otro, pero si se ignoran ambos se garantiza que
+    el resultado sea `None`.
+    """
+
+    id_usuarios, id_roles = _get_admins(conds_usuarios=dict(allowed_in=guild_id),
+                                        conds_roles=dict(used_in=guild_id))
+
+    # El usuario tiene un permiso individual
+    if not ignorar_usuarios and user_id in id_usuarios:
+        return NivelPermisos(id_usuarios[user_id])
+
+    nivel_permiso = None
+    if not ignorar_roles:
+        # Si el usuario pertenece a un rol con permiso, devolver el permiso más privilegiado.
+        for rol, nivel in id_roles.items():
+            if rol in roles:
+                if nivel_permiso is None or nivel_permiso < nivel:
+                    nivel_permiso = nivel
+
+        if nivel_permiso is not None:
+            return NivelPermisos(nivel_permiso)
+
+    return nivel_permiso  # a este punto es None
+
+
 def op_usuario(id_usuario: int, nivel: NivelPermisos, guild_id: int) -> Optional[NivelPermisos]:
     """
     Intenta actualizar el nivel de permisos que un usuario dado tiene en el guild seleccionado,
@@ -127,7 +162,9 @@ def op_usuario(id_usuario: int, nivel: NivelPermisos, guild_id: int) -> Optional
     if res_usuario:
         actualizar_dato_de_tabla(PERMISOS_IDS,
                                  nombre_col="op_level",
-                                 valor=nivel.value)
+                                 valor=nivel.value,
+                                 user_id=id_usuario,
+                                 allowed_in=guild_id)
         return NivelPermisos(res_usuario[2])
 
     insertar_datos_en_tabla(PERMISOS_IDS,
@@ -167,13 +204,15 @@ def op_rol(id_rol: int, nivel: NivelPermisos, guild_id: int) -> Optional[NivelPe
 
     res_rol = sacar_datos_de_tabla(PERMISOS_ROLES,
                                    sacar_uno=True,
-                                   user_id=id_rol,
+                                   role_id=id_rol,
                                    used_in=guild_id)
 
     if res_rol:
         actualizar_dato_de_tabla(PERMISOS_ROLES,
                                  nombre_col="op_level",
-                                 valor=nivel.value)
+                                 valor=nivel.value,
+                                 role_id=id_rol,
+                                 used_in=guild_id)
         return NivelPermisos(res_rol[2])
 
     insertar_datos_en_tabla(PERMISOS_ROLES,
@@ -190,13 +229,13 @@ def deop_rol(id_rol: int, guild_id: int) -> Optional[NivelPermisos]:
     en la tabla.
     """
 
-    res_rol = sacar_datos_de_tabla(PERMISOS_IDS,
+    res_rol = sacar_datos_de_tabla(PERMISOS_ROLES,
                                    sacar_uno=True,
-                                   user_id=id_rol,
-                                   allowed_in=guild_id)
+                                   role_id=id_rol,
+                                   used_in=guild_id)
 
     if not res_rol:
         return None
 
-    borrar_datos_de_tabla(PERMISOS_IDS, user_id=id_rol, allowed_in=guild_id)
+    borrar_datos_de_tabla(PERMISOS_ROLES, role_id=id_rol, used_in=guild_id)
     return NivelPermisos(res_rol[2])
