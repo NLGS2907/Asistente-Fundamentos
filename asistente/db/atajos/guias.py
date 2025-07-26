@@ -19,7 +19,9 @@ def actualizar_version_guia(nueva_guia: str, guild_id: int) -> bool:
     if existe_dato_en_tabla(tabla=TABLA_GUIAS, guild_id=guild_id):
         actualizar_dato_de_tabla(tabla=TABLA_GUIAS,
                                  nombre_col="guia",
-                                 valor=nueva_guia)
+                                 valor=nueva_guia,
+                                 # condiciones
+                                 guild_id=guild_id)
         return True
 
     insertar_datos_en_tabla(tabla=TABLA_GUIAS,
