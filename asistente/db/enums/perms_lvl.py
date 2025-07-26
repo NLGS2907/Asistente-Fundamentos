@@ -17,9 +17,31 @@ class NivelPermisos(IntEnum):
     PLEBEYO = 999
 
 
-    def superior_a(self, otro: "NivelPermisos") -> bool:
+    @classmethod
+    def opciones(cls, incluir_plebeyo: bool=False) -> dict[str, int]:
         """
-        Compara manualmente si un nivel de permisos es superior a otro.
+        Devuelve un diccionario con los contenidos de los tipos de permisos.
         """
 
-        self.value >= otro.value
+        niveles = {nivel.name: nivel.value for nivel in cls}
+
+        if not incluir_plebeyo:
+            niveles.pop("PLEBEYO")
+
+        return niveles
+
+
+    def superior_a(self, otro: "NivelPermisos") -> bool:
+        """
+        Compara manualmente si un nivel de permisos es estrictamente superior a otro.
+        """
+
+        self.value < otro.value
+
+
+    def inferior_a(self, otro: "NivelPermisos") -> bool:
+        """
+        Compara manualmente si un nivel de permisos es estrictamente inferior a otro.
+        """
+
+        self.value > otro.value
