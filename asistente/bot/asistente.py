@@ -121,7 +121,7 @@ class Asistente(Bot):
                               f" Registrado el usuario '{guild.owner.global_name}'")
 
             # El dueño no tenía el nivel más alto de permisos por algún motivo
-            elif not owner_perms.superior_a(NivelPermisos.ADMINISTRADOR):
+            elif owner_perms.inferior_a(NivelPermisos.ADMINISTRADOR):
                 self.log.warning(f"[DB] El usuario dueño '{guild.owner.global_name}' del"
                                  f" guild '{guild.name}' no tenía el nivel más alto de permisos."
                                  " Se cambió el permiso a administrador.")
