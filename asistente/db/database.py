@@ -2,7 +2,7 @@
 Módulo de bases de datos.
 """
 
-from os import PathLike
+from os import PathLike, getenv
 from sqlite3 import OperationalError, connect
 from typing import Any, Dict, List, Literal, Optional, Tuple, TypeAlias, Union
 
@@ -15,7 +15,7 @@ FetchResult: TypeAlias = Union[List[_SingularResult], _SingularResult]
 CursorDesc: TypeAlias = Dict[str, Union[None, Tuple[str, ...], str, int]]
 DictLlaveForanea: TypeAlias = Dict[str, Tuple[str, str]]
 
-DEFAULT_DB: PathLike = "asistente/db/db.sqlite3"
+DEFAULT_DB: PathLike = getenv("DB_PATH")
 RESOLUCIONES: Tuple[str, ...] = "ABORT", "FAIL", "IGNORE", "REPLACE", "IGNORE"
 ESTRICTO_NO_ACEPTADOS: list[TiposDB] = [TiposDB.NULL]
 NO_ESTRICTO_NO_ACEPTADOS: list[TiposDB] = [TiposDB.INT, TiposDB.ANY]

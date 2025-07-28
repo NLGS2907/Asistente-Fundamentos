@@ -14,10 +14,8 @@ Repositorio: https://github.com/NLGS2907/Asistente-Fundamentos
 
 from os import getenv
 
-from .archivos import leer_y_cargar_envs
 from .bot import Asistente
 
-leer_y_cargar_envs()
 TOKEN = getenv("DISCORD_TOKEN")
 
 
