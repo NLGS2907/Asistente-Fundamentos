@@ -16,12 +16,16 @@ from os import getenv
 
 from .bot import Asistente
 from .db import init_database
+from .logger import AssistLogger
 
 TOKEN = getenv("DISCORD_TOKEN")
 
 
 def main() -> int:
     "Función principal."
+
+    sep = "=" * 25
+    AssistLogger().info(f"{sep} Iniciando Asistente {sep}")
 
     init_database()
     Asistente().run(TOKEN)

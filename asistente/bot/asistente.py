@@ -69,7 +69,7 @@ class Asistente(Bot):
         Inicializa una instancia de tipo 'Asistente'.
         """
 
-        super().__init__("!", # Por legacy se eligió esto, pero n ose va a usar nunca
+        super().__init__("!", # Por legacy se eligió esto, pero no se va a usar nunca
                          intents=Asistente.intents_asistente(),
                          application_id=ASISTENTE_ID,
                          options=opciones)
@@ -88,9 +88,6 @@ class Asistente(Bot):
         """
         Reliza acciones iniciales que el bot necesita.
         """
-
-        sep = "=" * 25
-        self.log.info(f"{sep} Iniciando Asistente {sep}")
 
         await self.cargar_cogs()
 

@@ -347,17 +347,17 @@ def init_database(db_path: PathLike[str]=DEFAULT_DB) -> str:
     """
 
     log = AssistLogger()
-    log.debug("La DB ya existe. Intentando crear tablas aún así:"
+    log.debug("[DB] La DB ya existe. Intentando crear tablas aún así:"
               if file_exists(db_path)
-              else f"La DB no existe. Creando nueva DB en '{db_path}':")
+              else f"[DB] La DB no existe. Creando nueva DB en '{db_path}':")
 
     def _log_pre_tabla(nombre_tabla: str) -> None:
-        log.debug(f"Creando tabla '{nombre_tabla}'...")
+        log.debug(f"[DB] Creando tabla '{nombre_tabla}'...")
 
     def _log_post_tabla(nombre_tabla: str, res: Optional[CursorDesc]) -> None:
-        log.debug(f"Creada con éxito la tabla '{nombre_tabla}'. Resultado: {res}"
+        log.debug(f"[DB] Creada con éxito la tabla '{nombre_tabla}'. Resultado: {res}"
                   if res is not None
-                  else f"Ya existe una tabla con nombre '{nombre_tabla}'. Omitida.")
+                  else f"[DB] Ya existe una tabla con nombre '{nombre_tabla}'. Omitida.")
 
     # --------- GUILDS ---------- #
     nombre_tabla = "guilds"
