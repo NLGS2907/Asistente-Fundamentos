@@ -7,8 +7,15 @@ from typing import Optional
 from discord import Interaction, SelectOption
 from discord.ui import Select, select
 
-from ...archivos import GUIA_PATH, DiccionarioGuia, cargar_guia, lista_carpetas, lista_unidades
-from ...db.atajos import actualizar_version_guia, get_guia_default
+from ...archivos import (
+    GUIA_DEFAULT,
+    GUIA_PATH,
+    DiccionarioGuia,
+    cargar_guia,
+    lista_carpetas,
+    lista_unidades,
+)
+from ...db.atajos import actualizar_version_guia
 from ..ui_general import VistaGeneral
 from .ui_ejercicios import SelectorEjercicios
 
@@ -69,7 +76,7 @@ class MenuSelectorUnidad(Select):
         max_values: int=1,
         disabled: bool=False,
         row: Optional[int]=None,
-        guia: DiccionarioGuia=cargar_guia(get_guia_default())
+        guia: DiccionarioGuia=cargar_guia(GUIA_DEFAULT)
     ) -> None:
         """
         Inicializa una instacia de 'MenuSelectorUnidad'.

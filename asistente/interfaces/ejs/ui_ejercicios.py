@@ -11,10 +11,9 @@ from discord import SelectOption
 from discord.enums import ButtonStyle
 from discord.ui import Button, Select, button
 
-from ...archivos import (DiccionarioEjercicio, DiccionarioGuia,
+from ...archivos import (DiccionarioEjercicio, DiccionarioGuia, GUIA_DEFAULT,
                          DiccionarioPares, cargar_guia, lista_ejercicios,
                          lista_unidades)
-from ...db.atajos import get_guia_default
 from ...embebido import Embebido
 from ..ui_general import VistaGeneral
 
@@ -37,7 +36,7 @@ class MenuSelectorEjercicio(Select):
         max_values: int=1,
         disabled: bool=False,
         row: Optional[int]=None,
-        guia: DiccionarioGuia=cargar_guia(get_guia_default()),
+        guia: DiccionarioGuia=cargar_guia(GUIA_DEFAULT),
         unidad: Optional[DiccionarioPares]=None
     ) -> None:
         """
@@ -96,9 +95,9 @@ class MenuSelectorEjercicio(Select):
         embebido = Embebido(opciones=enunciado)
         vista = NavegadorEjercicios(guia=self.guia, unidad=self.unidad, ejercicio=ejercicio)
 
-        mensaje_editado = await interaccion.response.edit_message(content=mensaje,
-                                                                  embed=embebido,
-                                                                  view=vista)
+        await interaccion.response.edit_message(content=mensaje,
+                                                embed=embebido,
+                                                view=vista)
 
 
 class SelectorEjercicios(VistaGeneral):

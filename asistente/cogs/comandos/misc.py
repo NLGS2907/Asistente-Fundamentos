@@ -2,17 +2,12 @@
 Cog para comandos misceláneos o de consultas.
 """
 
-from typing import TYPE_CHECKING
-
 from discord import Interaction, Permissions
 from discord.app_commands import command as appcommand
 from discord.utils import oauth_url
 
-from ...db.atajos import get_version
+from ...bot import Asistente
 from ..general import CogGeneral
-
-if TYPE_CHECKING:
-    from ...bot import Asistente
 
 
 class CogMisc(CogGeneral):
@@ -27,8 +22,10 @@ class CogMisc(CogGeneral):
         Muestra en el chat la versión actual del bot.
         """
 
-        await interaccion.response.send_message(f"Mi versión actual es la `{get_version()}`",
-                                                ephemeral=True)
+        await interaccion.response.send_message(
+            f"Mi versión actual es la `v{'.'.join(Asistente.version())}`",
+            ephemeral=True
+        )
 
 
     @appcommand(name="invite",

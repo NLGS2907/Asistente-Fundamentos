@@ -26,7 +26,7 @@ class AssistLogger:
                  fmt: str="%(asctime)s - %(levelname)s - %(message)s",
                  fmt_fecha: str="%d-%m-%Y %I:%M:%S %p") -> None:
         """
-        Crea una instancia de 'AsistLogger'.
+        Crea una instancia de 'AssistLogger'.
         """
 
         super().__init__()

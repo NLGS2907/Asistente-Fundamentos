@@ -9,13 +9,14 @@ from discord.app_commands import command as appcommand
 from discord.enums import ChannelType
 
 from ...ahorcado import Ahorcado
-from ...db.atajos import get_fmt_fecha
 from ...interfaces import VistaAdivinacion
 from ..general import CogGeneral
 
 if TYPE_CHECKING:
 
     from ...bot import Asistente
+
+FMT_FECHA: str = r"%Y-%m-%d_%H-%M-%S_%f"
 
 
 class CogHanged(CogGeneral):
@@ -42,10 +43,10 @@ class CogHanged(CogGeneral):
         await interaccion.response.send_message("¡Partida Creada!",
                                                 ephemeral=True)
         mensaje_pivote = await interaccion.channel.send("¡Partida de ahorcado en juego!")
-        hilo = await mensaje_pivote.create_thread(name="AHORCADO - Partida " +
-                                                    f"{self.bot.inicializado_en.strftime(get_fmt_fecha())}",
-                                                  auto_archive_duration=60,
-                                                  reason="Alguien quiere jugar al ahorcado.")
+        hilo = await mensaje_pivote.create_thread(
+            name=f"AHORCADO - Partida {self.bot.inicializado_en.strftime(FMT_FECHA)}",
+            auto_archive_duration=60,
+            reason="Alguien quiere jugar al ahorcado.")
         frase_a_usar = None
 
         spoilertag = "||"  # Por si el usuario la declaró con spoilertags

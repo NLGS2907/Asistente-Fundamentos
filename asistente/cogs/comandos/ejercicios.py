@@ -10,10 +10,10 @@ from discord.app_commands import Choice, choices
 from discord.app_commands import command as appcommand
 from discord.app_commands import describe
 
-from ...archivos import (DiccionarioGuia, GUIA_PATH, cargar_guia, get_guia_por_sv,
+from ...archivos import (DiccionarioGuia, GUIA_DEFAULT, GUIA_PATH, cargar_guia, get_guia_por_sv,
                          lista_carpetas, lista_ejercicios, lista_unidades, version_es_valida)
 from ...auxiliar import permisos_de_al_menos_nivel
-from ...db.atajos import actualizar_version_guia, get_guia_default
+from ...db.atajos import actualizar_version_guia
 from ...db.enums import NivelPermisos
 from ...embebido import Embebido
 from ...interfaces import (TITLE_FORMAT, USER_CONSULT, NavegadorEjercicios,
@@ -153,7 +153,7 @@ class CogEjercicios(CogGeneral):
     @describe(unidad="El número de unidad.",
               ejercicio="El número de ejercicio.")
     @choices(unidad=[Choice(name=str(numero), value=str(numero))
-                     for numero in lista_unidades(cargar_guia(get_guia_default()))])
+                     for numero in lista_unidades(cargar_guia(GUIA_DEFAULT))])
     async def leer_ejercicio(self,
                              interaccion: Interaction,
         	                 unidad: Optional[Choice[str]]=None,
@@ -172,7 +172,7 @@ class CogEjercicios(CogGeneral):
     @describe(unidad_posible="La unidad desde dónde buscar.",
               sentido="El parámetro de búsqueda.")
     @choices(unidad_posible=[Choice(name=str(numero), value=str(numero))
-                             for numero in lista_unidades(cargar_guia(get_guia_default()))],
+                             for numero in lista_unidades(cargar_guia(GUIA_DEFAULT))],
              sentido=[
                  Choice(name="Dentro de", value='='),
                  Choice(name="Antes que", value='<'),

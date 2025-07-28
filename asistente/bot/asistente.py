@@ -11,7 +11,7 @@ from discord.utils import utcnow
 
 from ..ahorcado import Ahorcado
 from ..archivos import buscar_archivos
-from ..db.atajos import actualizar_guild, get_asist_id, op_usuario
+from ..db.atajos import actualizar_guild, op_usuario
 from ..db.enums import NivelPermisos
 from ..logger import AssistLogger
 
@@ -28,6 +28,9 @@ except ImportError:
     AssistLogger().warning("No se pudo importar 'WindowsSelectorEventLoopPolicy', "
                            "probablemente porque esto no es Windows.")
 
+ASISTENTE_ID: int = 889312376036425810
+"El ID del usuario bot que es el Asistente."
+
 COGS_PATH: "PathLike" = "./asistente/cogs"
 "La ruta donde viven todos los cogs de comandos."
 
@@ -39,6 +42,15 @@ class Asistente(Bot):
     """
     Clase pasa sobrecargar y agregar cosas a la clase 'Bot'.
     """
+
+    @staticmethod
+    def version() -> tuple[int, int, int]:
+        """
+        Devuelve la versión del asistente como una tupla de 3 numeros del tipo (X, Y, Z),
+        indicando una revisión importante, un parche mayor, o un parche menor respectivamente.
+        """
+
+        return (2, 0, 0)
 
 
     @staticmethod
@@ -59,7 +71,7 @@ class Asistente(Bot):
 
         super().__init__("!", # Por legacy se eligió esto, pero n ose va a usar nunca
                          intents=Asistente.intents_asistente(),
-                         application_id=get_asist_id(),
+                         application_id=ASISTENTE_ID,
                          options=opciones)
 
         self.inicializado_en: "datetime" = utcnow()

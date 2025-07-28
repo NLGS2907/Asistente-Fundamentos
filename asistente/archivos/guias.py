@@ -6,7 +6,6 @@ from pathlib import Path
 from typing import TYPE_CHECKING, Optional, TypeAlias, Union
 
 from ..db import existe_dato_en_tabla, sacar_datos_de_tabla
-from ..db.atajos import get_guia_default
 from ..logger import AssistLogger
 from .general import lista_carpetas
 from .json import cargar_json
@@ -25,6 +24,9 @@ GUIA_PATH: "PathLike" = "guia"
 
 GUIA_EXT: str = ".json"
 "Extensión esperada por los archivos de guías."
+
+GUIA_DEFAULT: str = "2024C1"
+"La versión de la guía a usar por defecto o en casos de versiones inválidas."
 
 
 def version_es_valida(version: str, carpeta_guias: "PathLike"=GUIA_PATH) -> bool:
@@ -105,7 +107,7 @@ def get_version_guia_por_sv(guild_id: int) -> str:
                                     sacar_uno=True,
                                     guild_id=guild_id)[2]
 
-    return get_guia_default()
+    return GUIA_DEFAULT
 
 
 def get_guia_por_sv(guild_id: int, version: Optional[str]=None) -> "DiccionarioGuia":
@@ -117,13 +119,13 @@ def get_guia_por_sv(guild_id: int, version: Optional[str]=None) -> "DiccionarioG
 
     if version_a_usar is None:
         formato_log = {"version": version,
-                        "default_ver": get_guia_default(),
+                        "default_ver": GUIA_DEFAULT,
                         "guild_id": guild_id}
 
         log.warning("La versión '%(version)s' no fue encontrada, " % formato_log +
                             "configurando la versión predeterminada " +
                             "'%(default_ver)s' para id %(guild_id)s..." % formato_log)
-        version_a_usar = cargar_guia(get_guia_default())
+        version_a_usar = cargar_guia(GUIA_DEFAULT)
         log.warning("listo.")
 
     return version_a_usar
