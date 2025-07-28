@@ -64,11 +64,9 @@ class CogAdmin(CogGeneral):
         Apaga el bot y lo desconecta.
         """
 
-        mensaje = f"Cerrando bot **{str(self.bot.user)}...**"
-
-        await interaccion.response.send_message(content=mensaje,
+        await interaccion.response.send_message(content="Apagando el asistente...",
                                                 ephemeral=True)
-        self.bot.log.info(mensaje)
+        self.bot.log.info(f"Cerrando bot {str(self.bot.user)}...")
 
         await self.bot.close()
 
