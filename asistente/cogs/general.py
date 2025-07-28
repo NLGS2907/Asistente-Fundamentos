@@ -84,14 +84,24 @@ class CogGeneral(Cog):
         return []
 
 
+    def mensaje_error(self,
+                      interaccion: Interaction,
+                      error: AppCommandError) -> str:
+        """
+        Muestra el mensaje a mostrar por el chat de Discord en caso de error en este Cog.
+        """
+
+        return "Parece que ha habido un error."
+
+
     async def cog_app_command_error(self,
                                     interaccion: Interaction,
-                                    _error: AppCommandError) -> None:
+                                    error: AppCommandError) -> None:
         """
         Maneja un error de forma predeterminada para todos los cogs.
         """
 
-        await interaccion.response.send_message("**[ERROR]** Parece que hubo un error.",
+        await interaccion.response.send_message(f"**[ERROR]** {self.mensaje_error(error)}",
                                                 ephemeral=True)
         error_bello = "\n\t|\t".join("Excepción en app_commands "
                                      f"lanzada:\n{format_exc()}".split("\n"))
