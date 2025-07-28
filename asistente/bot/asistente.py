@@ -2,6 +2,7 @@
 Módulo dedicado a contener la clase personalizada 'CustomBot'.
 """
 
+from logging import DEBUG, INFO
 from platform import system
 from typing import TYPE_CHECKING, Optional, TypeAlias
 
@@ -64,9 +65,13 @@ class Asistente(Bot):
 
 
     def __init__(self,
+                 verbose: bool=False,
                  **opciones) -> None:
         """
         Inicializa una instancia de tipo 'Asistente'.
+
+        verbose: Indica si incluir todos los mensajes de logging en la consola, además del archivo.
+        opciones: Argumentos extra que elevar al constructor padre del bot.
         """
 
         super().__init__("!", # Por legacy se eligió esto, pero no se va a usar nunca
@@ -77,7 +82,7 @@ class Asistente(Bot):
         self.inicializado_en: "datetime" = utcnow()
         "El momento exacto en que el bot fue inicializado."
 
-        self.log: AssistLogger = AssistLogger()
+        self.log: AssistLogger = AssistLogger(nivel_cons=(DEBUG if verbose else INFO))
         "Devuelve el logger del bot."
 
         self.partidas: DiccionarioPartidas = {}

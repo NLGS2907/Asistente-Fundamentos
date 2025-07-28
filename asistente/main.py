@@ -21,14 +21,17 @@ from .logger import AssistLogger
 TOKEN = getenv("DISCORD_TOKEN")
 
 
-def main() -> int:
+def main(*args: str) -> int:
     "Función principal."
 
     sep = "=" * 25
     AssistLogger().info(f"{sep} Iniciando Asistente {sep}")
 
     init_database()
-    Asistente().run(TOKEN)
+    Asistente(
+        verbose=("-v" in args or "--verbose" in args)
+    ).run(TOKEN)
+
     return 0
 
 
