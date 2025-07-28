@@ -220,10 +220,10 @@ class GrupoPermsOp(GrupoGeneral):
                     f"* <@{id_usuario}> - **{perms_usuario.name}** (`{perms_usuario.value}`)"
                     for id_usuario, perms_usuario in perms_usuarios.items()
                 ]),
-                roles=(["* _N/A_"] if not perms_roles else {
+                roles=(["* _N/A_"] if not perms_roles else [
                     f"* <@&{id_rol}> - **{perms_rol.name}** (`{perms_rol.value}`)"
                     for id_rol, perms_rol in perms_roles.items()
-                })
+                ])
             )
         ))
 
