@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     from os import PathLike
 
 LOG_PATH: "PathLike" = "./asistente.log"
+"La ruta en donde se guarda el archivo de log."
 
 
 class AssistLogger:

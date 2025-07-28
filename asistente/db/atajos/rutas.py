@@ -33,21 +33,3 @@ def get_rutas_de_db(nombre_ruta: str) -> Tuple["PathLike", ...]:
 
     # Los valores siempre serán la tercera columna
     return tuple(col[2] for col in res)
-
-
-def get_ruta_guia() -> "PathLike":
-    "Consigue la ruta de las guías."
-
-    return get_ruta_de_db("guia")
-
-
-def get_ruta_cogs() -> "PathLike":
-    "Consigue la ruta de los cogs."
-
-    return get_ruta_de_db("cogs")
-
-
-def get_ruta_palabras() -> "PathLike":
-    "Consigue la ruta de las palabras de ahorcado."
-
-    return get_ruta_de_db("palabras")

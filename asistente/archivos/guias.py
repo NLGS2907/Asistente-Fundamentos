@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import TYPE_CHECKING, Optional, TypeAlias, Union
 
 from ..db import existe_dato_en_tabla, sacar_datos_de_tabla
-from ..db.atajos import get_guia_default, get_ruta_guia
+from ..db.atajos import get_guia_default
 from ..logger import AssistLogger
 from .general import lista_carpetas
 from .json import cargar_json
@@ -20,18 +20,18 @@ DiccionarioUnidad: TypeAlias = dict[str, Union[str, DiccionarioEjercicio]]
 DiccionarioGuia: TypeAlias = dict[str, Union[str, DiccionarioUnidad]]
 DiccionarioStats: TypeAlias = dict[str, list[int]]
 
+GUIA_PATH: "PathLike" = "guia"
+"El directorio en donde están los archivos de guías."
+
 GUIA_EXT: str = ".json"
 "Extensión esperada por los archivos de guías."
 
 
-def version_es_valida(version: str, carpeta_guias: "PathLike"="") -> bool:
+def version_es_valida(version: str, carpeta_guias: "PathLike"=GUIA_PATH) -> bool:
     """
     Verifica que la versión especificada existe dentro del directorio de
     las guías de ejercicios.
     """
-
-    if not carpeta_guias:
-        carpeta_guias = get_ruta_guia()
 
     return version in lista_carpetas(carpeta_guias)
 
@@ -52,7 +52,7 @@ def archivos_guia(version: str, carpeta: "PathLike") -> Optional[set["PathLike"]
                    u.suffix == GUIA_EXT))
 
 
-def cargar_guia(version: str, carpeta: "PathLike"="") -> Optional[DiccionarioGuia]:
+def cargar_guia(version: str, carpeta: "PathLike"=GUIA_PATH) -> Optional[DiccionarioGuia]:
     """
     Carga la guía de ejercicios en un diccionario de diccionarios, donde cada
     sub-diccionario tiene los pares clave valor en donde la clave es el numero
@@ -60,9 +60,6 @@ def cargar_guia(version: str, carpeta: "PathLike"="") -> Optional[DiccionarioGui
 
     Devuelve `None` si la versión pasada no es válida.
     """
-
-    if not carpeta:
-        carpeta = get_ruta_guia()
 
     if not version_es_valida(version, carpeta):
         return None

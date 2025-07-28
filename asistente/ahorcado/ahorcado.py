@@ -3,12 +3,17 @@ Pequeño módulo que implementa la lógica de una partida de ahorcado.
 """
 
 from random import choice
-from typing import Optional, TypeAlias
+from typing import Optional, TypeAlias, TYPE_CHECKING
 
-from ..db.atajos import get_ruta_palabras
 from .letra_ahorcado import LetraAhorcado
 
+if TYPE_CHECKING:
+    from os import PathLike
+
 ListaLetras: TypeAlias = list[LetraAhorcado]
+
+PALABRAS_PATH: "PathLike" = "./asistente/txt/palabras.txt"
+"La ruta en donde están todas las palabras posibles para el ahorcado."
 
 
 class Ahorcado:
@@ -41,7 +46,7 @@ class Ahorcado:
         Inicializa una instancia de tipo 'Ahorcado'.
         """
 
-        frase_magica: str = (frase if frase else choice(Ahorcado.cargar_palabras(get_ruta_palabras())))
+        frase_magica: str = (frase if frase else choice(Ahorcado.cargar_palabras(PALABRAS_PATH)))
         self.maximos_intentos: int = vidas_maximas
         self.intentos: int = self.maximos_intentos
         self.id_mensaje_padre: int = id_mensaje_padre

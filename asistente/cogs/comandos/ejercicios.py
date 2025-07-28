@@ -10,12 +10,10 @@ from discord.app_commands import Choice, choices
 from discord.app_commands import command as appcommand
 from discord.app_commands import describe
 
-from ...archivos import (DiccionarioGuia, cargar_guia, get_guia_por_sv,
-                         lista_carpetas, lista_ejercicios, lista_unidades,
-                         version_es_valida)
+from ...archivos import (DiccionarioGuia, GUIA_PATH, cargar_guia, get_guia_por_sv,
+                         lista_carpetas, lista_ejercicios, lista_unidades, version_es_valida)
 from ...auxiliar import permisos_de_al_menos_nivel
-from ...db.atajos import (actualizar_version_guia, get_guia_default,
-                          get_ruta_guia)
+from ...db.atajos import actualizar_version_guia, get_guia_default
 from ...db.enums import NivelPermisos
 from ...embebido import Embebido
 from ...interfaces import (TITLE_FORMAT, USER_CONSULT, NavegadorEjercicios,
@@ -252,7 +250,7 @@ class CogEjercicios(CogGeneral):
                 description="Cambia la versión de la guía.")
     @describe(nueva_version="La nueva versión de la guía a configurar.")
     @choices(nueva_version=[Choice(name=nombre_unidad, value=nombre_unidad)
-                            for nombre_unidad in lista_carpetas(get_ruta_guia())])
+                            for nombre_unidad in lista_carpetas(GUIA_PATH)])
     @permisos_de_al_menos_nivel(NivelPermisos.MODERADOR)
     async def cambiar_version_guia(self,
                                   interaccion: Interaction,
@@ -261,7 +259,7 @@ class CogEjercicios(CogGeneral):
         Cambia la versión de la guía a utilizar, si dicha versión es válida.
         """
 
-        versiones = " - ".join(f"`{version}`" for version in lista_carpetas(get_ruta_guia()))
+        versiones = " - ".join(f"`{version}`" for version in lista_carpetas(GUIA_PATH))
 
         if nueva_version is not None and not version_es_valida(nueva_version):
 

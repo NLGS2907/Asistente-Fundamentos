@@ -11,12 +11,13 @@ from discord.utils import utcnow
 
 from ..ahorcado import Ahorcado
 from ..archivos import buscar_archivos
-from ..db.atajos import actualizar_guild, get_asist_id, get_ruta_cogs, op_usuario
+from ..db.atajos import actualizar_guild, get_asist_id, op_usuario
 from ..db.enums import NivelPermisos
 from ..logger import AssistLogger
 
 if TYPE_CHECKING:
     from datetime import datetime, timedelta
+    from os import PathLike
 
 # Para que no tire error en Windows al cerrar el Bot.
 try:
@@ -26,6 +27,9 @@ try:
 except ImportError:
     AssistLogger().warning("No se pudo importar 'WindowsSelectorEventLoopPolicy', "
                            "probablemente porque esto no es Windows.")
+
+COGS_PATH: "PathLike" = "./asistente/cogs"
+"La ruta donde viven todos los cogs de comandos."
 
 DiccionarioPartidas: TypeAlias = dict[str, Ahorcado]
 
@@ -89,7 +93,7 @@ class Asistente(Bot):
         ext = "py"
 
         for ruta_cog in buscar_archivos(patron=f"*.{ext}",
-                                        nombre_ruta=get_ruta_cogs(),
+                                        nombre_ruta=COGS_PATH,
                                         ignorar_patrones=("__init__.*", "*_abc.*", "general.")):
 
             self.log.debug(f"[COG] Cargando cog {ruta_cog!r}")

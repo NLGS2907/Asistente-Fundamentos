@@ -7,10 +7,8 @@ from typing import Optional
 from discord import Interaction, SelectOption
 from discord.ui import Select, select
 
-from ...archivos import (DiccionarioGuia, cargar_guia, lista_carpetas,
-                         lista_unidades)
-from ...db.atajos import (actualizar_version_guia, get_guia_default,
-                          get_ruta_guia)
+from ...archivos import GUIA_PATH, DiccionarioGuia, cargar_guia, lista_carpetas, lista_unidades
+from ...db.atajos import actualizar_version_guia, get_guia_default
 from ..ui_general import VistaGeneral
 from .ui_ejercicios import SelectorEjercicios
 
@@ -32,7 +30,7 @@ class SelectorGuia(VistaGeneral):
 
     @select(placeholder="Seleccione una versión de la guía",
             custom_id="selector_de_guia",
-            options=[SelectOption(label=ver) for ver in lista_carpetas(get_ruta_guia())],
+            options=[SelectOption(label=ver) for ver in lista_carpetas(GUIA_PATH)],
             max_values=1)
     async def seleccionar_guia(self, interaccion: Interaction, seleccion: Select) -> None:
         """
