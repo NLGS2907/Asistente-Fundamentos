@@ -23,7 +23,7 @@ class CogMisc(CogGeneral):
         """
 
         await interaccion.response.send_message(
-            f"Mi versión actual es la `v{'.'.join(Asistente.version())}`",
+            f"Mi versión actual es la `v{'.'.join(map(str, Asistente.version()))}`",
             ephemeral=True
         )
 
