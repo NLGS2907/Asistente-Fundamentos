@@ -262,7 +262,7 @@
             "recibir un mensaje a imprimir, y luego debe leer una línea de texto de la consola ",
             "y devolverla. La cadena producida debe ser alojada en el _heap_, y debe terminar ",
             "con un `\\0`. Asumir que la línea de texto ingresada no puede superar los 100 caracteres.",
-            " Utilizar las funciones de la biblioteca estándar `fputs` y `fgets`."
+            "Utilizar las funciones de la biblioteca estándar `fputs` y `fgets`."
         ],
         "campos": {
 
@@ -276,8 +276,8 @@
 
         ],
         "descripcion": [
-            "Escribir un programa que genere un archivo binario grabando en él los números enteros",
-            "del 0 al 1000000."
+            "Escribir un programa que genere un archivo binario grabando en él los números",
+            "enteros del 0 al 1000000."
         ],
         "campos": {
 
