@@ -15,6 +15,7 @@ Repositorio: https://github.com/NLGS2907/Asistente-Fundamentos
 from os import getenv
 
 from .bot import Asistente
+from .db import init_database
 
 TOKEN = getenv("DISCORD_TOKEN")
 
@@ -22,6 +23,7 @@ TOKEN = getenv("DISCORD_TOKEN")
 def main() -> int:
     "Función principal."
 
+    init_database()
     Asistente().run(TOKEN)
     return 0
 

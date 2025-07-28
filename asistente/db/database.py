@@ -3,9 +3,11 @@ Módulo de bases de datos.
 """
 
 from os import PathLike, getenv
+from os.path import exists as file_exists
 from sqlite3 import OperationalError, connect
 from typing import Any, Dict, List, Literal, Optional, Tuple, TypeAlias, Union
 
+from ..logger import AssistLogger
 from .enums import TiposDB
 
 DictConds: TypeAlias = dict[Union[str, Literal["where"]], Any]
@@ -160,11 +162,30 @@ def crear_tabla(nombre: str,
                 estricta: bool=True,
                 llave_primaria: Optional[str]=None,
                 llaves_foraneas: Optional[DictLlaveForanea]=None,
-                **kwargs: TiposDB) -> Optional[CursorDesc]:
+                # Ojo: necesitamos que las llaves de este diccionario estén en orden.
+                # Pero a partir de CPython 3.7 esto ya es el caso por defecto.
+                # Sino, usar OrderedDict.
+                **columnas: TiposDB) -> Optional[CursorDesc]:
     """
     Intenta crear una nueva tabla, con las especificaciones dadas.
+    Si el nombre de tabla ya existe, devuelve `None`.
 
-    Si no tiene éxito, devuelve `None`.
+    nombre: El nombre que ha de tener la tabla. No puede repetirse con el de tablas ya existentes.
+
+    db_path: La ruta en donde vive la base de datos.
+    estricta: Si será obligatorio insertar en la tabla con tipos compatibles.
+    llave_primaria: El nombre de la columna que hará de llave primaria. Si no se especifica,
+                    sqlite creará una columna 'rowid' implícita para este fin; pero si
+                    se especifica, se requiere que sea uno de los valores en `columnas`.
+    llaves_foraneas: Un diccionario opcional del tipo dict[col, tuple[tabla_obj, col_obj]]
+                     en donde: `col` es el nombre de la columna que será una llave foránea
+                     (y que, por lo tanto, debe estar en `columnas`). `tabla` es la tabla objetivo
+                     en donde vive la columna a la que esta llave apunta, y `col_obj` es el nombre
+                     de dicha columna objetivo.
+
+    columnas: Un diccionario, preferiblemente ordenado, en donde las claves son el nombre de las
+              columnas de la tabla a crear, y los valores una variante de `TiposDB`, indicando el
+              tipo de dato de esa columna.
     """
 
     if nombre in nombres_tablas(db_path):
@@ -173,7 +194,7 @@ def crear_tabla(nombre: str,
     tipos = []
     _nombres_revisados = []
 
-    for nombre_col, tipo_col in kwargs.items():
+    for nombre_col, tipo_col in columnas.items():
         nom_col = nombre_col.lower()
 
         if not isinstance(tipo_col, TiposDB):
@@ -314,3 +335,90 @@ def emoji_str(codepoint: str) -> str:
 
     escape = chr(int(codepoint[2:], 16)).encode("unicode-escape").decode("UTF-8") # '\\uXXXX'
     return eval(f"\"{escape}\"") # Evaluarlo porque sino agarra el string tal cual
+
+
+def init_database(db_path: PathLike[str]=DEFAULT_DB) -> str:
+    """
+    Crea la DB sino existe y además también crea las tablas mínimas y necesarias para que el
+    bot funcione correctamente.
+
+    Sin embargo, esto NO pobla dichas tablas con los valores iniciales, también necesarios para
+    que el bot funcione. Esa responsabilidad recae en los hooks cuando el bot bootea cada vez.
+    """
+
+    log = AssistLogger()
+    log.debug("La DB ya existe. Intentando crear tablas aún así:"
+              if file_exists(db_path)
+              else f"La DB no existe. Creando nueva DB en '{db_path}':")
+
+    def _log_pre_tabla(nombre_tabla: str) -> None:
+        log.debug(f"Creando tabla '{nombre_tabla}'...")
+
+    def _log_post_tabla(nombre_tabla: str, res: Optional[CursorDesc]) -> None:
+        log.debug(f"Creada con éxito la tabla '{nombre_tabla}'. Resultado: {res}"
+                  if res is not None
+                  else f"Ya existe una tabla con nombre '{nombre_tabla}'. Omitida.")
+
+    # --------- GUILDS ---------- #
+    nombre_tabla = "guilds"
+    _log_pre_tabla(nombre_tabla)
+    res = crear_tabla(
+        nombre_tabla,
+        db_path=db_path,
+        llave_primaria="id",
+        #columnas
+        id=TiposDB.INTEGER,
+        nombre_guild=TiposDB.TEXT
+    )
+    _log_post_tabla(nombre_tabla, res)
+    # --------------------------- #
+
+    # ---------- GUIAS ---------- #
+    nombre_tabla = "guias"
+    _log_pre_tabla(nombre_tabla)
+    res = crear_tabla(
+        nombre_tabla,
+        db_path=db_path,
+        llave_primaria="id",
+        llaves_foraneas=dict(guild_id=("guilds", "id")),
+        # columnas
+        id=TiposDB.INTEGER,
+        guild_id=TiposDB.INTEGER,
+        guia=TiposDB.TEXT
+    )
+    _log_post_tabla(nombre_tabla, res)
+    # --------------------------- #
+
+    # -- PERMISOS DE USUARIOS --- #
+    nombre_tabla = "op_list"
+    _log_pre_tabla(nombre_tabla)
+    res = crear_tabla(
+        nombre_tabla,
+        db_path=db_path,
+        llave_primaria="id",
+        llaves_foraneas=dict(allowed_in=("guilds", "id")),
+        # columnas
+        id=TiposDB.INTEGER,
+        user_id=TiposDB.INTEGER,
+        op_level=TiposDB.INTEGER,
+        allowed_in=TiposDB.INTEGER
+    )
+    _log_post_tabla(nombre_tabla, res)
+    # --------------------------- #
+
+    # ---- PERMISOS DE ROLES ---- #
+    nombre_tabla = "op_roles"
+    _log_pre_tabla(nombre_tabla)
+    res = crear_tabla(
+        nombre_tabla,
+        db_path=db_path,
+        llave_primaria="id",
+        llaves_foraneas=dict(used_in=("guilds", "id")),
+        # columnas
+        id=TiposDB.INTEGER,
+        role_id=TiposDB.INTEGER,
+        op_level=TiposDB.INTEGER,
+        used_in=TiposDB.INTEGER
+    )
+    _log_post_tabla(nombre_tabla, res)
+    # --------------------------- #
