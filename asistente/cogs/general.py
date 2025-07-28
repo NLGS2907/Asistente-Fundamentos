@@ -101,8 +101,10 @@ class CogGeneral(Cog):
         Maneja un error de forma predeterminada para todos los cogs.
         """
 
-        await interaccion.response.send_message(f"**[ERROR]** {self.mensaje_error(error)}",
-                                                ephemeral=True)
+        await interaccion.response.send_message(
+            f"**[ERROR]** {self.mensaje_error(interaccion, error)}",
+            ephemeral=True
+        )
         error_bello = "\n\t|\t".join("Excepción en app_commands "
                                      f"lanzada:\n{format_exc()}".split("\n"))
         self.bot.log.error(error_bello)
