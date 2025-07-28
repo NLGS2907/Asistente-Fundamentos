@@ -7,4 +7,3 @@ from .guias import *
 from .guilds import *
 from .permisos import *
 from .propiedades import *
-from .rutas import *
