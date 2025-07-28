@@ -2,9 +2,9 @@
 Registrador de eventos.
 """
 
-from logging import INFO, FileHandler, Formatter, StreamHandler, getLogger
-from typing import TYPE_CHECKING, Optional
+from logging import DEBUG, INFO, FileHandler, Formatter, StreamHandler, getLogger
 from threading import Lock
+from typing import TYPE_CHECKING, Optional
 
 if TYPE_CHECKING:
 
@@ -47,11 +47,12 @@ class AssistLogger:
     def __init__(self,
                  *,
                  nombre_log: str="asistente",
-                 nivel_log: int=INFO,
+                 nivel_arch: int=DEBUG,
+                 nivel_cons: int=INFO,
                  fmt: str="%(asctime)s - %(levelname)s - %(message)s",
                  fmt_fecha: str="%d-%m-%Y %I:%M:%S %p") -> None:
         """
-        Crea una instancia de 'AssistLogger'.
+        Inicializa una instancia de 'AssistLogger', pero sólo si es la primera vez que se crea.
         """
 
         if not hasattr(self, "__inicializado"):
@@ -67,11 +68,14 @@ class AssistLogger:
             self._formateador = Formatter(fmt=self.formato, datefmt=self.fmt_fecha)
 
             self.handler_archivo = FileHandler(filename=LOG_PATH, encoding="utf-8")
+            self.handler_archivo.setLevel(nivel_arch)
             self.handler_consola = StreamHandler()
+            self.handler_consola.setLevel(nivel_cons)
             self.actualizar_formateador()
 
             self.logger: "Logger" = getLogger(nombre_log)
-            self.logger.setLevel(nivel_log)
+            # El más bajo funcionalmente, para que no tape los handlers
+            self.logger.setLevel(DEBUG)
             self.logger.addHandler(self.handler_archivo)
             self.logger.addHandler(self.handler_consola)
 
