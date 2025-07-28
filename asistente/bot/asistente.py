@@ -13,7 +13,7 @@ from ..ahorcado import Ahorcado
 from ..archivos import buscar_archivos
 from ..db.atajos import actualizar_guild, get_asist_id, get_ruta_cogs, op_usuario
 from ..db.enums import NivelPermisos
-from ..logger import AsistLogger
+from ..logger import AssistLogger
 
 if TYPE_CHECKING:
     from datetime import datetime, timedelta
@@ -24,7 +24,7 @@ try:
     if system() == "Windows":
         set_event_loop_policy(WindowsSelectorEventLoopPolicy())
 except ImportError:
-    AsistLogger().warning("No se pudo importar 'WindowsSelectorEventLoopPolicy', "
+    AssistLogger().warning("No se pudo importar 'WindowsSelectorEventLoopPolicy', "
                            "probablemente porque esto no es Windows.")
 
 DiccionarioPartidas: TypeAlias = dict[str, Ahorcado]
@@ -61,7 +61,7 @@ class Asistente(Bot):
         self.inicializado_en: "datetime" = utcnow()
         "El momento exacto en que el bot fue inicializado."
 
-        self.log: AsistLogger = AsistLogger()
+        self.log: AssistLogger = AssistLogger()
         "Devuelve el logger del bot."
 
         self.partidas: DiccionarioPartidas = {}

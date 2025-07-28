@@ -9,7 +9,7 @@ from discord import PartialEmoji as Emoji
 from discord.enums import ButtonStyle
 from discord.ui import Button, View
 
-from ..logger import AsistLogger
+from ..logger import AssistLogger
 
 
 class BotonCerrar(Button):
@@ -59,12 +59,12 @@ class VistaGeneral(View):
 
 
     @property
-    def log(self) -> AsistLogger:
+    def log(self) -> AssistLogger:
         """
         Devuelve el logger de asistente de la vista.
         """
 
-        return AsistLogger()
+        return AssistLogger()
 
 
     @property

@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 LOG_PATH: "PathLike" = "./asistente.log"
 
 
-class AsistLogger:
+class AssistLogger:
     """
     Clase que registra eventos del bot.
     """
