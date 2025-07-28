@@ -3,7 +3,8 @@ Registrador de eventos.
 """
 
 from logging import INFO, FileHandler, Formatter, StreamHandler, getLogger
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
+from threading import Lock
 
 if TYPE_CHECKING:
 
@@ -17,7 +18,31 @@ LOG_PATH: "PathLike" = "./asistente.log"
 class AssistLogger:
     """
     Clase que registra eventos del bot.
+    Se utiliza un patrón Singleton para asegurar de que se pueda usar globalmente sin
+    dejar registros duplicados.
     """
+
+    __instancia: Optional["AssistLogger"] = None
+    __lock: Lock = Lock()
+
+
+    def __new__(cls, *args, **kwargs) -> "AssistLogger":
+        """
+        Crea una instancia del logger si no existe todavía. Si ya existe, devuelve la
+        misma instancia siempre.
+        """
+
+        # Esta comparación es para que otros hilos no pierdan tiempo esperando si
+        # la instancia ya fue creada
+        if cls.__instancia is None:
+            with cls.__lock:
+                # Y esta comparación es en el caso especial en que más de un hilo se quede
+                # esperando porque pidieron el lock a la vez
+                if cls.__instancia is None:
+                    cls.__instancia = super().__new__(cls, *args, **kwargs)
+
+        return cls.__instancia
+
 
     def __init__(self,
                  *,
@@ -29,21 +54,26 @@ class AssistLogger:
         Crea una instancia de 'AssistLogger'.
         """
 
-        super().__init__()
+        if not hasattr(self, "__inicializado"):
+            super().__init__()
 
-        self._formato: str = fmt
-        self._fmt_fecha: str = fmt_fecha
+            # Nunca lo vamos a usar, por lo que no vale la pena declararlo tal cual,
+            # el checker jode conque no tiene uso el atributo
+            setattr(self, "__inicializado", True)
 
-        self._formateador = Formatter(fmt=self.formato, datefmt=self.fmt_fecha)
+            self._formato: str = fmt
+            self._fmt_fecha: str = fmt_fecha
 
-        self.handler_archivo = FileHandler(filename=LOG_PATH, encoding="utf-8")
-        self.handler_consola = StreamHandler()
-        self.actualizar_formateador()
+            self._formateador = Formatter(fmt=self.formato, datefmt=self.fmt_fecha)
 
-        self.logger: "Logger" = getLogger(nombre_log)
-        self.logger.setLevel(nivel_log)
-        self.logger.addHandler(self.handler_archivo)
-        self.logger.addHandler(self.handler_consola)
+            self.handler_archivo = FileHandler(filename=LOG_PATH, encoding="utf-8")
+            self.handler_consola = StreamHandler()
+            self.actualizar_formateador()
+
+            self.logger: "Logger" = getLogger(nombre_log)
+            self.logger.setLevel(nivel_log)
+            self.logger.addHandler(self.handler_archivo)
+            self.logger.addHandler(self.handler_consola)
 
 
     def actualizar_formateador(self) -> None:
