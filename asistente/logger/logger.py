@@ -5,11 +5,12 @@ Registrador de eventos.
 from logging import INFO, FileHandler, Formatter, StreamHandler, getLogger
 from typing import TYPE_CHECKING
 
-from ..db.atajos import get_ruta_log
-
 if TYPE_CHECKING:
 
     from logging import Logger
+    from os import PathLike
+
+LOG_PATH: "PathLike" = "./asistente.log"
 
 
 class AsistLogger:
@@ -34,7 +35,7 @@ class AsistLogger:
 
         self._formateador = Formatter(fmt=self.formato, datefmt=self.fmt_fecha)
 
-        self.handler_archivo = FileHandler(filename=get_ruta_log(), encoding="utf-8")
+        self.handler_archivo = FileHandler(filename=LOG_PATH, encoding="utf-8")
         self.handler_consola = StreamHandler()
         self.actualizar_formateador()
 

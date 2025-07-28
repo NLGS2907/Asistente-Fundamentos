@@ -11,8 +11,8 @@ from discord.app_commands import Choice, choices, describe
 from discord.app_commands import command as appcommand
 
 from ...auxiliar import permisos_de_al_menos_nivel
-from ...db.atajos import get_ruta_log
 from ...db.enums import NivelPermisos
+from ...logger import LOG_PATH
 from ..general import CogGeneral
 
 if TYPE_CHECKING:
@@ -107,11 +107,9 @@ class CogAdmin(CogGeneral):
         Vacía el contenido del archivo de registro.
         """
 
-        ruta_log = get_ruta_log()
-
-        with open(ruta_log, mode='w', encoding="utf-8"):
+        with open(LOG_PATH, mode='w', encoding="utf-8"):
             await interaccion.response.send_message("**[AVISO]** Vaciando archivo en " +
-                                                    f"`./{ruta_log}`...",
+                                                    f"`{LOG_PATH}`...",
                                                     ephemeral=True)
 
 

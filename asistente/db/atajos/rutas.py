@@ -47,12 +47,6 @@ def get_ruta_cogs() -> "PathLike":
     return get_ruta_de_db("cogs")
 
 
-def get_ruta_log() -> "PathLike":
-    "Consigue la ruta del log."
-
-    return get_ruta_de_db("log")
-
-
 def get_ruta_palabras() -> "PathLike":
     "Consigue la ruta de las palabras de ahorcado."
 
