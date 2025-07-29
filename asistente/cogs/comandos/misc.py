@@ -2,12 +2,17 @@
 Cog para comandos misceláneos o de consultas.
 """
 
-from discord import Interaction, Permissions
+from typing import TYPE_CHECKING
+
+from discord import Colour, Interaction
 from discord.app_commands import command as appcommand
 from discord.utils import oauth_url
 
-from ...bot import Asistente
+from ...embebido import Embebido
 from ..general import CogGeneral
+
+if TYPE_CHECKING:
+    from ...bot import Asistente
 
 
 class CogMisc(CogGeneral):
@@ -15,33 +20,32 @@ class CogMisc(CogGeneral):
     Cog para comandos misceláneos.
     """
 
-    @appcommand(name="version",
-                description="Muestra la versión del bot.")
-    async def mostrar_version(self, interaccion: Interaction) -> None:
+    @appcommand(name="info",
+                description="Muestra información sobre el asistente.")
+    async def about(self, interaccion: Interaction) -> None:
         """
-        Muestra en el chat la versión actual del bot.
-        """
-
-        await interaccion.response.send_message(
-            f"Mi versión actual es la `v{'.'.join(map(str, Asistente.version()))}`",
-            ephemeral=True
-        )
-
-
-    @appcommand(name="invite",
-                description="Muestra el link de invitación del asistente.")
-    async def invitar_bot(self, interaccion: Interaction) -> None:
-        """
-        Manda un mensaje indicando cuál es el enlace de invitación del asistente.
+        Muestra un embebido con información miscelánea del bot.
         """
 
-        link = oauth_url(self.bot.application_id,
-                         permissions=Permissions(permissions=19327560768))
+        invite_link = oauth_url(client_id=self.bot.application_id,
+                                permissions=self.bot.permisos_preferidos())
 
-        await interaccion.response.send_message(f"Mi enlace de invitación es:\n\n{link}\n\n" +
-                                                "*!Sino igual puedes apretar el botón " +
-                                                "que hay en mi perfil!*",
-                                                ephemeral=True)
+        embebido = Embebido(opciones=dict(
+            titulo=["Información sobre el Asistente de Fundamentos"],
+            color=Colour.random(),
+            campos=dict(
+                Propiedades=[
+                    f"* **Versión:** `v{'.'.join(map(str, self.bot.version()))}`"
+                ],
+                Links=[
+                    f"* [**Enlace de Invitación**]({invite_link})",
+                    "* [**Repositorio de GitHub**]" # <- NO poner coma, está a propósito así
+                    "(https://github.com/NLGS2907/Asistente-Fundamentos)"
+                ]
+            )
+        ))
+
+        await interaccion.response.send_message(embed=embebido, ephemeral=True)
 
 
 async def setup(bot: "Asistente"):
