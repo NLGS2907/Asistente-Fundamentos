@@ -6,7 +6,7 @@ from logging import DEBUG, INFO
 from platform import system
 from typing import TYPE_CHECKING, Optional, TypeAlias
 
-from discord import Intents, Message
+from discord import Intents, Message, Permissions
 from discord.ext.commands import Bot
 from discord.utils import utcnow
 
@@ -62,6 +62,29 @@ class Asistente(Bot):
 
         intents = Intents.all()
         return intents
+
+
+    @staticmethod
+    def permisos_preferidos() -> Permissions:
+        """
+        Devuelve los permisos preferidos por el asistente.
+        """
+
+        perms = Permissions.none()
+
+        perms.update(
+            send_messages=True,
+            manage_messages=True,
+            read_message_history=True,
+            send_messages_in_threads=True,
+            manage_threads=True,
+            mention_everyone=True,
+            read_messages=True, # También conocido bajo el alias 'View Channels'
+            add_reactions=True,
+            use_application_commands=True # Discord lo llama 'Use Slash Commands'
+        )
+
+        return perms
 
 
     def __init__(self,
