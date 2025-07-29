@@ -2,7 +2,6 @@
 Cog que agrupa comandos de permisos.
 """
 
-from random import randint
 from typing import TYPE_CHECKING
 
 from discord import Colour, Interaction, Member, Role
@@ -213,7 +212,7 @@ class GrupoPermsOp(GrupoGeneral):
             titulo=[f"Permisos del guild **{interaccion.guild.name}**"],
             descripcion=[f"Owner: {interaccion.guild.owner.mention}{owner_str}"],
             # No me podía decidir, que lo decida el destino
-            color=Colour.from_rgb(randint(0, 255), randint(0, 255), randint(0, 255)),
+            color=Colour.random(),
             campos=dict(
                 usuarios=(["* _N/A_"] if not perms_usuarios else [
                     # mención manual
