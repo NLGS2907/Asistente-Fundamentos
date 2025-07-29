@@ -210,35 +210,38 @@ class CogEjercicios(CogGeneral):
         unidad_pivote = (unidad_posible_real
                          if CogEjercicios.existe_unidad(unidad_posible_real, guia)
                          else choice(list(guia.keys())))
-        expresion_busqueda = None
         unidad_elegida = ''
         ejercicio_elegido = ''
 
-        match sentido:
+        def _expresion_busqueda(unidad: int) -> bool:
+            """
+            Dado un número de unidad de guía, decide con el sentido de búsqueda si es válido
+            incluirlo entre los candidatos.
+            """
 
-            case '=':
-                unidad_elegida = unidad_pivote
-                ejercicio_elegido = choice(list(guia[unidad_pivote].keys()))
+            match sentido:
+                case '=':
+                    return unidad == int(unidad_pivote)
 
-            case '<':
-                expresion_busqueda = (lambda u: u < int(unidad_pivote))
+                case '<':
+                    return unidad < int(unidad_pivote)
 
-            case "<=":
-                expresion_busqueda = (lambda u: u <= int(unidad_pivote))
+                case "<=":
+                    return unidad <= int(unidad_pivote)
 
-            case '>':
-                expresion_busqueda = (lambda u: u > int(unidad_pivote))
+                case '>':
+                    return unidad > int(unidad_pivote)
 
-            case ">=":
-                expresion_busqueda = (lambda u: u >= int(unidad_pivote))
+                case ">=":
+                    return unidad >= int(unidad_pivote)
 
-            case _:
-                await interaccion.response.send_message("[ERROR] Algo salió mal.",
-                                                        ephemeral=True)
+                case _:
+                    # Viene de un Choice, así que nunca va a ocurrir. Pero por si acaso, suponemos
+                    # que una expresión de 'sentido' inválida, hace incorrectas a todos los números.
+                    return False
 
-        if expresion_busqueda:
-            unidad_elegida = choice([unidad for unidad in list(guia.keys())[1:]
-                                    if expresion_busqueda(int(unidad))])
+        unidad_elegida = choice([unidad for unidad in list(guia.keys())[1:]
+                                if _expresion_busqueda(int(unidad))])
         ejercicio_elegido = choice(list(guia[unidad_elegida].keys()))
 
         await self.mandar_ejercicio(interaccion,

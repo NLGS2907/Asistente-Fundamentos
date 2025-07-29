@@ -76,12 +76,16 @@ class GrupoDB(GrupoGeneral):
 
             try:
                 float(d)
-            except:
+            except ValueError:
                 return False
             else:
                 return True
 
-        cierra = lambda s, q : (s.startswith(q) and s.endswith(q))
+
+        def _encerrado_por(s: str, q: str) -> bool:
+            "Determina si un string empieza y termina por el mismo caracter."
+
+            return s.startswith(q) and s.endswith(q)
 
         data = dato
 
@@ -89,7 +93,7 @@ class GrupoDB(GrupoGeneral):
             data = int(data)
         elif isfloat(data):
             data = float(data)
-        elif cierra(data, "\"") or cierra(data, "\'"):
+        elif _encerrado_por(data, "\"") or _encerrado_por(data, "\'"):
             data = data.strip("\"").strip("\'")
 
         return data
