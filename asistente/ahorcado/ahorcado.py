@@ -125,7 +125,7 @@ class Ahorcado:
 
             self.caracteres_usados.append(char)
 
-        if char in [l.valor for l in self.frase]:
+        if char in [letra.valor for letra in self.frase]:
 
             for letrita in self.frase:
 
