@@ -2,7 +2,7 @@
 Módulo para tests de archivos de formato JSON.
 """
 
-from os import remove as arch_remove
+from io import StringIO
 from unittest import TestCase
 
 from asistente.archivos.json import cargar_json, guardar_json
@@ -13,27 +13,45 @@ class TestArchivosJSON(TestCase):
     Tests de archivos JSON.
     """
 
-    def test_1_guarda_y_carga_json_simple(self) -> None:
+    def test_1_caarga_un_json_simple(self) -> None:
         """
-        Guarda y carga un archivo JSON simple
+        Carga desde un archivo en memoria un diccionario simple.
         """
 
-        arch_temp = "tests/archivos/json_simple.json"
-        dic_simple = {'a': 1, 'b': 2, 'c': 3, 'd': [4, 5]}
+        dic_simple = {"a": 1, "b": 2, "c": 3, "d": [4, 5]}
+        # NO es lo mismo que `str(dic_simple)`.
+        # La sintaxis de JSON requiere que los strings sean de comillas dobles
+        dic_str = '{"a": 1, "b": 2, "c": 3, "d": [4, 5]}'
+        archivo = StringIO(dic_str)
 
-        guardar_json(dic_simple, arch_temp, sangria=None)
+        dic_final = cargar_json(archivo)
 
-        try:
+        self.assertEqual(str(dic_final), dic_str.replace("\"", "'"))
+        self.assertEqual(str(dic_final), str(dic_simple))
+        self.assertEqual(dic_final, dic_simple)
 
-            with open(arch_temp) as arch:
-                dic_simple_str = arch.read()
 
-            dic_cargado = cargar_json(arch_temp)
+    def test_2_guarda_un_json_simple(self) -> None:
+        """
+        Guarda en memoria un archivo JSON simple.
+        """
 
-            self.assertEqual(dic_simple_str, '{"a": 1, "b": 2, "c": 3, "d": [4, 5]}') # Si se guardó bien
-            self.assertEqual(dic_cargado, dic_simple) # Si se cargó bien
-            with self.assertRaises(FileNotFoundError):
-                cargar_json("__path_basura__")
+        dic_guardable = {"a": 1, "b": "bb", "c": [1, 2], "d": ["dd", "de"], "e": {"ee": 55}}
+        dic_str = r'{"a": 1, "b": "bb", "c": [1, 2], "d": ["dd", "de"], "e": {"ee": 55}}'
+        archivo = StringIO() # por ahora vacío
 
-        finally:
-            arch_remove(arch_temp)
+        guardar_json(dic_guardable, archivo, sangria=0)
+        archivo.seek(0) # para devolver el cursor del buffer al inicio
+        dic_leido = archivo.read().replace("\n", "").replace(",", ", ")
+
+        self.assertEqual(dic_str, dic_leido)
+        self.assertEqual(str(dic_guardable), dic_leido.replace("\"", "'"))
+
+
+    def test_3_no_carga_rutas_incorrectas(self) -> None:
+        """
+        Debería fallar si no existe el archivo.
+        """
+
+        with self.assertRaises(FileNotFoundError):
+            cargar_json("__path_basura__")
