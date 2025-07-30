@@ -1,13 +1,13 @@
 """
-Módulo para tests de la clase 'LetraAhorcado'.
+Módulo para tests de la clase de letras de Ahorcado.
 """
 
-import unittest
+from unittest import TestCase
 
 from asistente.ahorcado.letra_ahorcado import LetraAhorcado
 
 
-class TestLetraAhorcado(unittest.TestCase):
+class TestLetraAhorcado(TestCase):
     """
     Tests de letras de Ahorcado.
     """

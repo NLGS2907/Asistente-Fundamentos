@@ -10,6 +10,7 @@ if TYPE_CHECKING:
 
 DiccionarioPares: TypeAlias = dict[str, str]
 
+
 def cargar_json(ruta_archivo: "PathLike") -> DiccionarioPares:
     """
     Lee y carga un archivo JSON.

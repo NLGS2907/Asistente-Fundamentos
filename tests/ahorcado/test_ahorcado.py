@@ -1,14 +1,14 @@
 """
-Módulo para tests de la clase 'Ahorcado'.
+Módulo para tests de la clase de Ahorcado.
 """
 
-import unittest
 from os import remove as arch_remove
+from unittest import TestCase
 
 from asistente.ahorcado.ahorcado import Ahorcado
 
 
-class TestAhorcado(unittest.TestCase):
+class TestAhorcado(TestCase):
     """
     Tests de Ahorcado.
     """

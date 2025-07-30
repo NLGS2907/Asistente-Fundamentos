@@ -1,9 +1,8 @@
 """
-Módulo para tests del módulo 'archivos'.
+Módulo para tests de archivos de guías.
 """
 
-import unittest
-from os import remove as arch_remove
+from unittest import TestCase
 
 from asistente.archivos.guias import (
     archivos_guia,
@@ -12,41 +11,14 @@ from asistente.archivos.guias import (
     lista_unidades,
     version_es_valida,
 )
-from asistente.archivos.json import cargar_json, guardar_json
 
 
-class TestArchivos(unittest.TestCase):
+class TestGuias(TestCase):
     """
-    Tests de Archivos.
+    Tests de archivos de guías de ejercicios.
     """
 
-    def test_1_guarda_y_carga_json_simple(self) -> None:
-        """
-        Guarda y carga un archivo JSON simple
-        """
-
-        arch_temp = "tests/archivos/json_simple.json"
-        dic_simple = {'a': 1, 'b': 2, 'c': 3, 'd': [4, 5]}
-
-        guardar_json(dic_simple, arch_temp, sangria=None)
-
-        try:
-
-            with open(arch_temp) as arch:
-                dic_simple_str = arch.read()
-
-            dic_cargado = cargar_json(arch_temp)
-
-            self.assertEqual(dic_simple_str, '{"a": 1, "b": 2, "c": 3, "d": [4, 5]}') # Si se guardó bien
-            self.assertEqual(dic_cargado, dic_simple) # Si se cargó bien
-            with self.assertRaises(FileNotFoundError):
-                cargar_json("__path_basura__")
-
-        finally:
-            arch_remove(arch_temp)
-
-
-    def test_2_valida_version(self) -> None:
+    def test_1_valida_version(self) -> None:
         """
         Valida si hay versiones con nombres correctos.
         """
@@ -55,7 +27,7 @@ class TestArchivos(unittest.TestCase):
         self.assertFalse(version_es_valida("3ex2801"))
 
 
-    def test_3_valida_estructura_guia(self) -> None:
+    def test_2_valida_estructura_guia(self) -> None:
         """
         Debería haber exactamente 17 archivos JSON.
         """
@@ -85,7 +57,7 @@ class TestArchivos(unittest.TestCase):
             archivos_guia("2019C2", "guiasa")
 
 
-    def test_4_carga_una_guia_correctamente(self) -> None:
+    def test_3_carga_una_guia_correctamente(self) -> None:
         """
         Carga un ejercicio y verifica que esté correcto.
         """
@@ -105,7 +77,7 @@ class TestArchivos(unittest.TestCase):
         self.assertEqual(guia_cargada["1"]["1"], enunciado_esperado)
 
 
-    def test_5_cuenta_las_unidades_de_una_guia(self) -> None:
+    def test_4_cuenta_las_unidades_de_una_guia(self) -> None:
         """
         Deberían ser 17 unidades.
         """
@@ -121,7 +93,7 @@ class TestArchivos(unittest.TestCase):
             lista_unidades({"10": "judías", "40": 41, "337": "banana"})
 
 
-    def test_6_cuenta_los_ejercicios_de_una_unidad(self) -> None:
+    def test_5_cuenta_los_ejercicios_de_una_unidad(self) -> None:
         """
         Cuenta los ejercicios de la unidad 15. Deberían de ser 13.
         """
@@ -132,8 +104,4 @@ class TestArchivos(unittest.TestCase):
 
         self.assertEqual(lista_cargada, lista_esperada)
         with self.assertRaises(KeyError):
-            lista_ejercicios(guia_cargada, "18")            
-
-
-if __name__ == "__main__":
-    unittest.main()
+            lista_ejercicios(guia_cargada, "18")
