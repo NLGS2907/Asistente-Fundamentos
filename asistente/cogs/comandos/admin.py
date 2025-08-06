@@ -82,7 +82,7 @@ class CogAdmin(CogGeneral):
 
         if not sys_executable:
 
-            mensaje = "[ERROR] No se pudo reiniciar el asistente."
+            mensaje = "**[ERROR]** No se pudo reiniciar el asistente."
 
             await interaccion.response.send_message(content=mensaje,
                                                     ephemeral=True)
