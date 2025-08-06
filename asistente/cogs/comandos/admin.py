@@ -9,6 +9,7 @@ from typing import TYPE_CHECKING
 from discord import Interaction
 from discord.app_commands import Choice, choices, describe
 from discord.app_commands import command as appcommand
+from discord.ext.commands import is_owner
 
 from ...auxiliar import permisos_de_al_menos_nivel
 from ...db.enums import NivelPermisos
@@ -57,8 +58,8 @@ class CogAdmin(CogGeneral):
 
 
     @appcommand(name="shutdown",
-                description="[ADMIN] Apaga el bot.")
-    @permisos_de_al_menos_nivel(NivelPermisos.ADMINISTRADOR)
+                description="[OWNER] Apaga el bot.")
+    @is_owner()
     async def shutdown(self, interaccion: Interaction) -> None:
         """
         Apaga el bot y lo desconecta.
@@ -72,8 +73,8 @@ class CogAdmin(CogGeneral):
 
 
     @appcommand(name="reboot",
-                description="[ADMIN] Reinicia el bot.")
-    @permisos_de_al_menos_nivel(NivelPermisos.ADMINISTRADOR)
+                description="[OWNER] Reinicia el bot.")
+    @is_owner()
     async def reboot(self, interaccion: Interaction) -> None:
         """
         Reinicia el bot, apagándolo y volviéndolo a conectar.
