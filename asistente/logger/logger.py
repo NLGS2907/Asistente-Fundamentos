@@ -59,7 +59,7 @@ class AssistLogger:
             super().__init__()
 
             # Nunca lo vamos a usar, por lo que no vale la pena declararlo tal cual,
-            # el checker jode conque no tiene uso el atributo
+            # el checker jode con que no tiene uso el atributo
             setattr(self, "__inicializado", True)
 
             self._formato: str = fmt
@@ -96,6 +96,7 @@ class AssistLogger:
         """
 
         return self._formateador
+
 
     @formateador.setter
     def formateador(self, nuevo_formateador: Formatter) -> None:

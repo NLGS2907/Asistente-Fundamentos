@@ -337,7 +337,7 @@ def emoji_str(codepoint: str) -> str:
     return eval(f"\"{escape}\"") # Evaluarlo porque sino agarra el string tal cual
 
 
-def init_database(db_path: PathLike[str]=DEFAULT_DB) -> str:
+def init_database(db_path: PathLike[str]=DEFAULT_DB) -> None:
     """
     Crea la DB sino existe y además también crea las tablas mínimas y necesarias para que el
     bot funcione correctamente.
