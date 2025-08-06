@@ -39,7 +39,7 @@ class AssistLogger:
                 # Y esta comparación es en el caso especial en que más de un hilo se quede
                 # esperando porque pidieron el lock a la vez
                 if cls.__instancia is None:
-                    cls.__instancia = super().__new__(cls, *args, **kwargs)
+                    cls.__instancia = super().__new__(cls)
 
         return cls.__instancia
 

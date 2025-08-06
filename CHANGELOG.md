@@ -25,7 +25,7 @@ Historial con detalles de cambios entre versiones del asistente.
   - Nuevos ejercicios del **17.12** al **17.18**.
 * **Actualizadas las dependencias.**
   - discord.py (2.2.2 → **2.5.2**)
-  - python-dotenv **fue eliminada**
+  - python-dotenv **fue eliminada**.
 * Remodularizados los módulos `main` y `tests` del proyecto. Ahora están como carpetas aparte en el directorio raíz.
   - `main` ahora se llama `asistente`, para ser consistente con la nueva forma de invocar al bot.
 * Limpiada toda mención de los "prefijos". Ahora el bot usa exclusivamente _app commands_ con `/`.

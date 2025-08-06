@@ -61,6 +61,7 @@ class Embebido(Embed):
 
         return '\n'.join(lista) if lista else ''
 
+
     def custom_format(self, cadena: str) -> str:
         """
         Formatea una cadena de manera personalizada.
