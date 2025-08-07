@@ -17,7 +17,7 @@ FetchResult: TypeAlias = Union[List[_SingularResult], _SingularResult]
 CursorDesc: TypeAlias = Dict[str, Union[None, Tuple[str, ...], str, int]]
 DictLlaveForanea: TypeAlias = Dict[str, Tuple[str, str]]
 
-DEFAULT_DB: PathLike = getenv("DB_PATH")
+DEFAULT_DB: PathLike = getenv("DB_PATH") or "./db.sqlite3"
 RESOLUCIONES: Tuple[str, ...] = "ABORT", "FAIL", "IGNORE", "REPLACE", "IGNORE"
 ESTRICTO_NO_ACEPTADOS: list[TiposDB] = [TiposDB.NULL]
 NO_ESTRICTO_NO_ACEPTADOS: list[TiposDB] = [TiposDB.INT, TiposDB.ANY]
