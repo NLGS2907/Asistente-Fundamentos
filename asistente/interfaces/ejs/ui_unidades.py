@@ -77,6 +77,6 @@ class SelectorUnidad(VistaGeneral):
         Inicializa una instancia de 'SelectorUnidad'.
         """
 
-        super().__init__()
+        super().__init__(agregar_btn_cerrar=False)
 
         self.add_item(MenuSelectorUnidad(guia=guia))

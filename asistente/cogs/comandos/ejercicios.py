@@ -6,18 +6,31 @@ from random import choice
 from typing import TYPE_CHECKING, Optional
 
 from discord import Interaction
-from discord.app_commands import Choice, choices
+from discord.app_commands import Choice, choices, describe
 from discord.app_commands import command as appcommand
-from discord.app_commands import describe
 
-from ...archivos import (DiccionarioGuia, GUIA_DEFAULT, GUIA_PATH, cargar_guia, get_guia_por_sv,
-                         lista_carpetas, lista_ejercicios, lista_unidades, version_es_valida)
+from ...archivos import (
+    GUIA_DEFAULT,
+    GUIA_PATH,
+    DiccionarioGuia,
+    cargar_guia,
+    get_guia_por_sv,
+    lista_carpetas,
+    lista_ejercicios,
+    lista_unidades,
+    version_es_valida,
+)
 from ...auxiliar import permisos_de_al_menos_nivel
 from ...db.atajos import actualizar_version_guia
 from ...db.enums import NivelPermisos
 from ...embebido import Embebido
-from ...interfaces import (TITLE_FORMAT, USER_CONSULT, NavegadorEjercicios,
-                           SelectorEjercicios, SelectorGuia, SelectorUnidad)
+from ...interfaces import (
+    TITLE_FORMAT,
+    USER_CONSULT,
+    SelectorEjercicios,
+    SelectorGuia,
+    SelectorUnidad,
+)
 from ..general import CogGeneral
 
 if TYPE_CHECKING:
@@ -79,7 +92,8 @@ class CogEjercicios(CogGeneral):
                 vista = SelectorUnidad(guia=guia)
                 await interaccion.response.send_message(
                                        content="Por favor elija el número de unidad",
-                                       view=vista)
+                                       view=vista,
+                                       ephemeral=True)
 
             else:
 
@@ -99,7 +113,8 @@ class CogEjercicios(CogGeneral):
 
                 vista = SelectorEjercicios(guia=guia, unidad=unidad)
                 await interaccion.response.send_message(content="Por favor elija un ejercicio",
-                                                        view=vista)
+                                                        view=vista,
+                                                        ephemeral=True)
 
             else:
 
@@ -141,7 +156,9 @@ class CogEjercicios(CogGeneral):
 
         mensaje = USER_CONSULT.format(mencion=interaccion.user.mention)
         embebido = Embebido(opciones=enunciado)
-        vista = NavegadorEjercicios(guia=guia, unidad=unidad, ejercicio=ejercicio)
+        # A este punto, el usuario ya sabe qué unidad y ejercicio quiere. No mostramos
+        # la interfaz para navegar por la guía.
+        vista = None
 
         await interaccion.response.send_message(content=mensaje,
                                                 embed=embebido,

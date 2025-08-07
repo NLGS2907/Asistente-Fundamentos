@@ -46,7 +46,6 @@ class MenuSelectorEjercicio(Select):
         self.guia = guia
 
         if not unidad:
-
             unidad = lista_unidades(self.guia)[0]
 
         self.unidad = unidad
@@ -77,6 +76,7 @@ class MenuSelectorEjercicio(Select):
 
         return f"{descripcion[:max_char]}{'...' if len(descripcion) > max_char else ''}"
 
+
     async def callback(self, interaccion: Interaction) -> None:
         """
         Procesa el ejercicio elegido por el usuario del menú selector.
@@ -91,12 +91,10 @@ class MenuSelectorEjercicio(Select):
                                                     titulo=self.guia[self.unidad]["titulo"],
                                                     ejercicio=ejercicio)]
 
-        mensaje = USER_CONSULT.format(mencion=interaccion.user.mention)
         embebido = Embebido(opciones=enunciado)
         vista = NavegadorEjercicios(guia=self.guia, unidad=self.unidad, ejercicio=ejercicio)
 
-        await interaccion.response.edit_message(content=mensaje,
-                                                embed=embebido,
+        await interaccion.response.edit_message(embed=embebido,
                                                 view=vista)
 
 
@@ -110,7 +108,7 @@ class SelectorEjercicios(VistaGeneral):
         Crea una instancia de 'SelectorEjercicios'.
         """
 
-        super().__init__()
+        super().__init__(agregar_btn_cerrar=False)
         self.add_item(MenuSelectorEjercicio(guia=guia, unidad=unidad))
 
 
@@ -124,7 +122,7 @@ class NavegadorEjercicios(VistaGeneral):
         Inicializa una instancia de 'NavegadorEjercicios'.
         """
 
-        super().__init__()
+        super().__init__(agregar_btn_cerrar=False)
 
         self.guia = guia
         self.unidad_actual = unidad
@@ -201,9 +199,7 @@ class NavegadorEjercicios(VistaGeneral):
         self.actualizar_ejercicios()
 
         for item in self.children:
-
             if isinstance(item, Button):
-
                 self.actualizar_boton(item)
 
 
@@ -213,11 +209,9 @@ class NavegadorEjercicios(VistaGeneral):
         Devuelve el mensaje editado.
         """
 
-        contenido_mensaje = USER_CONSULT.format(mencion=interaccion.user.mention)
         embebido = self.get_embebido_enunciado()
 
-        mensaje_editado = await interaccion.response.edit_message(content=contenido_mensaje,
-                                                                  embed=embebido,
+        mensaje_editado = await interaccion.response.edit_message(embed=embebido,
                                                                   view=self)
         self.msg = mensaje_editado
 
@@ -261,8 +255,8 @@ class NavegadorEjercicios(VistaGeneral):
 
 
     @button(style=ButtonStyle.grey,
-    custom_id="ex_right",
-    emoji=Emoji.from_str("\N{Black Rightwards Arrow}"))
+            custom_id="ex_right",
+            emoji=Emoji.from_str("\N{Black Rightwards Arrow}"))
     async def ejercicio_posterior(self, interaccion: Interaction, _boton: Button) -> None:
         """
         Se intenta ir a la página posterior del mensaje INFO.
@@ -314,3 +308,25 @@ class NavegadorEjercicios(VistaGeneral):
         self.actualizar_botones()
 
         await self.actualizar_mensaje(interaccion)
+
+
+    @button(style=ButtonStyle.grey,
+            custom_id="ex_print",
+            row=1, # Segunda fila de botones
+            label="Imprimir",
+            emoji=Emoji.from_str("\N{Printer}"))
+    async def imprimir_ejercicio(self, interaccion: Interaction, _boton: Button) -> None:
+        """
+        Edita el mensaje efímero y manda un nuevo mensaje idéntico pero sin la interfaz, tal que
+        todos en el canal puedan ver el ejercicio.
+        """
+
+        # En la implementación actual, este mensaje debería ser efímero desde antes
+        await interaccion.response.edit_message(content="¡Mensaje impreso!",
+                                                embed=None,
+                                                view=None)
+
+        msg = USER_CONSULT.format(mencion=interaccion.user.mention)
+        await interaccion.channel.send(content=msg,
+                                       embed=self.get_embebido_enunciado(),
+                                       view=None)
