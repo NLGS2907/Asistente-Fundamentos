@@ -21,7 +21,7 @@ def main(*args: str) -> int:
     init_database()
     Asistente(
         verbose=("-v" in args or "--verbose" in args)
-    ).run(TOKEN)
+    ).run(TOKEN, log_handler=None) # El handler lo seteamos a mano antes
 
     return 0
 

@@ -2,22 +2,23 @@
 Módulo dedicado a contener la clase personalizada 'CustomBot'.
 """
 
-from logging import DEBUG, INFO
+from logging import DEBUG, INFO, FileHandler, Formatter, getLogger
 from platform import system
 from typing import TYPE_CHECKING, Optional, TypeAlias
 
 from discord import Intents, Message, Permissions
 from discord.ext.commands import Bot
-from discord.utils import utcnow
+from discord.utils import setup_logging, utcnow
 
 from ..ahorcado import Ahorcado
 from ..archivos import buscar_archivos
 from ..db.atajos import actualizar_guild, op_usuario
 from ..db.enums import NivelPermisos
-from ..logger import AssistLogger
+from ..logger import LOG_PATH, AssistLogger
 
 if TYPE_CHECKING:
     from datetime import datetime, timedelta
+    from logging import Logger
     from os import PathLike
 
 # Para que no tire error en Windows al cerrar el Bot.
@@ -108,8 +109,20 @@ class Asistente(Bot):
         self.log: AssistLogger = AssistLogger(nivel_cons=(DEBUG if verbose else INFO))
         "Devuelve el logger del bot."
 
+        setup_logging(root=False)
+        self.ds_log: "Logger" = getLogger("discord")
+        "El logger que la librería usa."
+
         self.partidas: DiccionarioPartidas = {}
         "Diccionario donde almacenar las partidas de ahorcado."
+
+        # Le añadimos un handler al logger de Discord para que imprima en el archivo de log.
+        ds_file_handler = FileHandler(filename=LOG_PATH, encoding="utf-8")
+        ds_file_handler.setFormatter(
+            Formatter(fmt="%(asctime)s - %(levelname)s - %(name)s - %(message)s",
+                      datefmt=self.log.fmt_fecha)
+        )
+        self.ds_log.addHandler(ds_file_handler)
 
 
     async def setup_hook(self) -> None:
