@@ -41,7 +41,7 @@ Está pensado para usarse en el servidor de Discord de dicha materia, pero puede
   - [_Otros..._](#otros-comandos)
 
 * [Ejemplos de Uso](#ejemplos-de-uso)
- - [Uso de `/ej`](#uso-de-ej)
+  - [Uso de `/ej`](#uso-de-ej)
 
 <hr/>
 
@@ -86,7 +86,8 @@ Para configurar o visualizar la [guía de ejercicios](./doc/Guías%20de%20Ejerci
 
 * `/ej`: Permite ir a buscar el enunciado de un ejercicio específico de la guía de ejercicios.
 
-* `/random`: Comando de conveniencia que devuelve un ejercicio aleatorio de cualquier guía. Tiene opciones para configurar la búsqueda.
+* `/random`: Comando de conveniencia que devuelve un ejercicio aleatorio de cualquier unidad de la guía.
+             Tiene opciones para configurar la búsqueda.
 
 * `/guia`: Configura la versión de la guía en el servidor.
 
@@ -96,7 +97,7 @@ El asistente cuenta con un sistema de permisos propio para comandos privilegiado
 
 * `/op <usuario|rol>`: Otorga nivel de permisos a otro miembro de un servidor, o un rol.
 
-* `/deop <usuario\rol>`: Quita permisos de un miembro o rol de servidor.
+* `/deop <usuario|rol>`: Quita permisos de un miembro o rol de servidor.
 
 * `/op list`: Permite ver todos los miembros/roles de un servidor que tienen permisos y con qué nivel.
 
@@ -104,7 +105,7 @@ El asistente cuenta con un sistema de permisos propio para comandos privilegiado
 
 Comandos con efectos misceláneos.
 
-* `/info`: Muestar información general sobre el asistente.
+* `/info`: Muestra información general sobre el asistente.
 
 <hr/>
 
