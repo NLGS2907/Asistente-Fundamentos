@@ -10,7 +10,7 @@
 ![estrellas](https://img.shields.io/github/stars/NLGS2907/Asistente-Fundamentos?label=Estrellas&style=social)
 ![forks](https://img.shields.io/github/forks/NLGS2907/Asistente-Fundamentos?style=social)
 ![Tests](https://github.com/NLGS2907/Asistente-Fundamentos/actions/workflows/tests.yml/badge.svg)
-![Pylint](https://github.com/NLGS2907/Asistente-Fundamentos/actions/workflows/pylint.yml/badge.svg)
+![Ruff](https://github.com/NLGS2907/Asistente-Fundamentos/actions/workflows/ruff.yml/badge.svg)
 
 El Asistente de Fundamentos es una app de Discord con _bot user_ incluido para cumplir varias funciones misceláneas; entre ellas guardar y leer de la guía de ejercicios de la materia TB021 "Fundamentos de Programación" (curso Essaya) de la FIUBA.
 
