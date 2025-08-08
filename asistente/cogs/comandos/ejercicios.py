@@ -169,8 +169,9 @@ class CogEjercicios(CogGeneral):
                 description="Muestra ejercicios de la guía.")
     @describe(unidad="El número de unidad.",
               ejercicio="El número de ejercicio.")
-    @choices(unidad=[Choice(name=str(numero), value=str(numero))
-                     for numero in lista_unidades(cargar_guia(GUIA_DEFAULT))])
+    @choices(unidad=[Choice(name=unid, value=unid.split(".", 1)[0])
+                     for unid in lista_unidades(cargar_guia(GUIA_DEFAULT),
+                                                con_titulos=True)])
     async def leer_ejercicio(self,
                              interaccion: Interaction,
         	                 unidad: Optional[Choice[str]]=None,
@@ -188,8 +189,9 @@ class CogEjercicios(CogGeneral):
                 description="Muestra un ejercicio aleatorio de la guía.")
     @describe(unidad_posible="La unidad desde dónde buscar.",
               sentido="El parámetro de búsqueda.")
-    @choices(unidad_posible=[Choice(name=str(numero), value=str(numero))
-                             for numero in lista_unidades(cargar_guia(GUIA_DEFAULT))],
+    @choices(unidad_posible=[Choice(name=unid, value=unid.split(".", 1)[0])
+                             for unid in lista_unidades(cargar_guia(GUIA_DEFAULT),
+                                                          con_titulos=True)],
              sentido=[
                  Choice(name="Dentro de", value='='),
                  Choice(name="Antes que", value='<'),

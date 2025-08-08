@@ -75,15 +75,24 @@ def cargar_guia(version: str, carpeta: "PathLike"=GUIA_PATH) -> Optional[Diccion
     return guia
 
 
-def lista_unidades(guia: DiccionarioGuia) -> list[str]:
+def lista_unidades(guia: DiccionarioGuia, con_titulos: bool=False) -> list[str]:
     """
     Dada una guía, devuelve una lista de sus unidades.
+
+    con_titulos: Devuelve en su lugar cadenas del estilo '<num>. "<titulo>"'
     """
 
     copia_guia = guia.copy()
     copia_guia.pop("version") # Se escluye la clave especial 'version'
 
-    return list(copia_guia)
+    if not con_titulos:
+        return list(copia_guia)
+
+    lista_con_titulos = []
+    for num, guia in copia_guia.items():
+        lista_con_titulos.append(f"{num}. {guia['titulo']}")
+
+    return lista_con_titulos
 
 
 def lista_ejercicios(guia: DiccionarioGuia, unidad: str) -> list[str]:
