@@ -1,6 +1,4 @@
-"""
-Módulo que procesa archivos en general.
-"""
+"Módulo que procesa archivos en general."
 
 from pathlib import Path
 from typing import TYPE_CHECKING, Optional

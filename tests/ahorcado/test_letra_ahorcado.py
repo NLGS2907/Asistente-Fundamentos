@@ -1,6 +1,4 @@
-"""
-Módulo para tests de la clase de letras de Ahorcado.
-"""
+"Módulo para tests de la clase de letras de Ahorcado."
 
 from unittest import TestCase
 
@@ -8,32 +6,23 @@ from asistente.ahorcado.letra_ahorcado import LetraAhorcado
 
 
 class TestLetraAhorcado(TestCase):
-    """
-    Tests de letras de Ahorcado.
-    """
+    "Tests de letras de Ahorcado."
 
     def test_1_se_crea_correctamente(self) -> None:
-        """
-        Debe de ser una cadena de 1 solo caracter.
-        """
+        "Debe de ser una cadena de 1 solo caracter."
 
         with self.assertRaises(TypeError):
-
             LetraAhorcado(25, True)
 
         with self.assertRaises(ValueError):
-
             LetraAhorcado("manzana", True)
 
         with self.assertRaises(TypeError):
-
             LetraAhorcado("n", 56)
 
 
     def test_2_se_representa_bien(self) -> None:
-        """
-        ``str(LetraAhorcado)`` debe tener el formato adecuado.
-        """
+        "``str(LetraAhorcado)`` debe tener el formato adecuado."
 
         letra = LetraAhorcado('a', False)
         cadena_esperada = "Valor: a | Oculta: False"
@@ -42,9 +31,7 @@ class TestLetraAhorcado(TestCase):
 
 
     def test_3_una_vez_descubierta_no_se_puede_ocultar(self) -> None:
-        """
-        Una vez descubierta, la letra no puede volverse a ocultar. 
-        """
+        "Una vez descubierta, la letra no puede volverse a ocultar. "
 
         letra = LetraAhorcado('b', True)
         otra_letra = LetraAhorcado('b', False)

@@ -1,6 +1,4 @@
-"""
-Módulo para tests de la clase de Ahorcado.
-"""
+"Módulo para tests de la clase de Ahorcado."
 
 from os import remove as arch_remove
 from unittest import TestCase
@@ -9,10 +7,7 @@ from asistente.ahorcado.ahorcado import Ahorcado
 
 
 class TestAhorcado(TestCase):
-    """
-    Tests de Ahorcado.
-    """
-
+    "Tests de Ahorcado."
 
     def test_1_carga_palabras_bien(self) -> None:
         """
@@ -26,20 +21,16 @@ class TestAhorcado(TestCase):
             arch.write("bambú\nmanaza\npomelo")
 
         try:
-
             lista_palabras = Ahorcado.cargar_palabras(arch_temp)
             self.assertEqual(lista_palabras, ["bambú", "manaza", "pomelo"])
 
 
         finally:
-
             arch_remove(arch_temp)
 
 
     def test_2_cambia_frase_a_mayusculas(self) -> None:
-        """
-        La frase se cambia a una de todas mayúsculas.
-        """
+        "La frase se cambia a una de todas mayúsculas."
 
         frase = "Hola soy pablo"
         partida = Ahorcado(frase=frase)
@@ -48,9 +39,7 @@ class TestAhorcado(TestCase):
 
 
     def test_3_adivina_una_letra(self) -> None:
-        """
-        Se adivina una letra correctamente.
-        """
+        "Se adivina una letra correctamente."
 
         partida = Ahorcado(frase="MANZANA")
 
@@ -61,9 +50,7 @@ class TestAhorcado(TestCase):
 
 
     def test_4_adivina_una_letra_repetida(self) -> None:
-        """
-        Se intenta adivinar una letra que ya fue usada.
-        """
+        "Se intenta adivinar una letra que ya fue usada."
 
         partida = Ahorcado(frase="NARANJA")
         partida.adivinar("a")
@@ -75,9 +62,7 @@ class TestAhorcado(TestCase):
 
 
     def test_5_falla_en_adivinar_una_letra(self) -> None:
-        """
-        Se intenta adivinar una letra que no está en la frase.
-        """
+        "Se intenta adivinar una letra que no está en la frase."
 
         partida = Ahorcado(frase="BANANA")
         partida.adivinar("a")
@@ -104,12 +89,9 @@ class TestAhorcado(TestCase):
 
 
     def test_6_no_deja_adivinar_con_algo_que_no_sea_un_solo_caracter(self) -> None:
-        """
-        No debería de poder adivinarse con una cadena de más de un caracter.
-        """
+        "No debería de poder adivinarse con una cadena de más de un caracter."
 
         partida = Ahorcado(frase="SALTO")
 
         with self.assertRaises(ValueError):
-
             partida.adivinar("cambio")

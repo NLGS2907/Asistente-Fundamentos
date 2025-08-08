@@ -1,6 +1,4 @@
-"""
-Interfaz para las Unidades.
-"""
+"Interfaz para las Unidades."
 
 from typing import Optional
 
@@ -18,9 +16,7 @@ from .ui_ejercicios import SelectorEjercicios
 
 
 class MenuSelectorUnidad(Select):
-    """
-    Clase que representa un menú selector de Unidades, no la interfaz en sí.
-    """
+    "Clase que representa un menú selector de Unidades, no la interfaz en sí."
 
     def __init__(
         self,
@@ -33,9 +29,7 @@ class MenuSelectorUnidad(Select):
         row: Optional[int]=None,
         guia: DiccionarioGuia=cargar_guia(GUIA_DEFAULT)
     ) -> None:
-        """
-        Inicializa una instacia de 'MenuSelectorUnidad'.
-        """
+        "Inicializa una instacia de 'MenuSelectorUnidad'."
 
         self.guia = guia
 
@@ -55,9 +49,7 @@ class MenuSelectorUnidad(Select):
 
 
     async def callback(self, interaccion: Interaction) -> None:
-        """
-        Procesa la unidad elegida por el usuario del menú selector.
-        """
+        "Procesa la unidad elegida por el usuario del menú selector."
 
         unidad_elegida = self.values[0]
 
@@ -67,15 +59,10 @@ class MenuSelectorUnidad(Select):
 
 
 class SelectorUnidad(VistaGeneral):
-    """
-    Clase de una UI personalizada para seleccionar unidades
-    de ejercicios.
-    """
+    "Clase de una UI personalizada para seleccionar unidades de ejercicios."
 
     def __init__(self, guia: DiccionarioGuia) -> None:
-        """
-        Inicializa una instancia de 'SelectorUnidad'.
-        """
+        "Inicializa una instancia de 'SelectorUnidad'."
 
         super().__init__(agregar_btn_cerrar=False)
 

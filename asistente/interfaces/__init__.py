@@ -1,6 +1,4 @@
-"""
-Paquete de interfaces.
-"""
+"Paquete de interfaces."
 
 from .ahorcado import *
 from .ejs import *

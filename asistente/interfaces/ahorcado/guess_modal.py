@@ -1,6 +1,4 @@
-"""
-Modal para adivinar una letra de ahorcado.
-"""
+"Modal para adivinar una letra de ahorcado."
 
 from typing import TYPE_CHECKING
 
@@ -14,9 +12,7 @@ if TYPE_CHECKING:
 
 
 class ModalAdivinacion(Modal):
-    """
-    Modal que adivina la letra.
-    """
+    "Modal que adivina la letra."
 
     letra: TextInput = TextInput(label="Adivina una letra.",
                                  style=TextStyle.short,
@@ -29,9 +25,7 @@ class ModalAdivinacion(Modal):
 
 
     def __init__(self, vista: "VistaAdivinacion") -> None:
-        """
-        Inicializa una instancia de 'ModalAdivinacion'.
-        """
+        "Inicializa una instancia de 'ModalAdivinacion'."
 
         super().__init__(timeout=None,
                          title="Letra de Ahorcado",
@@ -41,9 +35,7 @@ class ModalAdivinacion(Modal):
 
 
     async def on_error(self, interaccion: Interaction, error: Exception) -> None:
-        """
-        Un error ocurrió.
-        """
+        "Un error ocurrió."
 
         msg = f"**[ERROR]** {str(error)}"
         await interaccion.response.send_message(content=msg,
@@ -51,9 +43,7 @@ class ModalAdivinacion(Modal):
 
 
     async def on_submit(self, interaccion: Interaction) -> None:
-        """
-        Procesa la letra.
-        """
+        "Procesa la letra."
 
         await self.hanged_guess(interaccion, self.letra.value)
 
@@ -64,9 +54,7 @@ class ModalAdivinacion(Modal):
 
 
     async def hanged_guess(self, interaccion: Interaction, char: str) -> None:
-        """
-        Intenta adivinar una letra u otro caracter, si no fue usado ya.
-        """
+        "Intenta adivinar una letra u otro caracter, si no fue usado ya."
 
         if not char:
             await interaccion.response.send_message(content=f"**[ERROR]** `{char}` no es " +
@@ -108,9 +96,7 @@ class ModalAdivinacion(Modal):
 
 
     async def fin_del_juego(self, interaccion: Interaction, es_victoria: bool) -> None:
-        """
-        Hace las acciones correspondientes una vez que termina el juego.
-        """
+        "Hace las acciones correspondientes una vez que termina el juego."
 
         partida_terminada: "Ahorcado" = self.vista.bot.partidas.pop(str(interaccion.channel.id))
         frase_magica = ''.join([c.valor for c in partida_terminada.frase])

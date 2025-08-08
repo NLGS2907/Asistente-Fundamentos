@@ -1,6 +1,4 @@
-"""
-Paquete para vistas que interactúan con ejercicios.
-"""
+"Paquete para vistas que interactúan con ejercicios."
 
 from .ui_ejercicios import *
 from .ui_guias import *

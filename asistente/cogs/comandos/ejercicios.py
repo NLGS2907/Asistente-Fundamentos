@@ -1,6 +1,4 @@
-"""
-Cog para comandos de ejercicios.
-"""
+"Cog para comandos de ejercicios."
 
 from random import choice
 from typing import TYPE_CHECKING, Optional
@@ -34,14 +32,11 @@ from ...interfaces import (
 from ..general import CogGeneral
 
 if TYPE_CHECKING:
-
     from ...bot import Asistente
 
 
 class CogEjercicios(CogGeneral):
-    """
-    Cog para comandos relacionados a los ejercicios y guías.
-    """
+    "Cog para comandos relacionados a los ejercicios y guías."
 
     @staticmethod
     def existe_unidad(unidad: Optional[str], guia: DiccionarioGuia) -> bool:
@@ -135,9 +130,7 @@ class CogEjercicios(CogGeneral):
                                interaccion: Interaction,
         	                   unidad: Optional[str]=None,
                                ejercicio: Optional[str]=None) -> None:
-        """
-        Manda efectivamente el mensaje con el ejercicio por el canal.
-        """
+        "Manda efectivamente el mensaje con el ejercicio por el canal."
 
         guia = get_guia_por_sv(interaccion.guild_id)
         unidad = unidad or None
@@ -176,9 +169,7 @@ class CogEjercicios(CogGeneral):
                              interaccion: Interaction,
         	                 unidad: Optional[Choice[str]]=None,
                              ejercicio: Optional[str]=None) -> None:
-        """
-        Lee un ejercicio y lo manda por el canal correspondiente.
-        """
+        "Lee un ejercicio y lo manda por el canal correspondiente."
 
         await self.mandar_ejercicio(interaccion=interaccion,
                                     unidad=(unidad.value if unidad else None),
@@ -277,9 +268,7 @@ class CogEjercicios(CogGeneral):
     async def cambiar_version_guia(self,
                                   interaccion: Interaction,
                                   nueva_version: Optional[str]=None) -> None:
-        """
-        Cambia la versión de la guía a utilizar, si dicha versión es válida.
-        """
+        "Cambia la versión de la guía a utilizar, si dicha versión es válida."
 
         versiones = " - ".join(f"`{version}`" for version in lista_carpetas(GUIA_PATH))
 
@@ -295,14 +284,12 @@ class CogEjercicios(CogGeneral):
         version_vieja = get_guia_por_sv(interaccion.guild_id)["version"]
 
         if not nueva_version:
-
             vista = SelectorGuia(version_actual=version_vieja)
             await interaccion.response.send_message(
                                         content="Por favor seleccione una versión de la guía",
                                         view=vista)
 
         else:
-
             actualizar_version_guia(nueva_version, interaccion.guild_id)
 
             self.bot.log.info(f"En '{interaccion.guild.name}', la versión de la guía fue " +
@@ -312,10 +299,7 @@ class CogEjercicios(CogGeneral):
                                                     ephemeral=True)
 
 
-
 async def setup(bot: "Asistente"):
-    """
-    Agrega el cog de este módulo al Asistente.
-    """
+    "Agrega el cog de este módulo al Asistente."
 
     await bot.add_cog(CogEjercicios(bot))

@@ -1,6 +1,4 @@
-"""
-Cog para comandos que requieren permisos especiales.
-"""
+"Cog para comandos que requieren permisos especiales."
 
 from os import execl
 from sys import executable as sys_executable
@@ -21,9 +19,7 @@ if TYPE_CHECKING:
 
 
 class CogAdmin(CogGeneral):
-    """
-    Cog de comandos generales que requieren permisos.
-    """
+    "Cog de comandos generales que requieren permisos."
 
     @appcommand(name="clear",
                 description="[MOD] Limpia el canal de mensajes del bot.")
@@ -38,11 +34,10 @@ class CogAdmin(CogGeneral):
                                limite: int,
                                completo: Choice[int]=1) -> None:
         """
-        Limpia los mensajes del bot del canal de donde se
-        invoca el comando.
+        Limpia los mensajes del bot del canal de donde se invoca el comando.
 
-        Si 'completo' es seleccionado, también borra los
-        mensajes de los usuarios que invocan los comandos.
+        limite: La cantidad de mensajes a visitar para ver si deben ser eliminados. Esto NO es
+                la cantidad de mensajes que van a ser borrados necesariamente.
         """
 
         eliminados = await interaccion.channel.purge(limit=limite + 1,
@@ -61,9 +56,7 @@ class CogAdmin(CogGeneral):
                 description="[OWNER] Apaga el bot.")
     @is_owner()
     async def shutdown(self, interaccion: Interaction) -> None:
-        """
-        Apaga el bot y lo desconecta.
-        """
+        "Apaga el bot y lo desconecta."
 
         await interaccion.response.send_message(content="Apagando el asistente...",
                                                 ephemeral=True)
@@ -76,12 +69,9 @@ class CogAdmin(CogGeneral):
                 description="[OWNER] Reinicia el bot.")
     @is_owner()
     async def reboot(self, interaccion: Interaction) -> None:
-        """
-        Reinicia el bot, apagándolo y volviéndolo a conectar.
-        """
+        "Reinicia el bot, apagándolo y volviéndolo a conectar."
 
         if not sys_executable:
-
             mensaje = "**[ERROR]** No se pudo reiniciar el asistente."
 
             await interaccion.response.send_message(content=mensaje,
@@ -99,12 +89,10 @@ class CogAdmin(CogGeneral):
 
 
     @appcommand(name="flush",
-                description="[MOD] Vacía el archivo de registro.")
-    @permisos_de_al_menos_nivel(NivelPermisos.MODERADOR)
+                description="[ADMIN] Vacía el archivo de registro.")
+    @permisos_de_al_menos_nivel(NivelPermisos.ADMINISTRADOR)
     async def logflush(self, interaccion: Interaction):
-        """
-        Vacía el contenido del archivo de registro.
-        """
+        "Vacía el contenido del archivo de registro."
 
         with open(LOG_PATH, mode='w', encoding="utf-8"):
             await interaccion.response.send_message("**[AVISO]** Vaciando archivo en " +
@@ -116,9 +104,7 @@ class CogAdmin(CogGeneral):
                 description="[MOD] Calcula el tiempo que el bot estuvo activo.")
     @permisos_de_al_menos_nivel(NivelPermisos.MODERADOR)
     async def calcular_uptime(self, interaccion: Interaction) -> None:
-        """
-        Calcula el tiempo que el bot estuvo corriendo.
-        """
+        "Calcula y muestra el tiempo que el bot estuvo corriendo."
 
         delta = self.bot.uptime
 
@@ -145,8 +131,6 @@ class CogAdmin(CogGeneral):
 
 
 async def setup(bot: "Asistente"):
-    """
-    Agrega el cog de este módulo al Asistente.
-    """
+    "Agrega el cog de este módulo al Asistente."
 
     await bot.add_cog(CogAdmin(bot))

@@ -1,6 +1,4 @@
-"""
-Cog para escuchar eventos del Bot.
-"""
+"Cog para escuchar eventos del Bot."
 
 from typing import TYPE_CHECKING
 
@@ -15,15 +13,11 @@ if TYPE_CHECKING:
 
 
 class CogEventos(CogGeneral):
-    """
-    Cog que escucha eventos.
-    """
+    "Cog que escucha eventos."
 
     @Cog.listener()
     async def on_ready(self) -> None:
-        """
-        El bot se conectó y está listo para usarse.
-        """
+        "El bot se conectó y está listo para usarse."
 
         self.bot.log.info("Actualizando base de datos:")
         self.bot.actualizar_db()
@@ -33,9 +27,7 @@ class CogEventos(CogGeneral):
 
     @Cog.listener()
     async def on_command(self, ctx: Context):
-        """
-        El usuario está tratando de invocar un comando.
-        """
+        "El usuario está tratando de invocar un comando."
 
         formato_log = {"autor": ctx.author,
                        "cmd": ctx.command,
@@ -47,11 +39,10 @@ class CogEventos(CogGeneral):
                           "en el canal '#%(canal)s' del server '%(guild)s' " % formato_log +
                           "mediante el mensaje '%(msg)s'" % formato_log)
 
+
     @Cog.listener()
     async def on_command_completion(self, ctx: Context):
-        """
-        El usuario ejecutó el comando satisfactoriamente.
-        """
+        "El usuario ejecutó el comando satisfactoriamente."
 
         formato_log = {"autor": ctx.author,
                        "cmd": ctx.command}
@@ -61,9 +52,7 @@ class CogEventos(CogGeneral):
 
     @Cog.listener()
     async def on_guild_join(self, guild: Guild) -> None:
-        """
-        El bot se conectó por primera vez a un servidor.
-        """
+        "El bot se conectó por primera vez a un servidor."
 
         self.bot.log.info("El bot se conectó a '%s'", guild.name)
         actualizar_guild(guild.id, guild.name)
@@ -98,8 +87,6 @@ class CogEventos(CogGeneral):
 
 
 async def setup(bot: "Asistente"):
-    """
-    Agrega el cog de este módulo al Asistente.
-    """
+    "Agrega el cog de este módulo al Asistente."
 
     await bot.add_cog(CogEventos(bot))

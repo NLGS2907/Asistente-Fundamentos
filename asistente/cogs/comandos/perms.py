@@ -1,6 +1,4 @@
-"""
-Cog que agrupa comandos de permisos.
-"""
+"Cog que agrupa comandos de permisos."
 
 from typing import TYPE_CHECKING
 
@@ -28,14 +26,10 @@ if TYPE_CHECKING:
 
 
 class GrupoPermsOp(GrupoGeneral):
-    """
-    Grupo para comandos que añaden o manejan permisos.
-    """
+    "Grupo para comandos que añaden o manejan permisos."
 
     def __init__(self, bot: "Asistente") -> None:
-        """
-        Inicializa una instancia de este grupo.
-        """
+        "Inicializa una instancia de este grupo."
 
         super().__init__(bot,
                          name="op",
@@ -53,9 +47,7 @@ class GrupoPermsOp(GrupoGeneral):
 
 
     async def on_error(self, interaccion: Interaction, error: AppCommandError) -> None:
-        """
-        Avisa el usuario que un comando falló.
-        """
+        "Avisa el usuario que un comando falló."
 
         if isinstance(error, CheckFailure):
             mensaje = f"{interaccion.user.mention}, no tenés permisos para ejecutar este comando."
@@ -77,9 +69,7 @@ class GrupoPermsOp(GrupoGeneral):
                             interaccion: Interaction,
                             usuario: Member,
                             nivel: Choice[int]) -> None:
-        """
-        Proporciona permisos a un usuario dado.
-        """
+        "Proporciona permisos a un usuario dado."
 
         if usuario.bot:
             await interaccion.response.send_message(
@@ -144,9 +134,7 @@ class GrupoPermsOp(GrupoGeneral):
                         interaccion: Interaction,
                         rol: Role,
                         nivel: Choice[int]) -> None:
-        """
-        Proporciona permisos a un rol de Discord dado.
-        """
+        "Proporciona permisos a un rol de Discord dado."
 
         if interaccion.guild_id is None:
             await interaccion.response.send_message(
@@ -189,9 +177,7 @@ class GrupoPermsOp(GrupoGeneral):
                              " un nivel de permisos en este servidor."))
     @permisos_de_al_menos_nivel(NivelPermisos.MODERADOR)
     async def perms_list(self, interaccion: Interaction) -> None:
-        """
-        Crea una lista de permisos y la envía en forma de embebido.
-        """
+        "Crea una lista de permisos y la envía en forma de embebido."
 
         if interaccion.guild_id is None:
             await interaccion.response.send_message(
@@ -230,14 +216,10 @@ class GrupoPermsOp(GrupoGeneral):
 
 
 class GrupoPermsDeOp(GrupoGeneral):
-    """
-    Grupo para comandos que quitan permisos.
-    """
+    "Grupo para comandos que quitan permisos."
 
     def __init__(self, bot: "Asistente") -> None:
-        """
-        Inicializa una instancia de este grupo.
-        """
+        "Inicializa una instancia de este grupo."
 
         super().__init__(bot,
                          name="deop",
@@ -254,9 +236,7 @@ class GrupoPermsDeOp(GrupoGeneral):
 
 
     async def on_error(self, interaccion: Interaction, error: AppCommandError) -> None:
-        """
-        Avisa el usuario que un comando falló.
-        """
+        "Avisa el usuario que un comando falló."
 
         if isinstance(error, CheckFailure):
             mensaje = f"{interaccion.user.mention}, no tenés permisos para ejecutar este comando."
@@ -274,9 +254,7 @@ class GrupoPermsDeOp(GrupoGeneral):
     async def deperms_usuario(self,
                               interaccion: Interaction,
                               usuario: Member) -> None:
-        """
-        Intenta quitarle permisos a un usuario dado.
-        """
+        "Intenta quitarle permisos a un usuario dado."
 
         if interaccion.guild_id is None:
             await interaccion.response.send_message(
@@ -330,9 +308,7 @@ class GrupoPermsDeOp(GrupoGeneral):
     async def deperms_rol(self,
                           interaccion: Interaction,
                           rol: Role) -> None:
-        """
-        Intenta quitarle permisos a un rol dado.
-        """
+        "Intenta quitarle permisos a un rol dado."
 
         if interaccion.guild_id is None:
             await interaccion.response.send_message(
@@ -372,22 +348,16 @@ class GrupoPermsDeOp(GrupoGeneral):
 
 
 class CogPerms(CogGeneral):
-    """
-    Cog para permisos de comandos.
-    """
+    "Cog para permisos de comandos."
 
     @classmethod
     def grupos(cls) -> "GroupsList":
-        """
-        Devuelve la lista de grupos asociados a este Cog.
-        """
+        "Devuelve la lista de grupos asociados a este Cog."
 
         return [GrupoPermsOp, GrupoPermsDeOp]
 
 
 async def setup(bot: "Asistente"):
-    """
-    Agrega el cog de este módulo al Asistente.
-    """
+    "Agrega el cog de este módulo al Asistente."
 
     await bot.add_cog(CogPerms(bot))

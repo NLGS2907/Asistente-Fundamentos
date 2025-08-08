@@ -1,6 +1,4 @@
-"""
-Módulo para atajos de operaciones sobre permisos de comandos.
-"""
+"Módulo para atajos de operaciones sobre permisos de comandos."
 
 from typing import TYPE_CHECKING, Optional, TypeAlias, Iterable
 
@@ -27,9 +25,7 @@ PERMISOS_ROLES: str = "op_roles"
 
 
 def _get_admins(*, conds_usuarios: "DictConds", conds_roles: "DictConds") -> Perms:
-    """
-    Intenta buscar todos los administradores con privilegios según condiciones dadas.
-    """
+    "Intenta buscar todos los administradores con privilegios según condiciones dadas."
 
     res_usuarios = sacar_datos_de_tabla(PERMISOS_IDS,
                                         sacar_uno=False,
@@ -82,7 +78,6 @@ def get_admins_por_nivel(perms_lvl: NivelPermisos, *, por_lo_menos: bool=True) -
 
     return _get_admins(conds_usuarios=permisos_conds,
                        conds_roles=permisos_conds)
-
 
 
 def get_admins_por_nivel_y_guild(perms_lvl: NivelPermisos,

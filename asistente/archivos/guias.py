@@ -1,6 +1,4 @@
-"""
-Módulo que procesa archivos de guías.
-"""
+"Módulo que procesa archivos de guías."
 
 from pathlib import Path
 from typing import TYPE_CHECKING, Optional, TypeAlias, Union

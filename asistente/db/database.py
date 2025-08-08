@@ -1,6 +1,4 @@
-"""
-Módulo de bases de datos.
-"""
+"Módulo de bases de datos."
 
 from os import PathLike, getenv
 from os.path import exists as file_exists
@@ -24,10 +22,7 @@ NO_ESTRICTO_NO_ACEPTADOS: list[TiposDB] = [TiposDB.INT, TiposDB.ANY]
 
 
 def ejecutar_comando(comando: str, es_script: bool, db_path: PathLike[str]) -> CursorDesc:
-    """
-    Ejecuta un comando arbitrario, pasándolo tal cual a
-    sqlite para parsear.
-    """
+    "Ejecuta un comando arbitrario, pasándolo tal cual a sqlite para parsear."
 
     data = {}
 
@@ -50,17 +45,13 @@ def ejecutar_comando(comando: str, es_script: bool, db_path: PathLike[str]) -> C
 
 
 def ejecutar_linea(comando: str, db_path: PathLike[str]="") -> CursorDesc:
-    """
-    Ejecuta un comando de SQL que no requiera sacar datos.
-    """
+    "Ejecuta un comando de SQL que no requiera sacar datos."
 
     return ejecutar_comando(comando, False, db_path or DEFAULT_DB)
 
 
 def ejecutar_script(comando: str, db_path: PathLike[str]="") -> CursorDesc:
-    """
-    Ejecuta un comando de SQL de varias líneas.
-    """
+    "Ejecuta un comando de SQL de varias líneas."
 
     return ejecutar_comando(comando, True, db_path or DEFAULT_DB)
 
@@ -105,9 +96,7 @@ def _protocolo_resolucion(resolucion: Optional[ValoresResolucion]=None) -> str:
 
 
 def nombres_tablas(db_path: PathLike=DEFAULT_DB) -> tuple[str, ...]:
-    """
-    Devuelve una tupla con todos los nombres de las tablas que tiene la DB.
-    """
+    "Devuelve una tupla con todos los nombres de las tablas que tiene la DB."
 
     with connect(db_path) as con:
         cur = con.cursor()
@@ -118,17 +107,13 @@ def nombres_tablas(db_path: PathLike=DEFAULT_DB) -> tuple[str, ...]:
 
 
 def existe_tabla(nombre_tabla: str, db_path: PathLike=DEFAULT_DB)-> bool:
-    """
-    Verifica, por su nombre, si una tabla existe en la DB especificada.
-    """
+    "Verifica, por su nombre, si una tabla existe en la DB especificada."
 
     return nombre_tabla in nombres_tablas(db_path=db_path)
 
 
 def nombres_columnas(tabla: str, db_path: PathLike=DEFAULT_DB) -> tuple[str, ...]:
-    """
-    Devuelve los nombres de las columnas de una tabla.
-    """
+    "Devuelve los nombres de las columnas de una tabla."
 
     with connect(db_path) as con:
         cur = con.cursor()
@@ -140,9 +125,7 @@ def nombres_columnas(tabla: str, db_path: PathLike=DEFAULT_DB) -> tuple[str, ...
 
 def _formatear_llaves_foraneas(dic_llaves: DictLlaveForanea,
                                nombres_revisados: list[str]) -> str:
-    """
-    Formatea las llaves foráneas en un formato amigable.
-    """
+    "Formatea las llaves foráneas en un formato amigable."
 
     llaves = []
 
@@ -326,9 +309,7 @@ def existe_dato_en_tabla(tabla: str,
 
 
 def emoji_str(codepoint: str) -> str:
-    """
-    Función auxiliar que convierte un string del formato 'U+XXXX' a '\\U0000XXXX'.
-    """
+    "Función auxiliar que convierte un string del formato 'U+XXXX' a '\\U0000XXXX'."
 
     if not codepoint.startswith("U+"):
         raise ValueError("El string debe tener el formato 'U+XXXX'.")

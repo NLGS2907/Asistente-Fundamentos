@@ -1,6 +1,4 @@
-"""
-Cog para comandos misceláneos o de consultas.
-"""
+"Cog para comandos misceláneos o de consultas."
 
 from typing import TYPE_CHECKING
 
@@ -16,9 +14,7 @@ if TYPE_CHECKING:
 
 
 class CogMisc(CogGeneral):
-    """
-    Cog para comandos misceláneos.
-    """
+    "Cog para comandos misceláneos."
 
     @appcommand(name="info",
                 description="Muestra información sobre el asistente.")
@@ -49,8 +45,6 @@ class CogMisc(CogGeneral):
 
 
 async def setup(bot: "Asistente"):
-    """
-    Agrega el cog de este módulo al Asistente.
-    """
+    "Agrega el cog de este módulo al Asistente."
 
     await bot.add_cog(CogMisc(bot))

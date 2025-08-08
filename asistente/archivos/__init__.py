@@ -1,6 +1,4 @@
-"""
-Paquete de archivos.
-"""
+"Paquete de archivos."
 
 from .general import *
 from .guias import *

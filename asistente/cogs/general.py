@@ -1,6 +1,4 @@
-"""
-Cog general para uso de herencia.
-"""
+"Cog general para uso de herencia."
 
 from traceback import format_exc
 from typing import TYPE_CHECKING, Any, Optional, TypeAlias, Union
@@ -17,10 +15,9 @@ if TYPE_CHECKING:
 
     from ..bot import Asistente
 
+
 class GrupoGeneral(Group):
-    """
-    Grupo general para que se herede de él.
-    """
+    "Grupo general para que se herede de él."
 
     def __init__(self,
                  bot: "Asistente",
@@ -34,9 +31,7 @@ class GrupoGeneral(Group):
                  auto_locale_strings: bool = True,
                  default_permissions: Optional["Permissions"] = MISSING,
                  extras: dict[Any, Any] = MISSING) -> None:
-        """
-        Inicializa una instancia de 'GrupoGeneral', o el una clase hija.
-        """
+        "Inicializa una instancia de 'GrupoGeneral', o el una clase hija."
 
         super().__init__(name=name,
                          description=description,
@@ -52,24 +47,19 @@ class GrupoGeneral(Group):
 
 GroupsList: TypeAlias = list[type[GrupoGeneral]]
 
+
 class CogGeneral(Cog):
-    """
-    Cog General, para que se herede de él.
-    """
+    "Cog General, para que se herede de él."
 
     def __init__(self, bot: "Asistente") -> None:
-        """
-        Inicializa una instancia de 'CogGeneral', o una clase hija.
-        """
+        "Inicializa una instancia de 'CogGeneral', o una clase hija."
 
         self.bot: "Asistente" = bot
         self._cargar_grupos()
 
 
     def _cargar_grupos(self) -> None:
-        """
-        Carga todos los grupos que tiene registrados el cog.
-        """
+        "Carga todos los grupos que tiene registrados el cog."
 
         for clase_grupo in self.grupos():
             self.bot.tree.add_command(clase_grupo(self.bot))
@@ -77,9 +67,7 @@ class CogGeneral(Cog):
 
     @classmethod
     def grupos(cls) -> GroupsList:
-        """
-        Devuelve la lista de grupos asociados a este Cog.
-        """
+        "Devuelve la lista de grupos asociados a este Cog."
 
         return []
 
@@ -87,9 +75,7 @@ class CogGeneral(Cog):
     def mensaje_error(self,
                       interaccion: Interaction,
                       error: AppCommandError) -> str:
-        """
-        Muestra el mensaje a mostrar por el chat de Discord en caso de error en este Cog.
-        """
+        "Muestra el mensaje a mostrar por el chat de Discord en caso de error en este Cog."
 
         return "Parece que ha habido un error."
 
@@ -97,9 +83,7 @@ class CogGeneral(Cog):
     async def cog_app_command_error(self,
                                     interaccion: Interaction,
                                     error: AppCommandError) -> None:
-        """
-        Maneja un error de forma predeterminada para todos los cogs.
-        """
+        "Maneja un error de forma predeterminada para todos los cogs."
 
         await interaccion.response.send_message(
             f"**[ERROR]** {self.mensaje_error(interaccion, error)}",
@@ -111,9 +95,7 @@ class CogGeneral(Cog):
 
 
     async def cog_before_invoke(self, ctx: Context) -> None:
-        """
-        Registra en el log el comando siendo procesado.
-        """
+        "Registra en el log el comando siendo procesado."
 
         hay_guild = ("" if ctx.guild is None else f" en {ctx.guild.name!r}")
         hay_mensaje = ("un mensaje sin contenido"
@@ -124,9 +106,7 @@ class CogGeneral(Cog):
 
 
     async def cog_after_invoke(self, ctx: Context) -> None:
-        """
-        Registra en el log el comando procesado.
-        """
+        "Registra en el log el comando procesado."
 
         hay_guild = ("" if ctx.guild is None else f" en {ctx.guild.name!r}")
         hay_mensaje = ("un mensaje sin contenido"
@@ -137,8 +117,6 @@ class CogGeneral(Cog):
 
 
 async def setup(_bot: "Asistente"):
-    """
-    Agrega el cog de este módulo al Asistente.
-    """
+    "Agrega el cog de este módulo al Asistente."
 
     # Este Cog no está pensado para agregarse.

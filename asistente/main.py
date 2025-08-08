@@ -1,7 +1,4 @@
-#pylint: disable=line-too-long
-"""
-Módulo Principal.
-"""
+"Módulo Principal."
 
 from os import getenv
 

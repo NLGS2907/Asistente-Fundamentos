@@ -1,6 +1,4 @@
-"""
-Módulo para checks auxiliares.
-"""
+"Módulo para checks auxiliares."
 
 from discord import Interaction, Thread
 from discord.app_commands import check as appcheck
@@ -26,9 +24,7 @@ def _verificar_permisos(interaccion: Interaction,
 
 
 def tiene_permisos(interaccion: Interaction) -> bool:
-    """
-    Verifica si el invocador del comando tiene cualquier clase de privilegios relevantes.
-    """
+    "Verifica si el invocador del comando tiene cualquier clase de privilegios relevantes."
 
     return _verificar_permisos(interaccion, NivelPermisos.PLEBEYO, al_menos=True)
 
@@ -48,31 +44,21 @@ def _permisos_check(nivel: NivelPermisos, *, al_menos: bool):
 
 
 def permisos_con_nivel(nivel: NivelPermisos):
-    """
-    Verifica si el invocador del comando tiene exactamente el nivel de privilegios dado.
-    """
+    "Verifica si el invocador del comando tiene exactamente el nivel de privilegios dado."
 
     return _permisos_check(nivel, al_menos=False)
 
 
 def permisos_de_al_menos_nivel(nivel: NivelPermisos):
-    """
-    Verifica si el invocador del comando tiene al menos el nivel de privilegios dado.
-    """
+    "Verifica si el invocador del comando tiene al menos el nivel de privilegios dado."
 
     return _permisos_check(nivel, al_menos=True)
 
 
 def es_hilo():
-    """
-    Verifica si la interacción ocurrió en un hilo.
-    """
+    "Verifica si la interacción ocurrió en un hilo."
 
     def predicado(interaccion: Interaction) -> bool:
-        """
-        Crea el check correspondiente.
-        """
-
         return isinstance(interaccion.channel, Thread)
 
     return appcheck(predicado)

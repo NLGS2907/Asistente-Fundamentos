@@ -1,5 +1,3 @@
-"""
-Paquete de embebidos.
-"""
+"Paquete de embebidos."
 
 from .embebido import *

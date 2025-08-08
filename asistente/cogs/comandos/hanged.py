@@ -1,6 +1,4 @@
-"""
-Cog para comandos del ahorcado.
-"""
+"Cog para comandos del ahorcado."
 
 from typing import TYPE_CHECKING, Optional
 
@@ -20,9 +18,7 @@ FMT_FECHA: str = r"%Y-%m-%d_%H-%M-%S_%f"
 
 
 class CogHanged(CogGeneral):
-    """
-    Cog para comandos relacionados al ahorcado.
-    """
+    "Cog para comandos relacionados al ahorcado."
 
     @appcommand(name="ahorcado",
                 description="Interactúa con un juego de ahorcado.")
@@ -66,8 +62,6 @@ class CogHanged(CogGeneral):
 
 
 async def setup(bot: "Asistente"):
-    """
-    Agrega el cog de este módulo al Asistente.
-    """
+    "Agrega el cog de este módulo al Asistente."
 
     await bot.add_cog(CogHanged(bot))

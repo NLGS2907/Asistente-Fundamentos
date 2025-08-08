@@ -1,6 +1,4 @@
-"""
-Módulo para botón de adivinar un ahorcado.
-"""
+"Módulo para botón de adivinar un ahorcado."
 
 from typing import TYPE_CHECKING
 

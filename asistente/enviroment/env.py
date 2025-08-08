@@ -1,6 +1,4 @@
-"""
-Módulo que procesa archivos de variables de entorno.
-"""
+"Módulo que procesa archivos de variables de entorno."
 
 from os import environ
 from typing import TypeAlias, TYPE_CHECKING
@@ -16,6 +14,7 @@ ENV_EXT: str = ".env"
 
 
 def leer_env(ruta: "PathLike"=ENV_EXT) -> EnvDict:
+    "Lee un archivo y carga en un diccionario todas las variables de enorno que encuentra."
     envs = {}
     sep = "="
 
@@ -38,7 +37,7 @@ def leer_env(ruta: "PathLike"=ENV_EXT) -> EnvDict:
 def cargar_envs(envs: EnvDict) -> EnvResDict:
     """
     Intenta subir todas las variables de entorno que describe el diccionario dado. No intenta
-    sobreescribir las variables si estan ya se encuentran en `environ`.
+    sobreescribir las variables si estan ya se encuentran en `os.environ`.
 
     Devuelve otro diccionario con las mismas claves indicando el éxito individual de cada subida.
     """
@@ -57,9 +56,7 @@ def cargar_envs(envs: EnvDict) -> EnvResDict:
 
 
 def leer_y_cargar_envs(ruta: "PathLike"=ENV_EXT) -> None:
-    """
-    Función de conveniencia para leer y cargar variables de entorno de un archivo ENV.
-    """
+    "Función de conveniencia para leer y cargar variables de entorno de un archivo ENV."
 
     envs = leer_env(ruta)
     cargar_envs(envs)

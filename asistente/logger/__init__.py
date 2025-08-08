@@ -1,5 +1,3 @@
-"""
-Paquete del registrador.
-"""
+"Paquete del registrador."
 
 from .logger import *

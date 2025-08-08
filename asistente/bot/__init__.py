@@ -1,5 +1,3 @@
-"""
-Paquete del bot de asistente.
-"""
+"Paquete del bot de asistente."
 
 from .asistente import *

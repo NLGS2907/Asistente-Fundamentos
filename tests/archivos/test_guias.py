@@ -1,6 +1,4 @@
-"""
-Módulo para tests de archivos de guías.
-"""
+"Módulo para tests de archivos de guías."
 
 from unittest import TestCase
 
@@ -14,23 +12,17 @@ from asistente.archivos.guias import (
 
 
 class TestGuias(TestCase):
-    """
-    Tests de archivos de guías de ejercicios.
-    """
+    "Tests de archivos de guías de ejercicios."
 
     def test_1_valida_version(self) -> None:
-        """
-        Valida si hay versiones con nombres correctos.
-        """
+        "Valida si hay versiones con nombres correctos."
 
         self.assertTrue(version_es_valida("2019C2"))
         self.assertFalse(version_es_valida("3ex2801"))
 
 
     def test_2_valida_estructura_guia(self) -> None:
-        """
-        Debería haber exactamente 17 archivos JSON.
-        """
+        "Debería haber exactamente 17 archivos JSON."
 
         set_archivos = archivos_guia("2019C2", "guia")
         set_esperado = {"guia_1.json",
@@ -58,9 +50,7 @@ class TestGuias(TestCase):
 
 
     def test_3_carga_una_guia_correctamente(self) -> None:
-        """
-        Carga un ejercicio y verifica que esté correcto.
-        """
+        "Carga un ejercicio y verifica que esté correcto."
 
         guia_cargada = cargar_guia("2019C2", "guia")
         enunciado_esperado = {"titulo": [],
@@ -78,25 +68,22 @@ class TestGuias(TestCase):
 
 
     def test_4_cuenta_las_unidades_de_una_guia(self) -> None:
-        """
-        Deberían ser 17 unidades.
-        """
+        "Deberían ser 17 unidades."
 
         lista_cargada = lista_unidades(cargar_guia("2019C2", "guia"))
         lista_esperada = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13",
                           "14", "15", "16", "17"]
 
         self.assertEqual(lista_cargada, lista_esperada)
-        self.assertNotEqual(lista_unidades({"version": "Ninguna, lol", "10": "judías", "40": 41, "337": "banana"}),
+        self.assertNotEqual(lista_unidades({"version": "Ninguna, lol",
+                                            "10": "judías", "40": 41, "337": "banana"}),
                             lista_esperada)
         with self.assertRaises(KeyError):
             lista_unidades({"10": "judías", "40": 41, "337": "banana"})
 
 
     def test_5_cuenta_los_ejercicios_de_una_unidad(self) -> None:
-        """
-        Cuenta los ejercicios de la unidad 15. Deberían de ser 13.
-        """
+        "Cuenta los ejercicios de la unidad 15. Deberían de ser 13."
 
         guia_cargada = cargar_guia("2019C2", "guia")
         lista_cargada = lista_ejercicios(guia_cargada, "15")

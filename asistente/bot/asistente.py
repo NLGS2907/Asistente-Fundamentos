@@ -1,6 +1,4 @@
-"""
-Módulo dedicado a contener la clase personalizada 'CustomBot'.
-"""
+"Módulo dedicado a contener la clase personalizada del asistente."
 
 from logging import DEBUG, INFO, FileHandler, Formatter, getLogger
 from platform import system
@@ -21,7 +19,7 @@ if TYPE_CHECKING:
     from logging import Logger
     from os import PathLike
 
-# Para que no tire error en Windows al cerrar el Bot.
+# Para que no tire error en Windows al cerrar el asistente.
 try:
     from asyncio import WindowsSelectorEventLoopPolicy, set_event_loop_policy
     if system() == "Windows":
@@ -30,20 +28,17 @@ except ImportError:
     AssistLogger().warning("No se pudo importar 'WindowsSelectorEventLoopPolicy', "
                            "probablemente porque esto no es Windows.")
 
+DiccionarioPartidas: TypeAlias = dict[str, Ahorcado]
+
 ASISTENTE_ID: int = 889312376036425810
 "El ID del usuario bot que es el Asistente."
 
 COGS_PATH: "PathLike" = "./asistente/cogs"
 "La ruta donde viven todos los cogs de comandos."
 
-DiccionarioPartidas: TypeAlias = dict[str, Ahorcado]
 
-
-# pylint: disable=abstract-method
 class Asistente(Bot):
-    """
-    Clase pasa sobrecargar y agregar cosas a la clase 'Bot'.
-    """
+    "Clase pasa sobrecargar y agregar cosas a la clase 'Bot' de la librería de discord.py."
 
     @staticmethod
     def version() -> tuple[int, int, int]:
@@ -57,9 +52,7 @@ class Asistente(Bot):
 
     @staticmethod
     def intents_asistente() -> Intents:
-        """
-        Crea un objeto `Intents` personalizado para este asistente.
-        """
+        "Crea un objeto `Intents` personalizado para este asistente."
 
         intents = Intents.all()
         return intents
@@ -67,9 +60,7 @@ class Asistente(Bot):
 
     @staticmethod
     def permisos_preferidos() -> Permissions:
-        """
-        Devuelve los permisos preferidos por el asistente.
-        """
+        "Devuelve los permisos preferidos por el asistente."
 
         perms = Permissions.none()
 
@@ -98,7 +89,7 @@ class Asistente(Bot):
         opciones: Argumentos extra que elevar al constructor padre del bot.
         """
 
-        super().__init__("!", # Por legacy se eligió esto, pero no se va a usar nunca
+        super().__init__("!", # Por legacy se ejó esto, pero no se va a usar nunca
                          intents=Asistente.intents_asistente(),
                          application_id=ASISTENTE_ID,
                          options=opciones)
@@ -126,17 +117,13 @@ class Asistente(Bot):
 
 
     async def setup_hook(self) -> None:
-        """
-        Reliza acciones iniciales que el bot necesita.
-        """
+        "Realiza acciones iniciales que el bot necesita."
 
         await self.cargar_cogs()
 
 
     async def cargar_cogs(self) -> None:
-        """
-        Busca y carga recursivamente todos los cogs del bot.
-        """
+        "Busca y carga recursivamente todos los cogs del bot."
 
         self.log.info("Cargando cogs:")
 
@@ -180,30 +167,23 @@ class Asistente(Bot):
                                  f" guild '{guild.name}' no tenía el nivel más alto de permisos."
                                  " Se cambió el permiso a administrador.")
 
+
     @property
     def uptime(self) -> "timedelta":
-        """
-        Muestra cuánto tiempo el bot lleva activo.
-        """
+        "Calcula cuánto tiempo el bot lleva activo."
 
         return utcnow() - self.inicializado_en
 
 
     @staticmethod
     def es_ultimo_mensaje(msg: Message) -> bool:
-        """
-        Verifica que el mensaje a procesar no sea el
-        ultimo del canal.
-        """
+        "Verifica que el mensaje a procesar no sea el último del canal."
 
         return msg == msg.channel.last_message
 
 
     def es_mensaje_de_bot(self, msg: Message) -> bool:
-        """
-        Verifica si un mensaje pasado es un mensaje escrito
-        por el bot.
-        """
+        "Verifica si un mensaje pasado es un mensaje escrito por el bot."
 
         return not self.es_ultimo_mensaje(msg) and msg.author == self.user
 

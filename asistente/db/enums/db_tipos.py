@@ -1,14 +1,10 @@
-"""
-Tipos de datos de SQLite.
-"""
+"Tipos de datos de SQLite."
 
 from enum import StrEnum
 
 
 class TiposDB(StrEnum):
-    """
-    Tipos de datos de una base de datos de SQLite.
-    """
+    "Tipos de datos de una base de datos de SQLite."
 
     NULL = "NULL" # No soportado en tablas estrictas
 

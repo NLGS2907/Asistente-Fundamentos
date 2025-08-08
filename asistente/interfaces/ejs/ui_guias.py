@@ -1,6 +1,4 @@
-"""
-Interfaz para las guías.
-"""
+"Interfaz para guías."
 
 from typing import Optional
 
@@ -13,14 +11,10 @@ from ..ui_general import VistaGeneral
 
 
 class SelectorGuia(VistaGeneral):
-    """
-    Clase de una UI personalizada para cambiar de guías.
-    """
+    "Clase de una UI personalizada para cambiar de guías."
 
     def __init__(self, version_actual: Optional[str]=None) -> None:
-        """
-        Inicializa una instancia de 'SelectorGuia'.
-        """
+        "Inicializa una instancia de 'SelectorGuia'."
 
         super().__init__(agregar_btn_cerrar=False)
 
@@ -32,9 +26,7 @@ class SelectorGuia(VistaGeneral):
             options=[SelectOption(label=ver) for ver in lista_carpetas(GUIA_PATH)],
             max_values=1)
     async def seleccionar_guia(self, interaccion: Interaction, seleccion: Select) -> None:
-        """
-        Muestra y selecciona una versión específica de la guía.
-        """
+        "Muestra y selecciona una versión específica de la guía."
 
         version_vieja = self.version_actual
         nueva_version = seleccion.values[0] # Debería tener sólo un elemento

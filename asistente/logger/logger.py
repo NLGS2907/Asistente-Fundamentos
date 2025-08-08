@@ -1,6 +1,4 @@
-"""
-Registrador de eventos.
-"""
+"Módulo para el logger de eventos."
 
 from logging import DEBUG, INFO, FileHandler, Formatter, StreamHandler, getLogger
 from threading import Lock
@@ -51,9 +49,7 @@ class AssistLogger:
                  nivel_cons: int=INFO,
                  fmt: str="%(asctime)s - %(levelname)s - %(message)s",
                  fmt_fecha: str="%d-%m-%Y %I:%M:%S %p") -> None:
-        """
-        Inicializa una instancia de 'AssistLogger', pero sólo si es la primera vez que se crea.
-        """
+        "Inicializa una instancia de 'AssistLogger', pero sólo si es la primera vez que se crea."
 
         if not hasattr(self, "__inicializado"):
             super().__init__()
@@ -81,9 +77,7 @@ class AssistLogger:
 
 
     def actualizar_formateador(self) -> None:
-        """
-        Actualiza el formateador para cada handler que el logger tiene.
-        """
+        "Actualiza el formateador para cada handler que el logger tiene."
 
         self.handler_archivo.setFormatter(self.formateador)
         self.handler_consola.setFormatter(self.formateador)
@@ -91,9 +85,7 @@ class AssistLogger:
 
     @property
     def formateador(self) -> Formatter:
-        """
-        Devuelve el formateador en uso.
-        """
+        "Devuelve el formateador en uso."
 
         return self._formateador
 
@@ -107,9 +99,7 @@ class AssistLogger:
 
     @property
     def formato(self) -> str:
-        """
-        Devuelve el formato de los mensajes del log.
-        """
+        "Devuelve el formato de los mensajes del log."
 
         return self._formato
 
@@ -123,9 +113,7 @@ class AssistLogger:
 
     @property
     def fmt_fecha(self) -> str:
-        """
-        Devuelve el formato de fecha de los mensajes del log.
-        """
+        "Devuelve el formato de fecha de los mensajes del log."
 
         return self._fmt_fecha
 
@@ -138,48 +126,36 @@ class AssistLogger:
 
 
     def debug(self, mensaje: str, *args, **kwargs) -> None:
-        """
-        Registra un evento de nivel DEBUG.
-        """
+        "Registra un evento de nivel DEBUG."
 
         self.logger.debug(mensaje, *args, **kwargs)
 
 
     def info(self, mensaje: str, *args, **kwargs) -> None:
-        """
-        Registra un evento de nivel INFO.
-        """
+        "Registra un evento de nivel INFO."
 
         self.logger.info(mensaje, *args, **kwargs)
 
 
     def warning(self, mensaje: str, *args, **kwargs) -> None:
-        """
-        Registra un evento de nivel WARNING.
-        """
+        "Registra un evento de nivel WARNING."
 
         self.logger.warning(mensaje, *args, **kwargs)
 
 
     def error(self, mensaje: str, *args, **kwargs) -> None:
-        """
-        Registra un evento de nivel ERROR.
-        """
+        "Registra un evento de nivel ERROR."
 
         self.logger.error(mensaje, *args, **kwargs)
 
 
     def critical(self, message: str, *args, **kwargs) -> None:
-        """
-        Registra un evento de nivel CRITICAL.
-        """
+        "Registra un evento de nivel CRITICAL."
 
         self.logger.critical(message, *args, **kwargs)
 
 
     def exception(self, mensaje, *args, exc_info=True, **kwargs) -> None:
-        """
-        Registra una excepción.
-        """
+        "Registra una excepción."
 
         self.logger.exception(mensaje, *args, exc_info, **kwargs)

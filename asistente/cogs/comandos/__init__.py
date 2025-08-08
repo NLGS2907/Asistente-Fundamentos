@@ -1,6 +1,4 @@
-"""
-Paquete de cogs para comandos.
-"""
+"Paquete de cogs para comandos."
 
 from .admin import *
 from .ejercicios import *

@@ -1,14 +1,10 @@
-"""
-Módulo para enumerar niveles de permisos en los comandos.
-"""
+"Módulo para enumerar niveles de permisos en los comandos."
 
 from enum import IntEnum
 
 
 class NivelPermisos(IntEnum):
-    """
-    Niveles de privilegio para correr comandos.
-    """
+    "Niveles de privilegio para correr comandos."
 
     ADMINISTRADOR = 1
     MODERADOR = 2
@@ -19,9 +15,7 @@ class NivelPermisos(IntEnum):
 
     @classmethod
     def opciones(cls, incluir_plebeyo: bool=False) -> dict[str, int]:
-        """
-        Devuelve un diccionario con los contenidos de los tipos de permisos.
-        """
+        "Devuelve un diccionario con los contenidos de los tipos de permisos."
 
         niveles = {nivel.name: nivel.value for nivel in cls}
 
@@ -32,16 +26,12 @@ class NivelPermisos(IntEnum):
 
 
     def superior_a(self, otro: "NivelPermisos") -> bool:
-        """
-        Compara manualmente si un nivel de permisos es estrictamente superior a otro.
-        """
+        "Compara manualmente si un nivel de permisos es estrictamente superior a otro."
 
         return self.value < otro.value
 
 
     def inferior_a(self, otro: "NivelPermisos") -> bool:
-        """
-        Compara manualmente si un nivel de permisos es estrictamente inferior a otro.
-        """
+        "Compara manualmente si un nivel de permisos es estrictamente inferior a otro."
 
         return self.value > otro.value

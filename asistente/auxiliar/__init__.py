@@ -1,5 +1,3 @@
-"""
-Paquete auxiliar.
-"""
+"Paquete auxiliar."
 
 from .checks import *

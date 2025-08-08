@@ -1,6 +1,4 @@
-"""
-Módulo para contener la clase de una letra de ahorcado.
-"""
+"Módulo para contener la clase de una letra de ahorcado."
 
 class LetraAhorcado:
     """
@@ -9,9 +7,7 @@ class LetraAhorcado:
     """
 
     def __init__(self, valor: str, oculta: bool) -> None:
-        """
-        Inicializa una instancia de tipo 'LetraAhorcado'.
-        """
+        "Inicializa una instancia de tipo 'LetraAhorcado'."
 
         if not isinstance(valor, str):
 
@@ -29,6 +25,7 @@ class LetraAhorcado:
         self.valor: str = valor
         self._oculta: bool = oculta
 
+
     def __str__(self):
         """
         Muestra la letra con su valor y si está oculta o no.
@@ -37,20 +34,17 @@ class LetraAhorcado:
 
         return f"Valor: {self.valor} | Oculta: {self._oculta}"
 
+
     @property
     def oculta(self) -> bool:
-        """
-        Propiedad que funciona como wrapper para 'self._oculto'.
-        """
+        "Propiedad que funciona como wrapper para `self._oculto`."
 
         return self._oculta
 
+
     @oculta.setter
     def oculta(self, nuevo_valor: bool) -> None:
-        """
-        La letra, una vez descubierta, no debe poderse volver a cubrir.
-        """
+        "La letra, una vez descubierta, no debe poderse volver a cubrir."
 
         if not nuevo_valor:
-
             self._oculta = nuevo_valor

@@ -1,6 +1,4 @@
-"""
-Interfaces para los Ejercicios.
-"""
+"Interfaces para los Ejercicios."
 
 from random import choice
 from typing import Optional
@@ -23,9 +21,7 @@ TITLE_FORMAT: str = "**Unidad** {unidad} - \"{titulo}\"  |  **Ejercicio** {ejerc
 
 
 class MenuSelectorEjercicio(Select):
-    """
-    Clase que representa un menú selector de Ejercicios, no la interfaz en sí.
-    """
+    "Clase que representa un menú selector de Ejercicios, no la interfaz en sí."
 
     def __init__(
         self,
@@ -39,9 +35,7 @@ class MenuSelectorEjercicio(Select):
         guia: DiccionarioGuia=cargar_guia(GUIA_DEFAULT),
         unidad: Optional[DiccionarioPares]=None
     ) -> None:
-        """
-        Inicializa una instacia de 'MenuSelectorEjercicio'.
-        """
+        "Inicializa una instacia de 'MenuSelectorEjercicio'."
 
         self.guia = guia
 
@@ -66,10 +60,7 @@ class MenuSelectorEjercicio(Select):
 
 
     def comienzo_enunciado(self, ejercicio: str) -> str:
-        """
-        Retorna una cadena con los primeros caracteres del enunciado
-        de un ejercicio.
-        """
+        "Retorna una cadena con los primeros caracteres del enunciado de un ejercicio."
 
         descripcion = self.guia[self.unidad][ejercicio]['descripcion'][0]
         max_char = 50
@@ -78,9 +69,7 @@ class MenuSelectorEjercicio(Select):
 
 
     async def callback(self, interaccion: Interaction) -> None:
-        """
-        Procesa el ejercicio elegido por el usuario del menú selector.
-        """
+        "Procesa el ejercicio elegido por el usuario del menú selector."
 
         ejercicio = self.values[0]
         enunciado = self.guia[self.unidad][ejercicio]
@@ -99,28 +88,20 @@ class MenuSelectorEjercicio(Select):
 
 
 class SelectorEjercicios(VistaGeneral):
-    """
-    Clase de una UI personalizada para seleccionar ejercicios.
-    """
+    "Clase de una UI personalizada para seleccionar ejercicios."
 
     def __init__(self, guia: DiccionarioGuia, unidad: DiccionarioPares) -> None:
-        """
-        Crea una instancia de 'SelectorEjercicios'.
-        """
+        "Crea una instancia de 'SelectorEjercicios'."
 
         super().__init__(agregar_btn_cerrar=False)
         self.add_item(MenuSelectorEjercicio(guia=guia, unidad=unidad))
 
 
 class NavegadorEjercicios(VistaGeneral):
-    """
-    Clase para navegar por los ejercicios de la guía.
-    """
+    "Clase para navegar por los ejercicios de la guía."
 
     def __init__(self, guia: DiccionarioGuia, unidad: DiccionarioPares, ejercicio: str) -> None:
-        """
-        Inicializa una instancia de 'NavegadorEjercicios'.
-        """
+        "Inicializa una instancia de 'NavegadorEjercicios'."
 
         super().__init__(agregar_btn_cerrar=False)
 
@@ -138,9 +119,7 @@ class NavegadorEjercicios(VistaGeneral):
 
 
     def get_enunciado(self) -> DiccionarioEjercicio:
-        """
-        Va a buscar el enunciado del ejercicio especificado.
-        """
+        "Va a buscar el enunciado del ejercicio especificado."
 
         enunciado = self.guia[self.unidad_actual][self.ejercicio_actual]
 
@@ -154,27 +133,20 @@ class NavegadorEjercicios(VistaGeneral):
 
 
     def get_embebido_enunciado(self) -> Embed:
-        """
-        Devuelve un embebido con todo el contenido del enunciado.
-        """
+        "Devuelve un embebido con todo el contenido del enunciado."
 
         return Embebido(opciones=self.get_enunciado())
 
 
     def actualizar_ejercicios(self) -> None:
-        """
-        Actualiza la lista de ejercicios conforme a la
-        unidad actual.
-        """
+        "Actualiza la lista de ejercicios conforme a la unidad actual."
 
         self.ejercicios = lista_ejercicios(self.guia, self.unidad_actual)
         self.max_ejercicios = len(self.ejercicios)
 
 
     def actualizar_boton(self, boton: Button) -> Button:
-        """
-        Muestra u oculta el botón dependiendo de qué ejercicio sea.
-        """
+        "Muestra u oculta el botón dependiendo de qué ejercicio sea."
 
         boton.disabled = any(
             (
@@ -191,10 +163,7 @@ class NavegadorEjercicios(VistaGeneral):
 
 
     def actualizar_botones(self) -> None:
-        """
-        Cambia y oculta o muestra los botones conforme se cambien
-        los ejercicios en muestra.
-        """
+        "Cambia y oculta o muestra los botones conforme se cambien los ejercicios en muestra."
 
         self.actualizar_ejercicios()
 
@@ -220,9 +189,7 @@ class NavegadorEjercicios(VistaGeneral):
             custom_id="u_left",
             emoji=Emoji.from_str("\N{Black Left-Pointing Double Triangle}"))
     async def unidad_anterior(self, interaccion: Interaction, _boton: Button) -> None:
-        """
-        Retrocede hasta el último ejercicio de la unidad anterior.
-        """
+        "Retrocede hasta el último ejercicio de la unidad anterior."
 
         self.unidad_actual = int(self.unidad_actual)
         self.unidad_actual -= 1
@@ -241,9 +208,7 @@ class NavegadorEjercicios(VistaGeneral):
             custom_id="ex_left",
             emoji=Emoji.from_str("\N{Leftwards Black Arrow}"))
     async def ejercicio_anterior(self, interaccion: Interaction, _boton: Button) -> None:
-        """
-        Se intenta ir a la página anterior del mensaje INFO.
-        """
+        "Retrocede un ejercicio en la misma unidad."
 
         self.ejercicio_actual = int(self.ejercicio_actual)
         self.ejercicio_actual -= 1
@@ -258,9 +223,7 @@ class NavegadorEjercicios(VistaGeneral):
             custom_id="ex_right",
             emoji=Emoji.from_str("\N{Black Rightwards Arrow}"))
     async def ejercicio_posterior(self, interaccion: Interaction, _boton: Button) -> None:
-        """
-        Se intenta ir a la página posterior del mensaje INFO.
-        """
+        "Salta al ejercicio siguiente en la misma unidad."
 
         self.ejercicio_actual = int(self.ejercicio_actual)
         self.ejercicio_actual += 1
@@ -275,9 +238,7 @@ class NavegadorEjercicios(VistaGeneral):
             custom_id="u_right",
             emoji=Emoji.from_str("\N{Black Right-Pointing Double Triangle}"))
     async def unidad_posterior(self, interaccion: Interaction, _boton: Button) -> None:
-        """
-        Retrocede hasta el primer ejercicio de la unidad siguiente.
-        """
+        "Salta al primer ejercicio de la unidad siguiente."
 
         self.unidad_actual = int(self.unidad_actual)
         self.unidad_actual += 1
@@ -296,10 +257,7 @@ class NavegadorEjercicios(VistaGeneral):
             custom_id="ex_random",
             emoji=Emoji.from_str("\N{Anticlockwise Downwards and Upwards Open Circle Arrows}"))
     async def ejercicio_aleatorio(self, interaccion: Interaction, _boton: Button) -> None:
-        """
-        Muestra un ejercicio completamente aleatorio de toda
-        la guía.
-        """
+        "Muestra un ejercicio completamente aleatorio de toda la guía."
 
         self.unidad_actual = choice(self.unidades)
         self.actualizar_ejercicios()

@@ -1,6 +1,4 @@
-"""
-Pequeño módulo que implementa la lógica de una partida de ahorcado.
-"""
+"Pequeño módulo que implementa la lógica de una partida de ahorcado."
 
 from random import choice
 from typing import Optional, TypeAlias, TYPE_CHECKING
@@ -17,9 +15,7 @@ PALABRAS_PATH: "PathLike" = "./asistente/txt/palabras.txt"
 
 
 class Ahorcado:
-    """
-    Clase implementada para hacer un juego de ahorcado.
-    """
+    "Clase implementada para hacer un juego de ahorcado."
 
     @staticmethod
     def cargar_palabras(nombre_archivo: str) -> list[str]:
@@ -42,9 +38,7 @@ class Ahorcado:
                  frase: Optional[str]=None,
                  vidas_maximas: int=7,
                  id_mensaje_padre: int = int) -> None:
-        """
-        Inicializa una instancia de tipo 'Ahorcado'.
-        """
+        "Inicializa una instancia de tipo 'Ahorcado'."
 
         frase_magica: str = (frase if frase else choice(Ahorcado.cargar_palabras(PALABRAS_PATH)))
         self.maximos_intentos: int = vidas_maximas
@@ -55,14 +49,11 @@ class Ahorcado:
         self.frase: ListaLetras = []
 
         for char in frase_magica:
-
             self.frase.append(LetraAhorcado(char.upper(), (not char == ' ')))
 
 
     def __str__(self) -> str:
-        """
-        Dibuja el ahorcado en ASCII art para que puedo ser impreso.
-        """
+        "Dibuja el ahorcado en ASCII art para que pueda ser impreso."
 
         frase = "  ".join([(letra.valor if not letra.oculta else '_') for letra in self.frase])
 
@@ -98,9 +89,7 @@ class Ahorcado:
 
 
     def get_frase(self) -> str:
-        """
-        Devuelve una cadena de la frase.
-        """
+        "Devuelve una cadena de la frase."
 
         return ''.join([char.valor for char in self.frase])
 
@@ -144,9 +133,7 @@ class Ahorcado:
 
 
     def termino_juego(self) -> tuple[bool, bool]:
-        """
-        Determina si la partida ha terminado, y si fue una victoria o derrota.
-        """
+        "Determina si la partida ha terminado, y si fue una victoria o derrota."
 
         if self.intentos <= 0:
 

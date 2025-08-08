@@ -1,6 +1,4 @@
-"""
-Módulo para tests de archivos de formato JSON.
-"""
+"Módulo para tests de archivos de formato JSON."
 
 from io import StringIO
 from unittest import TestCase
@@ -9,14 +7,10 @@ from asistente.archivos.json import cargar_json, guardar_json
 
 
 class TestArchivosJSON(TestCase):
-    """
-    Tests de archivos JSON.
-    """
+    "Tests de archivos JSON."
 
     def test_1_caarga_un_json_simple(self) -> None:
-        """
-        Carga desde un archivo en memoria un diccionario simple.
-        """
+        "Carga desde un archivo en memoria un diccionario simple."
 
         dic_simple = {"a": 1, "b": 2, "c": 3, "d": [4, 5]}
         # NO es lo mismo que `str(dic_simple)`.
@@ -32,9 +26,7 @@ class TestArchivosJSON(TestCase):
 
 
     def test_2_guarda_un_json_simple(self) -> None:
-        """
-        Guarda en memoria un archivo JSON simple.
-        """
+        "Guarda en memoria un archivo JSON simple."
 
         dic_guardable = {"a": 1, "b": "bb", "c": [1, 2], "d": ["dd", "de"], "e": {"ee": 55}}
         dic_str = r'{"a": 1, "b": "bb", "c": [1, 2], "d": ["dd", "de"], "e": {"ee": 55}}'
@@ -49,9 +41,7 @@ class TestArchivosJSON(TestCase):
 
 
     def test_3_no_carga_rutas_incorrectas(self) -> None:
-        """
-        Debería fallar si no existe el archivo.
-        """
+        "Debería fallar si no existe el archivo."
 
         with self.assertRaises(FileNotFoundError):
             cargar_json("__path_basura__")
