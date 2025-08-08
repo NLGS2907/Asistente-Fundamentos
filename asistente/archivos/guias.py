@@ -105,11 +105,11 @@ def lista_ejercicios(guia: DiccionarioGuia, unidad: str) -> list[str]:
     return list(copia_unidad)
 
 
-def get_version_guia_por_sv(guild_id: int) -> str:
+def get_version_guia_por_sv(guild_id: Optional[int]) -> str:
     "Consigue la versión de guía de un servidor en específico."
 
-    if existe_dato_en_tabla(tabla="guias",
-                            guild_id=guild_id):
+    if guild_id is not None and existe_dato_en_tabla(tabla="guias",
+                                                     guild_id=guild_id):
         return sacar_datos_de_tabla(tabla="guias",
                                     sacar_uno=True,
                                     guild_id=guild_id)[2]
@@ -117,14 +117,15 @@ def get_version_guia_por_sv(guild_id: int) -> str:
     return GUIA_DEFAULT
 
 
-def get_guia_por_sv(guild_id: int, version: Optional[str]=None) -> "DiccionarioGuia":
+def get_guia_por_sv(guild_id: Optional[int]=None,
+                    version: Optional[str]=None) -> "DiccionarioGuia":
     "Carga una guía basada en la versión de su servidor."
 
     version = version or get_version_guia_por_sv(guild_id)
     version_a_usar = cargar_guia(version)
     log = AssistLogger()
 
-    if version_a_usar is None:
+    if guild_id is not None and version_a_usar is None:
         formato_log = {"version": version,
                         "default_ver": GUIA_DEFAULT,
                         "guild_id": guild_id}
