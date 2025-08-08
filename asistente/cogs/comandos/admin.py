@@ -5,8 +5,8 @@ from sys import executable as sys_executable
 from typing import TYPE_CHECKING
 
 from discord import Interaction
-from discord.app_commands import Choice, choices, describe
 from discord.app_commands import command as appcommand
+from discord.app_commands import describe
 from discord.ext.commands import is_owner
 
 from ...auxiliar import permisos_de_al_menos_nivel
@@ -24,15 +24,10 @@ class CogAdmin(CogGeneral):
     @appcommand(name="clear",
                 description="[MOD] Limpia el canal de mensajes del bot.")
     @describe(limite="Cuántos mensajes inspeccionar para borrar")
-    @choices(completo=[
-        Choice(name="Sí", value=1),
-        Choice(name="No", value=0)
-    ])
     @permisos_de_al_menos_nivel(NivelPermisos.MODERADOR)
     async def limpiar_mensajes(self,
                                interaccion: Interaction,
-                               limite: int,
-                               completo: Choice[int]=1) -> None:
+                               limite: int) -> None:
         """
         Limpia los mensajes del bot del canal de donde se invoca el comando.
 
