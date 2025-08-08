@@ -3,13 +3,12 @@
 from traceback import format_exc
 from typing import TYPE_CHECKING, Any, Optional, TypeAlias, Union
 
-from discord import Interaction
-from discord.app_commands import AppCommandError, Group
+from discord import ChannelType, Interaction
+from discord.app_commands import AppCommandError, CheckFailure, Group
 from discord.ext.commands import Cog, Context
 from discord.utils import MISSING
 
 if TYPE_CHECKING:
-
     from discord import Permissions
     from discord.app_commands import locale_str
 
@@ -76,6 +75,12 @@ class CogGeneral(Cog):
                       interaccion: Interaction,
                       error: AppCommandError) -> str:
         "Muestra el mensaje a mostrar por el chat de Discord en caso de error en este Cog."
+
+        # si es un DM y falla un check, entonces asumimos que es un comando que no
+        # se permite en ese contexto.
+        if (isinstance(error, CheckFailure)
+            and interaccion.channel.type == ChannelType.private):
+            return "Este comando no está soportado en canales privados."
 
         return "Parece que ha habido un error."
 

@@ -33,7 +33,7 @@ class CogHanged(CogGeneral):
 
         if interaccion.channel.type != ChannelType.text:
             await interaccion.response.send_message(("*No puedo crear una partida, debe ser" +
-                                                     " un canal de texto.*"),
+                                                     " un canal de texto en un servidor.*"),
                                                     ephemeral=True)
 
         await interaccion.response.send_message("¡Partida Creada!",

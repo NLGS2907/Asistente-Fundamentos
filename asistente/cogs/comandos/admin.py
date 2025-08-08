@@ -119,7 +119,6 @@ class CogAdmin(CogGeneral):
             ultimo = tiempo.pop()
             tiempo[-1] = f"{tiempo[-1]} y {ultimo}"
 
-
         await interaccion.response.send_message(f"***{self.bot.user}** estuvo activo por " +
                                                 f"{', '.join(tiempo)}.*",
                                                 ephemeral=True)
