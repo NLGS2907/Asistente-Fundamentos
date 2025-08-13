@@ -53,6 +53,9 @@ class MenuSelectorUnidad(Select):
 
         unidad_elegida = self.values[0]
 
+        # Dejamos de escuchar en esta vista antes de asignarle la nueva
+        if self.view is not None:
+            self.view.stop()
         vista = SelectorEjercicios(guia=self.guia, unidad=unidad_elegida)
         await interaccion.response.edit_message(content="Elija el ejercicio",
                                                 view=vista)

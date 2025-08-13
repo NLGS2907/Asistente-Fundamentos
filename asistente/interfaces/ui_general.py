@@ -32,6 +32,8 @@ class BotonCerrar(Button):
         Cierra la vista actual.
         """
 
+        if self.view is not None:
+            self.view.stop()
         await interaccion.message.edit(content="*Borrando Mensaje...*",
                                        view=None,
                                        embed=None,

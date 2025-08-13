@@ -33,6 +33,7 @@ class SelectorGuia(VistaGeneral):
         self.version_actual = nueva_version
 
         actualizar_version_guia(nueva_version, interaccion.message.guild.id)
+        self.stop()
 
         formato_log = {"guild": interaccion.guild.name,
                        "old_ver": version_vieja,
@@ -40,7 +41,8 @@ class SelectorGuia(VistaGeneral):
 
         self.log.info("En '%(guild)s', la versión de la guía fue cambiada " % formato_log +
                       "de %(old_ver)s a %(new_ver)s exitosamente" % formato_log)
-        await interaccion.response.edit_message(content="**[AVISO]** La versión de la guía " +
-                            f"fue cambiada{f' de `{version_vieja}`' if version_vieja else ''} a " +
-                            f"`{nueva_version}` exitosamente.",
-                                                view=None)
+        await interaccion.response.edit_message(
+            content="**[AVISO]** La versión de la guía "
+                    f"fue cambiada{f' de `{version_vieja}`' if version_vieja else ''} a "
+                    f"`{nueva_version}` exitosamente.",
+            view=None)

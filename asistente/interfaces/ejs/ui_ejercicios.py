@@ -83,8 +83,10 @@ class MenuSelectorEjercicio(Select):
         embebido = Embebido(opciones=enunciado)
         vista = NavegadorEjercicios(guia=self.guia, unidad=self.unidad, ejercicio=ejercicio)
 
-        await interaccion.response.edit_message(embed=embebido,
-                                                view=vista)
+        # Dejamos de escuchar en esta vista antes de asignarle la nueva
+        if self.view is not None:
+            self.view.stop()
+        await interaccion.response.edit_message(embed=embebido, view=vista)
 
 
 class SelectorEjercicios(VistaGeneral):
@@ -280,6 +282,7 @@ class NavegadorEjercicios(VistaGeneral):
         """
 
         # En la implementación actual, este mensaje debería ser efímero desde antes
+        self.stop()
         await interaccion.response.edit_message(content="¡Mensaje impreso!",
                                                 embed=None,
                                                 view=None)
