@@ -5,8 +5,7 @@
 
         ],
         "descripcion": [
-            "Escribir un programa que permita al usuario ingresar un conjunto de notas, preguntando",
-            "a cada paso si desea ingresar más notas, e imprimiendo el promedio correspondiente."
+            "Escribir un programa que permita al usuario ingresar un conjunto de notas, preguntando a cada paso si desea ingresar más notas, e imprimiendo el promedio correspondiente."
         ],
         "campos": {
 
@@ -38,19 +37,16 @@
         ],
         "campos": {
             "a)": [
-                "Escribir un programa que contenga una contraseña inventada, que le pregunte al usuario la contraseña,",
-                "y no le permita continuar hasta que la haya ingresado correctamente."
+                "Escribir un programa que contenga una contraseña inventada, que le pregunte al usuario la contraseña, y no le permita continuar hasta que la haya ingresado correctamente."
             ],
             "b)": [
                 "Modificar el programa anterior para que solamente permita una cantidad fija de intentos."
             ],
             "c)": [
-                "Modificar el programa anterior para que después de cada intento agregue una pausa cada vez mayor,",
-                "utilizando la función sleep del módulo `time`."
+                "Modificar el programa anterior para que después de cada intento agregue una pausa cada vez mayor, utilizando la función `sleep()` del módulo `time`."
             ],
             "d)": [
-                "Modificar el programa anterior para que sea una función que devuelva si el usuario ingresó o no la",
-                "contraseña correctamente, mediante un valor booleano (`True` o `False`)."
+                "Modificar el programa anterior para que sea una función que devuelva si el usuario ingresó o no la contraseña correctamente, mediante un valor booleano (`True` o `False`)."
             ]
         },
         "pie": [
@@ -62,9 +58,7 @@
 
         ],
         "descripcion": [
-            "Utilizando la función `randrange` del módulo `random`, escribir un programa que obtenga",
-            "un número aleatorio secreto, y luego permita al usuario ingresar números y le indique si",
-            "son menores o mayores que el número a adivinar, hasta que el usuario ingrese el número correcto."
+            "Utilizando la función `randrange` del módulo `random`, escribir un programa que obtenga un número aleatorio secreto, y luego permita al usuario ingresar números y le indique si son menores o mayores que el número a adivinar, hasta que el usuario ingrese el número correcto."
         ],
         "campos": {
 
@@ -82,11 +76,10 @@
         ],
         "campos": {
             "a)": [
-                "Implementar el algoritmo de Euclides para calcular el máximo común divisor de dos",
-                "números 𝑛 y 𝑚, dado por los siguientes pasos.\n",
-                "\t**1.** Teniendo 𝑛 y 𝑚, se obtiene 𝑟, el resto de la división entera de 𝑚/𝑛.",
-                "\t**2.** Si 𝑟 es cero, 𝑛 es el mcd de los valores iniciales.",
-                "\t**3.** Se reemplaza 𝑚 ← 𝑛, 𝑛 ← 𝑟, y se vuelve al primer paso."
+                "Implementar el algoritmo de Euclides para calcular el máximo común divisor de dos números 𝑛 y 𝑚, dado por los siguientes pasos.\n",
+                "**1.** Teniendo 𝑛 y 𝑚, se obtiene 𝑟, el resto de la división entera de 𝑚/𝑛.",
+                "**2.** Si 𝑟 es cero, 𝑛 es el mcd de los valores iniciales.",
+                "**3.** Se reemplaza 𝑚 ← 𝑛, 𝑛 ← 𝑟, y se vuelve al primer paso.\n"
             ],
             "b)": [
                 "Hacer un seguimiento del algoritmo implementado para los siguientes pares de números:",
@@ -106,13 +99,10 @@
         ],
         "campos": {
             "a)": [
-                "Escribir una función `es_potencia_de_dos` que reciba como parámetro un número",
-                "natural, y devuelva `True` si el número es una potencia de 2, y `False` en caso contrario."
+                "Escribir una función `es_potencia_de_dos` que reciba como parámetro un número natural, y devuelva `True` si el número es una potencia de 2, y `False` en caso contrario."
             ],
             "b)": [
-                "Escribir una función que, dados dos números naturales pasados como parámetros, devuelva",
-                "la suma de todas las potencias de 2 que hay en el rango formado por esos números (0 si",
-                "no hay ninguna potencia de 2 entre los dos).",
+                "Escribir una función que, dados dos números naturales pasados como parámetros, devuelva la suma de todas las potencias de 2 que hay en el rango formado por esos números (0 si no hay ninguna potencia de 2 entre los dos).",
                 "Utilizar la función `es_potencia_de_dos`, descripta en el punto anterior."
             ]
         },
@@ -132,13 +122,10 @@
                 "Escribir una función que devuelva la suma de todos los divisores de un número 𝑛, sin incluirlo."
             ],
             "b)": [
-                "Usando la función anterior, escribir una función que imprima los primeros 𝑚 números tales que la",
-                "suma de sus divisores sea igual a sí mismo (es decir los primeros 𝑚 números *perfectos*)."
+                "Usando la función anterior, escribir una función que imprima los primeros 𝑚 números tales que la suma de sus divisores sea igual a sí mismo (es decir los primeros 𝑚 números *perfectos*)."
             ],
             "c)": [
-                "Usando la primera función, escribir una función que imprima las primeras 𝑚 parejas de números",
-                "(𝑎, 𝑏), tales que la suma de los divisores de 𝑎 es igual a 𝑏 y la suma de los divisores de 𝑏 es igual",
-                "a 𝑎 (es decir las primeras 𝑚 parejas de números *amigos*)."
+                "Usando la primera función, escribir una función que imprima las primeras 𝑚 parejas de números (𝑎, 𝑏), tales que la suma de los divisores de 𝑎 es igual a 𝑏 y la suma de los divisores de 𝑏 es igual a 𝑎 (es decir las primeras 𝑚 parejas de números *amigos*)."
             ],
             "d)": [
                 "Proponer optimizaciones a las funciones anteriores para disminuir el tiempo de ejecución."
@@ -153,10 +140,8 @@
 
         ],
         "descripcion": [
-            "Escribir un programa que le pida al usuario que ingrese una sucesión de números naturales",
-            "(primero uno, luego otro, y así hasta que el usuario ingrese `-1` como condición de salida).",
-            "Al final, el programa debe imprimir cuántos números fueron ingresados, la suma total de los",
-            "valores y el promedio."
+            "Escribir un programa que le pida al usuario que ingrese una sucesión de números naturales (primero uno, luego otro, y así hasta que el usuario ingrese `-1` como condición de salida).",
+            "Al final, el programa debe imprimir cuántos números fueron ingresados, la suma total de los valores y el promedio."
         ],
         "campos": {
 
@@ -170,8 +155,7 @@
 
         ],
         "descripcion": [
-            "Escribir una función que reciba dos números como parámetros, y devuelva cuántos",
-            "múltiplos del primero hay, que sean menores que el segundo."
+            "Escribir una función que reciba dos números como parámetros, y devuelva cuántos múltiplos del primero hay, que sean menores que el segundo."
         ],
         "campos": {
             "a)": [
@@ -194,8 +178,7 @@
 
         ],
         "descripcion": [
-            "Escribir una función que reciba un número natural e imprima todos los números primos",
-            "que hay hasta ese número."
+            "Escribir una función que reciba un número natural e imprima todos los números primos que hay hasta ese número."
         ],
         "campos": {
 
@@ -209,8 +192,7 @@
 
         ],
         "descripcion": [
-            "Escribir una función que reciba un dígito y un número natural, y decida numéricamente",
-            "si el dígito se encuentra en la notación decimal del segundo."
+            "Escribir una función que reciba un dígito y un número natural, y decida numéricamente si el dígito se encuentra en la notación decimal del segundo."
         ],
         "campos": {
 
@@ -224,12 +206,9 @@
 
         ],
         "descripcion": [
-            "Escribir una función que dada la cantidad de ejercicios de un examen, y el porcentaje",
-            "necesario de ejercicios bien resueltos necesario para aprobar dicho examen, revise un grupo de examenes.",
-            "Para ello, en cada paso debe preguntar la cantidad de ejercicios resueltos por el alumno,",
-            "indicando con un valor centinela que no hay más examenes a revisar.",
-            "Debe mostrar por pantalla el porcentaje correspondiente a la cantidad de ejercicios resueltos",
-            "respecto a la cantidad de ejercicios del examen y una leyenda que indique si aprobó o no."
+            "Escribir una función que dada la cantidad de ejercicios de un examen, y el porcentaje necesario de ejercicios bien resueltos necesario para aprobar dicho examen, revise un grupo de examenes.",
+            "Para ello, en cada paso debe preguntar la cantidad de ejercicios resueltos por el alumno, indicando con un valor centinela que no hay más examenes a revisar.",
+            "Debe mostrar por pantalla el porcentaje correspondiente a la cantidad de ejercicios resueltos respecto a la cantidad de ejercicios del examen y una leyenda que indique si aprobó o no."
         ],
         "campos": {
 

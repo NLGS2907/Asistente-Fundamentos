@@ -77,9 +77,7 @@
 
         ],
         "descripcion": [
-            "Escribir una función que reciba una cadena que contiene un largo número entero y",
-            "devuelva una cadena con el número y las separaciones de miles. Por ejemplo, si recibe",
-            "`'1234567890'`, debe devolver `'1.234.567.890'`."
+            "Escribir una función que reciba una cadena que contiene un largo número entero y devuelva una cadena con el número y las separaciones de miles. Por ejemplo, si recibe `'1234567890'`, debe devolver `'1.234.567.890'`."
         ],
         "campos": {
 
@@ -97,16 +95,14 @@
         ],
         "campos": {
             "a)": [
-                "La primera letra de cada palabra. Por ejemplo, si recibe `'Universal Serial Bus'`",
-                "debe devolver `'USB'`."
+                "La primera letra de cada palabra. Por ejemplo, si recibe `'Universal Serial Bus'` debe devolver `'USB'`."
             ],
             "b)": [
                 "Dicha cadena con la primera letra de cada palabra en mayúsculas.",
                 "Por ejemplo, si recibe `'república argentina'` debe devolver `'República Argentina'`."
             ],
             "c)": [
-                "Las palabras que comiencen con la letra 'A'. Por ejemplo, si recibe",
-                "`'Antes de ayer'` debe devolver `'Antes ayer'`."
+                "Las palabras que comiencen con la letra 'A'. Por ejemplo, si recibe `'Antes de ayer'` debe devolver `'Antes ayer'`."
             ]
         },
         "pie": [
@@ -168,8 +164,7 @@
 
         ],
         "descripcion": [
-            "Escribir una función que reciba una cadena de unos y ceros (es decir, un número en",
-            "representación binaria) y devuelva el valor decimal correspondiente."
+            "Escribir una función que reciba una cadena de unos y ceros (es decir, un número en representación binaria) y devuelva el valor decimal correspondiente."
         ],
         "campos": {
 
@@ -183,10 +178,8 @@
 
         ],
         "descripcion": [
-            "Implementar la función `pedir_entero(mensaje, min, max)`, que debe imprimir el mensaje",
-            "y luego esperar a que el usuario ingrese un valor.",
-            "Si el valor ingresado no es un número entero, o no es un número entre `min` y `max` (inclusive),",
-            "se le debe avisar al usuario y pedir el ingreso de otro valor.",
+            "Implementar la función `pedir_entero(mensaje, min, max)`, que debe imprimir el mensaje y luego esperar a que el usuario ingrese un valor.",
+            "Si el valor ingresado no es un número entero, o no es un número entre `min` y `max` (inclusive), se le debe avisar al usuario y pedir el ingreso de otro valor.",
             "Una vez que el usuario ingresa un valor válido, la función lo debe devolver."
         ],
         "campos": {

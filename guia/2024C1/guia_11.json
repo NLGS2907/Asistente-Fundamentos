@@ -5,8 +5,7 @@
 
         ],
         "descripcion": [
-            "Escribir una función, llamada `head` que reciba un archivo y un número *N* e imprima",
-            "las primeras *N* líneas del archivo."
+            "Escribir una función, llamada `head` que reciba un archivo y un número *N* e imprima las primeras *N* líneas del archivo."
         ],
         "campos": {
 
@@ -27,7 +26,7 @@
 
         },
         "pie": [
-            "Nota: Tener en cuentaque el contenido completo del archivo puede ser más grande que",
+            "Nota: Tener en cuenta que el contenido completo del archivo puede ser más grande que",
             "la memoria de la computadora. Utilizar `archivo.read(bytes)` para leer como máximo ",
             "una cantidad determinada de bytes."
         ]
@@ -37,8 +36,7 @@
 
         ],
         "descripcion": [
-            "Escribir una función, llamada `wc`, que dado un archivo de texto, lo procese, e imprima",
-            "por pantalla cuántas líneas, cuantas palabras y cuántos caracteres contiene el archivo."
+            "Escribir una función, llamada `wc`, que dado un archivo de texto, lo procese, e imprima por pantalla cuántas líneas, cuantas palabras y cuántos caracteres contiene el archivo."
         ],
         "campos": {
 
@@ -67,12 +65,9 @@
 
         ],
         "descripcion": [
-            "Escribir una función, llamada `rot13`, que reciba un archivo de texto de origen y uno",
-            "de destino, de modo que para cada línea del archivo origen, se guarde una línea *cifrada*",
-            "en el archivo destino.\n",
+            "Escribir una función, llamada `rot13`, que reciba un archivo de texto de origen y uno de destino, de modo que para cada línea del archivo origen, se guarde una línea *cifrada* en el archivo destino.\n",
 
-            "El algoritmo de cifrado a utilizar será muy sencillo: a cada caracter comprendido entre",
-            "la a y la z, se le suma 13 y luego se aplica el módulo 26, para obtener un nuevo caracter."
+            "El algoritmo de cifrado a utilizar será muy sencillo: a cada caracter comprendido entre la a y la z, se le suma 13 y luego se aplica el módulo 26, para obtener un nuevo caracter."
         ],
         "campos": {
 

@@ -7,7 +7,8 @@
         "descripcion": [
             "Analizar cada una de las siguientes funciones. ¿Cuál es el contrato de la función?",
             "¿Cómo sería su documentación? ¿Es necesario agregar comentarios?",
-            "¿Se puede simplificar el código y/o mejorar su legibilidad? ¿Hay algún invariante de ciclo?"
+            "¿Se puede simplificar el código y/o mejorar su legibilidad?",
+            "¿Hay algún invariante de ciclo?"
         ],
         "campos": {
             "a)": [

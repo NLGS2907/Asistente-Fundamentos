@@ -45,8 +45,7 @@
         ],
         "campos": {
             "a)": [
-                "Escribir una función que reciba una tupla con nombres, y para cada nombre imprima",
-                "el mensaje *Estimado <nombre>, vote por mí*."
+                "Escribir una función que reciba una tupla con nombres, y para cada nombre imprima el mensaje *Estimado <nombre>, vote por mí*."
             ],
             "b)": [
                 "Escribir una función que reciba una tupla con nombres, una posición de origen *p*",
@@ -134,9 +133,7 @@
 
         ],
         "descripcion": [
-            "Escribir una función que reciba una lista de tuplas (Apellido, Nombre, Inicial_segundo_nombre)",
-            "y devuelva una lista de cadenas donde cada una contenga primero el nombre, luego la",
-            "inicial con un punto, y luego el apellido."
+            "Escribir una función que reciba una lista de tuplas (Apellido, Nombre, Inicial_segundo_nombre) y devuelva una lista de cadenas donde cada una contenga primero el nombre, luego la inicial con un punto, y luego el apellido."
         ],
         "campos": {
 
@@ -172,8 +169,7 @@
 
         ],
         "descripcion": [
-            "Escribir una función `empaquetar` para una lista, donde empaquetar significa indicar",
-            "la repetición de valores consecutivos mediante una tupla (valor, cantidad de repeticiones).",
+            "Escribir una función `empaquetar` para una lista, donde empaquetar significa indicar la repetición de valores consecutivos mediante una tupla (valor, cantidad de repeticiones).",
             "Por ejemplo, `empaquetar([1, 1, 1, 3, 5, 1, 1, 3, 3])` debe devolver `[(1, 3), (3, 1), (5, 1), (1, 2), (3, 2)]`."
         ],
         "campos": {
@@ -198,12 +194,10 @@
                 "Escribir una función que reciba dos matrices y devuelva el producto."
             ],
             "c)": [
-                "**⋆** Escribir una función que opere sobre una matriz y mediante",
-                "*eliminación gaussiana* devuelva una matriz triangular superior."
+                "**⋆** Escribir una función que opere sobre una matriz y mediante *eliminación gaussiana* devuelva una matriz triangular superior."
             ],
             "d)": [
-                "**⋆** Escribir una función que indique si un grupo de vectores, recibidos",
-                "mediante una lista, son linealmente independientes o no."
+                "**⋆** Escribir una función que indique si un grupo de vectores, recibidos mediante una lista, son linealmente independientes o no."
             ]
         },
         "pie": [
@@ -245,14 +239,10 @@
         ],
         "campos": {
             "a)": [
-                "Escribir una funcion llamada `map`, que reciba una función y una lista y devuelva",
-                "la lista que resulta de aplicar la función recibida a cada uno de los elementos de",
-                "la lista recibida."
+                "Escribir una funcion llamada `map`, que reciba una función y una lista y devuelva la lista que resulta de aplicar la función recibida a cada uno de los elementos de la lista recibida."
             ],
             "b)": [
-                "Escribir una función llamada `filter`, que reciba una función y una lista y devuelva",
-                "una lista con los elementos de la lista recibida para los cuales la función recibida",
-                "devuelve un valor verdadero."
+                "Escribir una función llamada `filter`, que reciba una función y una lista y devuelva una lista con los elementos de la lista recibida para los cuales la función recibida devuelve un valor verdadero."
             ],
             "c)": [
                 "¿En qué ejercicios de esta guía podría haber utilizado estas funciones?"
@@ -274,11 +264,11 @@
             "**estructura de datos** apropiada para representar el estado del juego.",
             "Algunas preguntas que pueden ayudar:\n",
 
-            "\t• ¿Cómo actualizamos el estado del juego según cada acción realizada?",
-            "\t• ¿Cómo detectamos si un movimiento es válido o no?",
-            "\t• ¿Cómo detectamos si el juego ha terminado?",
-            "\t• ¿Cómo se muestra la información en la consola a los jugadores?",
-            "\t• ¿Cómo hacen los jugadores para ingresar las acciones a realizar?\n",
+            "• ¿Cómo actualizamos el estado del juego según cada acción realizada?",
+            "• ¿Cómo detectamos si un movimiento es válido o no?",
+            "• ¿Cómo detectamos si el juego ha terminado?",
+            "• ¿Cómo se muestra la información en la consola a los jugadores?",
+            "• ¿Cómo hacen los jugadores para ingresar las acciones a realizar?\n",
 
             "Escribir un programa que permita jugar**¹**:"
         ],

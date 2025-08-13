@@ -53,9 +53,7 @@
         "descripcion": [
             "**Agenda Simplificada**\n",
 
-            "Escribir una función que reciba una cadena a buscar y una lista de tuplas (nombre_completo, telefono),",
-            "y busque dentro de la lista, todas las entradas que contengan en el nombre completo la",
-            "cadena recibida (puede ser el nombre, el apellido o sólo una parte de cualquiera de ellos).",
+            "Escribir una función que reciba una cadena a buscar y una lista de tuplas (nombre_completo, telefono), y busque dentro de la lista, todas las entradas que contengan en el nombre completo la cadena recibida (puede ser el nombre, el apellido o sólo una parte de cualquiera de ellos).",
             "Debe devolver una lista con todas las tuplas encontradas."
         ],
         "campos": {
@@ -72,9 +70,7 @@
         "descripcion": [
             "**Sistema de Facturación Simplificado**\n",
 
-            "Se cuenta con una lista ordenada de productos, en la que uno consiste en una tupla de",
-            "(identificador, descripción, precio), y una lista de los productos a facturar, en la",
-            "que cada uno consiste en una tupla de (identificador, cantidad).\n",
+            "Se cuenta con una lista ordenada de productos, en la que uno consiste en una tupla de (identificador, descripción, precio), y una lista de los productos a facturar, en la que cada uno consiste en una tupla de (identificador, cantidad).\n",
 
             "Se desea generar una factura que incluya la cantidad, la descripción, el precio",
             "unitario y el precio total de cada producto comprado, y al final imprima el total general.\n",

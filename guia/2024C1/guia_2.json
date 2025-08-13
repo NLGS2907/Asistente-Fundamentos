@@ -21,8 +21,7 @@
             
         ],
         "descripcion": [
-            "Utilizando la función del ejercicio anterior (ejercicio **2.1**), escribir un programa que le pregunte",
-            "al usuario la cantidad de pesos inicial, la tasa de interés y el número de años y muestre el monto final a obtener."
+            "Utilizando la función del ejercicio anterior (ejercicio **2.1**), escribir un programa que le pregunte al usuario la cantidad de pesos inicial, la tasa de interés y el número de años y muestre el monto final a obtener."
         ],
         "campos": {
 
@@ -122,7 +121,7 @@
 
         },
         "pie": [
-            "Nota: Hacerlo usando y sin usar la ecuación Σ 𝑛 𝑖=1 𝑖 = 𝑛 (𝑛 + 1)/2. ¿Cuál realiza más operaciones?"
+            "Nota: Hacerlo usando y sin usar la ecuación Σ 𝑛 𝑖=1  𝑛 (𝑛 + 1)/2. ¿Cuál realiza más operaciones?"
         ]
     },
     "8": {
@@ -130,8 +129,7 @@
             
         ],
         "descripcion": [
-            "Escribir un programa que tome una cantidad *𝑚* de valores ingresados por el usuario, a cada uno le calcule el factorial",
-            "(utilizando la función escrita en el ejercicio **1.5**) e imprima el resultado junto con el número de orden correspondiente."
+            "Escribir un programa que tome una cantidad *𝑚* de valores ingresados por el usuario, a cada uno le calcule el factorial (utilizando la función escrita en el ejercicio **1.5**) e imprima el resultado junto con el número de orden correspondiente."
         ],
         "campos": {
 
@@ -159,8 +157,7 @@
             
         ],
         "descripcion": [
-            "Modificar el programa anterior (ejercicio **2.9**) para que pueda generar fichas de un juego",
-            "que puede tener números de 0 a *𝑛*."
+            "Modificar el programa anterior (ejercicio **2.9**) para que pueda generar fichas de un juego que puede tener números de 0 a *𝑛*."
         ],
         "campos": {
 

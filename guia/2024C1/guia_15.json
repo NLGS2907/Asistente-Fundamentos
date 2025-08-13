@@ -5,8 +5,7 @@
 
         ],
         "descripcion": [
-            "Escribir una función recursiva que reciba un número positivo 𝑛 y devuelva la cantidad",
-            "de dígitos que tiene."
+            "Escribir una función recursiva que reciba un número positivo 𝑛 y devuelva la cantidad de dígitos que tiene."
         ],
         "campos": {
 
@@ -43,8 +42,7 @@
 
         ],
         "descripcion": [
-            "Escribir una función recursiva que reciba 2 enteros *n* y *b* y devuelva",
-            "`True` si *n* es potencia de *b*."
+            "Escribir una función recursiva que reciba 2 enteros *n* y *b* y devuelva `True` si *n* es potencia de *b*."
         ],
         "campos": {
             "Ejemplos:": [
@@ -83,10 +81,9 @@
 
         ],
         "descripcion": [
-            "Escribir dos funciones mutualmente recursivas `par(n)` e `impar(n)` que determinen",
-            "la paridad del numero natural dado, conociendo solo que:",
-            "\t**•** 1 es impar.",
-            "\t**•** Si un número es impar, su antecesor es par; y viceversa."
+            "Escribir dos funciones mutualmente recursivas `par(n)` e `impar(n)` que determinen la paridad del numero natural dado, conociendo solo que:",
+            "**•** 1 es impar.",
+            "**•** Si un número es impar, su antecesor es par; y viceversa."
         ],
         "campos": {
 
@@ -100,8 +97,7 @@
 
         ],
         "descripcion": [
-            "Escribir una función recursiva que calcule recursivamente el n-ésimo número triangular",
-            "(el número 1 + 2 + 3 + ⋯ + 𝑛)."
+            "Escribir una función recursiva que calcule recursivamente el n-ésimo número triangular (el número 1 + 2 + 3 + ⋯ + 𝑛)."
         ],
         "campos": {
 
@@ -115,9 +111,7 @@
 
         ],
         "descripcion": [
-            "Escribir una función que calcule recursivamente cuántos elementos hay en una pila,",
-            "suponiendo que la pila sólo tiene los métodos `apilar` y `desapilar`, y no altere el",
-            "contenido de la pila."
+            "Escribir una función que calcule recursivamente cuántos elementos hay en una pila, suponiendo que la pila sólo tiene los métodos `apilar` y `desapilar`, y no altere el contenido de la pila."
         ],
         "campos": {
 
@@ -178,23 +172,21 @@
         ],
         "descripcion": [
             "El triángulo de Pascal es un arreglo triangular de números que se define de la siguiente manera:",
-            "Las filas se enumeran desde 𝑛 = 0, de arriba hacia abajo. Los valores de cada fila se",
-            "enumeran desde 𝑘 = 0 (de izquierda a derecha).",
+            "Las filas se enumeran desde 𝑛 = 0, de arriba hacia abajo. Los valores de cada fila se enumeran desde 𝑘 = 0 (de izquierda a derecha).",
             "Los valores que se encuentran en los bordes del triángulo son 1.",
             "Cualquier otro valor se calcula sumando los dos valores contiguos de la fila de arriba.\n",
 
             "```",
-            "𝑛 = 0                              1",
-            "𝑛 = 1                          1       1",
-            "𝑛 = 2                      1       2       1",
-            "𝑛 = 3                  1       3       3       1",
-            "𝑛 = 4              1       4       6       4       1",
-            "𝑛 = 5          1       5       10      10      5       1",
-            "𝑛 = 6      1       6       15      20      15      6       1",
+            "𝑛 = 0                          1",
+            "𝑛 = 1                      1       1",
+            "𝑛 = 2                  1       2       1",
+            "𝑛 = 3              1       3       3       1",
+            "𝑛 = 4          1       4       6       4       1",
+            "𝑛 = 5      1       5       10      10      5       1",
+            "𝑛 = 6  1       6       15      20      15      6       1",
             "```",
 
-            "Escribir la función recursiva `pascal(n, k)` que calcula el valor que se encuentra en",
-            "la fila *n* y la columna *k*."
+            "Escribir la función recursiva `pascal(n, k)` que calcula el valor que se encuentra en la fila *n* y la columna *k*."
         ],
         "campos": {
             "Ejemplo:": [
@@ -214,18 +206,15 @@
         ],
         "descripcion": [
             "Ya sabemos que la implementación recursiva del cálculo del número de Fibonacci",
-            "(𝐹𝑛 = 𝐹𝑛−1 + 𝐹𝑛−2, 𝐹0 = 0, 𝐹1 = 1) es ineficiente porque muchas de las ramas calculan",
-            "reiteradamente los mismos valores.\n",
+            "(𝐹𝑛 = 𝐹𝑛−1 + 𝐹𝑛−2, 𝐹0 = 0, 𝐹1 = 1) es ineficiente porque muchas de las ramas calculan reiteradamente los mismos valores.\n",
 
-            "Escribir una función `fibonacci(n)` que calcule el enésimo número de Fibonacci de",
-            "forma recursiva pero que utilice un diccionario para almacenar los valores ya",
-            "computados y no computarlos más de una vez."
+            "Escribir una función `fibonacci(n)` que calcule el enésimo número de Fibonacci de forma recursiva pero que utilice un diccionario para almacenar los valores ya computados y no computarlos más de una vez."
         ],
         "campos": {
 
         },
         "pie": [
-            "Nota: Será necesario implementar una función *wrapper* para cumplir con la firma",
+            "Nota: Será necesario implementar una función \"wrapper\" para cumplir con la firma",
             "de la función pedida."
         ]
     },

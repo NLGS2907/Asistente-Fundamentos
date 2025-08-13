@@ -62,7 +62,7 @@
                 "a, b y c), indicando si es un máximo o un mínimo."
             ],
             "b)": [
-                "Las raíces (reales o complejas) de un polinomio de segundo grado. ****"
+                "Las raíces (reales o complejas) de un polinomio de segundo grado. **¹**"
             ],
             "c)": [
                 "La intersección de dos rectas (dadas las pendientes y ordenada al origen de cada recta). **²**"
@@ -101,13 +101,11 @@
                 "Dada una fecha, indicar la cantidad de días transcurridos en ese año hasta esa fecha."
             ],
             "g)": [
-                "Dadas dos fechas (día1, mes1, año1, día2, mes2, año2), indicar el tiempo transcurrido",
-                "entre ambas, en años, meses y días. **²**"
+                "Dadas dos fechas (día1, mes1, año1, día2, mes2, año2), indicar el tiempo transcurrido entre ambas; en años, meses y días. **²**"
             ]
         },
         "pie": [
-            "¹ Nota: Un año es bisiesto si es un número divisible por 4, pero no si es divisible",
-            "  por 100, excepto que también sea divisible por 400.",
+            "¹ Nota: Un año es bisiesto si es un número divisible por 4, pero no si es divisible por 100, excepto que también sea divisible por 400.",
             "² Nota: En todos los casos, invocar las funciones escritas previamente cuando sea posible."
         ]
     },
@@ -116,8 +114,7 @@
 
         ],
         "descripcion": [
-            "Suponiendo que el primer día del año fue lunes, escribir una función que reciba un número con",
-            "el día del año (de 1 a 366) y devuelva el día de la semana que le toca.",
+            "Suponiendo que el primer día del año fue lunes, escribir una función que reciba un número con el día del año (de 1 a 366) y devuelva el día de la semana que le toca.",
             "Por ejemplo: si recibe `'3'` debe devolver `'miércoles'`, si recibe `'9'` debe devolver `'martes'`."
         ],
         "campos": {
@@ -133,8 +130,7 @@
         ],
         "descripcion": [
             "**⋆** Escribir un programa que reciba como entrada un entero representando un año",
-            "(por ejemplo `751`, `1999`, o `2158`), y muestre por pantalla el mismo año escrito",
-            "en números romanos."
+            "(por ejemplo `751`, `1999`, o `2158`), y muestre por pantalla el mismo año escrito en números romanos."
         ],
         "campos": {
 
@@ -151,12 +147,18 @@
             "**Programa de astrología:** el usuario debe ingresar el día y mes de su cumpleaños y",
             "el programa le debe decir a qué signo corresponde.\n",
 
-            "***Aries:** 21 de marzo al 20 de abril.                   **Tauro:** 21 de abril al 20 de mayo.*",
-            "***Geminis:** 21 de mayo al 21 de junio.                  **Cancer:** 22 de junio al 23 de julio.*",
-            "***Leo:** 24 de julio al 23 de agosto.                    **Virgo:** 24 de agosto al 23 de septiembre.*",
-            "***Libra:** 24 de septiembre al 22 de octubre.            **Escorpio:** 23 de octubre al 22 de noviembre.*",
-            "***Sagitario:** 23 de noviembre al 21 de diciembre.       **Capricornio:** 22 de diciembre al 20 de enero.*",
-            "***Acuari*:** 21 de enero al 19 de febrero.               **Piscis:** 20 de febrero al 20 de marzo.*"
+            "***Aries:**      21 de marzo al 20 de abril.",
+            "**Tauro:**       21 de abril al 20 de mayo.*",
+            "***Geminis:**    21 de mayo al 21 de junio.",
+            "**Cancer:**      22 de junio al 23 de julio.*",
+            "***Leo:**        24 de julio al 23 de agosto.",
+            "**Virgo:**       24 de agosto al 23 de septiembre.*",
+            "***Libra:**      24 de septiembre al 22 de octubre.",
+            "**Escorpio:**    23 de octubre al 22 de noviembre.*",
+            "***Sagitario:**  23 de noviembre al 21 de diciembre.",
+            "**Capricornio:** 22 de diciembre al 20 de enero.*",
+            "***Acuario*:**   21 de enero al 19 de febrero.",
+            "**Piscis:**      20 de febrero al 20 de marzo.*"
         ],
         "campos": {
 

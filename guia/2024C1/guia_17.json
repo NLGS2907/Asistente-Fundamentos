@@ -38,8 +38,7 @@
 
         ],
         "descripcion": [
-            "Escribir una función que reciba un arreglo de números y la cantidad de elementos,",
-            "y devuelva el promedio."
+            "Escribir una función que reciba un arreglo de números y la cantidad de elementos, y devuelva el promedio."
         ],
         "campos": {
 
@@ -53,8 +52,7 @@
 
         ],
         "descripcion": [
-            "Usando las funciones `printf` y `sizeof`, escribir un programa que imprima el tamaño",
-            "en bytes de cada uno de los siguientes tipos:",
+            "Usando las funciones `printf` y `sizeof`, escribir un programa que imprima el tamaño en bytes de cada uno de los siguientes tipos:",
             "```c",
             "bool, char, short, int, long, float, double, bool*, char*, short*, int*, long*, float*, double*",
             "```"
@@ -71,8 +69,7 @@
 
         ],
         "descripcion": [
-            "Implementar la función `unsigned int strlen(const char *s)` que devuelve la longitud",
-            "de la cadena `s` (sin contar el último caracter `'\\0'`)."
+            "Implementar la función `unsigned int strlen(const char *s)` que devuelve la longitud de la cadena `s` (sin contar el último caracter `'\\0'`)."
         ],
         "campos": {
             "a)": [
@@ -105,8 +102,7 @@
 
         ],
         "descripcion": [
-            "Implementar la función `void strcpy(const char *origen, char *destino)` que copia la",
-            "cadena `origen` en la dirección de memoria apuntada por `destino`.",
+            "Implementar la función `void strcpy(const char *origen, char *destino)` que copia la cadena `origen` en la dirección de memoria apuntada por `destino`.",
             "Asumir que `destino` apunta a un arreglo de caracteres con espacio suficiente `(strlen(origen) + 1`)."
         ],
         "campos": {
@@ -121,8 +117,7 @@
 
         ],
         "descripcion": [
-            "Implementar una función que recibe un arreglo de números y su longitud y lo ordena",
-            "mediante el algoritmo de ordenamiento por selección."
+            "Implementar una función que recibe un arreglo de números y su longitud y lo ordena mediante el algoritmo de ordenamiento por selección."
         ],
         "campos": {
 
@@ -136,7 +131,8 @@
 
         ],
         "descripcion": [
-            "Implementar una función que reciba un `mensaje` y dos números enteros `min` y `max`.",
+            "Implementar una función que reciba un `mensaje` y dos números enteros `min` y `max`.\n",
+
             "La función debe pedir al usuario que ingrese un número entero entre `min` y `max` (inclusive) y devolverlo.",
             "Si el usuario ingresa un valor inválido se le debe informar y pedir que ingrese un",
             "nuevo valor, repitiendo hasta que ingrese un número válido."
@@ -153,8 +149,7 @@
 
         ],
         "descripcion": [
-            "Implementar una función que reciba una cadena de texto y luego imprima la cadena",
-            "enmarcada entre asteriscos (*).",
+            "Implementar una función que reciba una cadena de texto y luego imprima la cadena enmarcada entre asteriscos (*).",
             "Asumir que la cadena no contiene ningún caracter `'\\n'`.\n",
 
             "Por ejemplo, si se recibe la cadena `\"Lenguaje C\"`, debe imprimir:",
@@ -218,8 +213,7 @@
 
         ],
         "descripcion": [
-            "Considerar el siguiente ejemplo. ¿La invocación a `free` realmente libera la memoria",
-            "apuntada por el puntero `a`?",
+            "Considerar el siguiente ejemplo. ¿La invocación a `free` realmente libera la memoria apuntada por el puntero `a`?",
             "```c",
             "int *a = malloc(42);",
             "int *b = a;",
@@ -291,8 +285,7 @@
 
         ],
         "descripcion": [
-            "Escribir un programa que cargue un arreglo de números enteros con los números",
-            "almacenados en el archivo generado en el ejercicio anterior."
+            "Escribir un programa que cargue un arreglo de números enteros con los números almacenados en el archivo generado en el ejercicio anterior."
         ],
         "campos": {
             "a)": [

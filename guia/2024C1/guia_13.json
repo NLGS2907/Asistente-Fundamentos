@@ -5,8 +5,7 @@
 
         ],
         "descripcion": [
-            "Implementar el método `__str__` de `ListaEnlazada`, para que se genere una salida",
-            "legible de lo que contiene la lista, similar a las listas de python."
+            "Implementar el método `__str__` de `ListaEnlazada`, para que se genere una salida legible de lo que contiene la lista, similar a las listas de python."
         ],
         "campos": {
 
@@ -20,8 +19,7 @@
 
         ],
         "descripcion": [
-            "Agregar a `ListaEnlazada` un método `extend` que reciba una `ListaEnlazada` y agregue",
-            "a la lista actual los elementos que se encuentran en la lista recibida."
+            "Agregar a `ListaEnlazada` un método `extend` que reciba una `ListaEnlazada` y agregue a la lista actual los elementos que se encuentran en la lista recibida."
         ],
         "campos": {
 
@@ -35,9 +33,7 @@
 
         ],
         "descripcion": [
-            "Implementar el método `remover_todos(elemento`) de `ListaEnlazada`, que recibe un",
-            "elemento y remueve de la lista todas las apariciones del mismo, devolviendo la",
-            "cantidad de elementos removidos.",
+            "Implementar el método `remover_todos(elemento`) de `ListaEnlazada`, que recibe un elemento y remueve de la lista todas las apariciones del mismo, devolviendo la cantidad de elementos removidos.",
             "La lista debe ser recorrida una sola vez."
         ],
         "campos": {
@@ -52,8 +48,7 @@
 
         ],
         "descripcion": [
-            "Implementar el método `duplicar(elemento)` de `ListaEnlazada`, que recibe un elemento y",
-            "duplica todas las apariciones del mismo."
+            "Implementar el método `duplicar(elemento)` de `ListaEnlazada`, que recibe un elemento y duplica todas las apariciones del mismo."
         ],
         "campos": {
             "Ejemplo:": [
@@ -72,10 +67,7 @@
 
         ],
         "descripcion": [
-            "Implementar el método `filter(f)` de `ListaEnlazada`, que recibe una función y devuelve",
-            "**una nueva lista enlazada** con los elementos para los cuales la aplicación de **f**",
-            "devuelve `True`. La nueva lista debe ser construida recorriendo los nodos una sola vez",
-            "(es decir, no se puede llamar a `append`)."
+            "Implementar el método `filter(f)` de `ListaEnlazada`, que recibe una función y devuelve **una nueva lista enlazada** con los elementos para los cuales la aplicación de **f** devuelve `True`. La nueva lista debe ser construida recorriendo los nodos una sola vez (es decir, no se puede llamar a `append`)."
         ],
         "campos": {
             "Ejemplo:": [
@@ -126,8 +118,7 @@
 
         ],
         "descripcion": [
-            "Una **lista doblemente enlazada** es una lista en la cual cada nodo tiene una referencia",
-            "al anterior además de al próximo de modo que es posible recorrerla en ambas direcciones.\n",
+            "Una **lista doblemente enlazada** es una lista en la cual cada nodo tiene una referencia al anterior además de al próximo de modo que es posible recorrerla en ambas direcciones.\n",
 
             "Escribir la clase `ListaDobleEnlazada`, incluyendo los métodos `insert`, `append`, `remove` y `pop`."
         ],

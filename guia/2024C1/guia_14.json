@@ -5,9 +5,7 @@
 
         ],
         "descripcion": [
-            "Escribir una clase `TorreDeControl` que modele el trabajo de una torre de control de un",
-            "aeropuerto con una pista de aterrizaje. Los aviones que están esperando para aterrizar",
-            "tienen prioridad sobre los que están esperando para despegar.\n",
+            "Escribir una clase `TorreDeControl` que modele el trabajo de una torre de control de un aeropuerto con una pista de aterrizaje. Los aviones que están esperando para aterrizar tienen prioridad sobre los que están esperando para despegar.\n",
 
             "La clase debe funcionar conforme al siguiente ejemplo:",
             "```python",
@@ -40,17 +38,16 @@
 
         ],
         "descripcion": [
-            "Escribir las clases `Impresora` y `Oficina` que permita modelar el funcionamiento de",
-            "un conjunto de impresoras conectadas en red."
+            "Escribir las clases `Impresora` y `Oficina` que permita modelar el funcionamiento de un conjunto de impresoras conectadas en red."
         ],
         "campos": {
             "Una impresora:": [
                 "**•** Tiene un nombre, y una capacidad máxima de tinta.",
                 "**•** Permite encolar un documento para imprimir (recibiendo el nombre del documento).",
                 "**•** Permite imprimir el documento que está al frente de la cola.",
-                "\t**–** Si no hay documentos encolados, se muestra un mensaje informándolo.",
-                "\t**–** Si no hay tinta suficiente, se muestra un mensaje informándolo.",
-                "\t**–** En caso contrario, se muestra el nombre del documento, y se gasta 1 unidad de tinta.",
+                "├─  **•** Si no hay documentos encolados, se muestra un mensaje informándolo.",
+                "├─  **•** Si no hay tinta suficiente, se muestra un mensaje informándolo.",
+                "└─  **•** En caso contrario, se muestra el nombre del documento, y se gasta 1 unidad de tinta.",
                 "**•** Permite cargar el cartucho de tinta."
             ],
             "Una oficina:": [
@@ -89,15 +86,14 @@
         "descripcion": [
             "En la parada del colectivo 130 pueden ocurrir dos eventos diferentes:\n",
 
-            "\t**•** Llega una persona.",
-            "\t**•** Llega un colectivo con 𝑛 asientos libres, y se suben al mismo todas las",
-            "\t  personas que están esperando, en orden de llegada, hasta que no quedan asientos libres.\n",
+            "**•** Llega una persona.",
+            "**•** Llega un colectivo con 𝑛 asientos libres, y se suben al mismo todas las personas que están esperando, en orden de llegada, hasta que no quedan asientos libres.\n",
 
             "Cada evento se representa con una tupla que incluye:\n",
 
-            "\t**•** El instante de tiempo (cantidad de segundos desde el inicio del día)",
-            "\t**•** El tipo de evento, que puede ser 'p' (persona) o 'c' (colectivo).",
-            "\t**•** En el caso de un evento de tipo 'c' hay un tercer elemento que es la cantidad de asientos libres.\n",
+            "**•** El instante de tiempo (cantidad de segundos desde el inicio del día)",
+            "**•** El tipo de evento, que puede ser 'p' (persona) o 'c' (colectivo).",
+            "**•** En el caso de un evento de tipo 'c' hay un tercer elemento que es la cantidad de asientos libres.\n",
 
             "Escribir una función que recibe una lista de eventos, ordenados cronológicamente,",
             "y devuelva el promedio de tiempo de espera de los pasajeros en la parada."
@@ -141,9 +137,7 @@
 
         ],
         "descripcion": [
-            "Crear una clase `PilaConMaximo` que soporte las operaciones de `Pila`",
-            "(`apilar(elemento)` y `desapilar()`), y además incluya el método `obtener_maximo()`",
-            "en tiempo constante."
+            "Crear una clase `PilaConMaximo` que soporte las operaciones de `Pila` (`apilar(elemento)` y `desapilar()`), y además incluya el método `obtener_maximo()` en tiempo constante."
         ],
         "campos": {
 
@@ -180,8 +174,7 @@
 
         ],
         "descripcion": [
-            "Escribir una función llamada `tail` que recibe un archivo y un número *N* e imprime",
-            "las últimas *N* líneas del archivo.",
+            "Escribir una función llamada `tail` que recibe un archivo y un número *N* e imprime las últimas *N* líneas del archivo.",
             "Durante el transcurso de la función no puede haber más de *N* líneas en memoria."
         ],
         "campos": {
