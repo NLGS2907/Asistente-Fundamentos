@@ -291,5 +291,4 @@ class NavegadorEjercicios(VistaGeneral):
 
         msg = USER_CONSULT.format(mencion=interaccion.user.mention)
         await interaccion.channel.send(content=msg,
-                                       embed=self.get_embebido_enunciado(),
-                                       view=None)
+                                       embed=self.get_embebido_enunciado())

@@ -151,11 +151,8 @@ class CogEjercicios(CogGeneral):
         embebido = Embebido(opciones=enunciado)
         # A este punto, el usuario ya sabe qué unidad y ejercicio quiere. No mostramos
         # la interfaz para navegar por la guía.
-        vista = None
-
         await interaccion.response.send_message(content=mensaje,
-                                                embed=embebido,
-                                                view=vista)
+                                                embed=embebido)
 
 
     @appcommand(name="ej",
