@@ -182,9 +182,11 @@ class NavegadorEjercicios(VistaGeneral):
 
         embebido = self.get_embebido_enunciado()
 
-        mensaje_editado = await interaccion.response.edit_message(embed=embebido,
+        inter_callback_res = await interaccion.response.edit_message(embed=embebido,
                                                                   view=self)
-        self.msg = mensaje_editado
+
+        # El recurso está garantizado de ser un mensaje
+        self.msg = inter_callback_res.resource
 
 
     @button(style=ButtonStyle.grey,
