@@ -284,7 +284,8 @@ class CogEjercicios(CogGeneral):
             vista = SelectorGuia(version_actual=version_vieja)
             await interaccion.response.send_message(
                                         content="Por favor seleccione una versión de la guía",
-                                        view=vista)
+                                        view=vista,
+                                        ephemeral=True)
 
         else:
             actualizar_version_guia(nueva_version, interaccion.guild_id)
