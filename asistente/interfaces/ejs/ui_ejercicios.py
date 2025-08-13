@@ -3,18 +3,23 @@
 from random import choice
 from typing import Optional
 
-from discord import Embed, Interaction, Message
+from discord import Embed, Interaction, Message, SelectOption
 from discord import PartialEmoji as Emoji
-from discord import SelectOption
 from discord.enums import ButtonStyle
 from discord.ui import Button, Select, button
+from discord.utils import remove_markdown
 
-from ...archivos import (DiccionarioEjercicio, DiccionarioGuia, GUIA_DEFAULT,
-                         DiccionarioPares, cargar_guia, lista_ejercicios,
-                         lista_unidades)
+from ...archivos import (
+    GUIA_DEFAULT,
+    DiccionarioEjercicio,
+    DiccionarioGuia,
+    DiccionarioPares,
+    cargar_guia,
+    lista_ejercicios,
+    lista_unidades,
+)
 from ...embebido import Embebido
 from ..ui_general import VistaGeneral
-
 
 USER_CONSULT: str = "**{mencion}** ha consultado:"
 TITLE_FORMAT: str = "**Unidad** {unidad} - \"{titulo}\"  |  **Ejercicio** {ejercicio}"
@@ -62,7 +67,7 @@ class MenuSelectorEjercicio(Select):
     def comienzo_enunciado(self, ejercicio: str) -> str:
         "Retorna una cadena con los primeros caracteres del enunciado de un ejercicio."
 
-        descripcion = self.guia[self.unidad][ejercicio]['descripcion'][0]
+        descripcion = remove_markdown(self.guia[self.unidad][ejercicio]['descripcion'][0])
         max_char = 50
 
         return f"{descripcion[:max_char]}{'...' if len(descripcion) > max_char else ''}"

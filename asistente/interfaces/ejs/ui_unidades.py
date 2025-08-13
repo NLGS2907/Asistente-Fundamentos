@@ -4,6 +4,7 @@ from typing import Optional
 
 from discord import Interaction, SelectOption
 from discord.ui import Select
+from discord.utils import remove_markdown
 
 from ...archivos import (
     GUIA_DEFAULT,
@@ -34,7 +35,7 @@ class MenuSelectorUnidad(Select):
         self.guia = guia
 
         opciones = [SelectOption(label=f"Unidad {unidad}",
-                                 description=self.guia[unidad]["titulo"],
+                                 description=remove_markdown(self.guia[unidad]["titulo"]),
                                  value=unidad)
 
                                  for unidad in lista_unidades(self.guia)]
