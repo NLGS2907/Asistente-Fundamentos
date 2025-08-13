@@ -97,4 +97,8 @@ class VistaGeneral(View):
             if item.custom_id == "exit":
                 self.remove_item(item)
 
+        # Reflejamos los cambios de arriba en el mensaje en sí
+        if self.msg is not None:
+            await self.msg.edit(view=self)
+
         self.log.info(f"Vista {self} deshabilitada.")
