@@ -16,6 +16,7 @@ Historial con detalles de cambios entre versiones del asistente.
 ## v2.0.0
 
 * **El bot ahora se llama *"Asistente de Fundamentos"*, ya no *"Lector de Ejercicios"***. Esto es para ser más conforme con futuras características.
+* **¡Nuevo logo!** Los _assets_ de versiones anteriores todavía se encuentran bajo el nombre de [v1](./img/logo/v1/).
 * Cambiados los estilos de nombre de guías de `1c2024` a `2024C1`.
 * **Actualizada la versión de la guía** a la revisión del 7 de Marzo de 2024, bajo la denominación `2024C1`.
   - Ediciones en el enunciado del ejercicio **11.2**.
@@ -29,6 +30,24 @@ Historial con detalles de cambios entre versiones del asistente.
 * Remodularizados los módulos `main` y `tests` del proyecto. Ahora están como carpetas aparte en el directorio raíz.
   - `main` ahora se llama `asistente`, para ser consistente con la nueva forma de invocar al bot.
 * Limpiada toda mención de los "prefijos". Ahora el bot usa exclusivamente _app commands_ con `/`.
+* Mejores mensajes de error para los Cogs de comandos.
+* **La base de datos ya no se sube.** Ahora se crea sola y es única para cada instancia del bot.
+  - Hace uso de un _script_ inicial para poblarse sola con las tablas necesarias.
+* **Mejoras al Logger:**
+  - Ahora sigue un patrón _Singleton_, por lo que se puede instanciar en cualquier parte del proyecto sin miedo a guardar el mismo registro varias veces.
+  - Distintos niveles de logueo de registros para la consola y para el archivo.
+  - Ahora el asistente se puede ejecutar con los argumentos `-v` o `--verbose` para guardar registros en consola con el nivel `DEBUG`.
+  - Ahora también guarda registros del _traceback_ de `discord.py`, no sólo los del asistente.
+* `/version` fue eliminado, y su funcionalidad quedó incluida en el comando `/info`.
+* El _workflow_ para GitHub de PyLint fue cambiado por el de Ruff.
+* `/reboot` y `/shutdown` ahora sólo están disponibles para el dueño de la aplicación ~~(yo)~~. Sino es un riesgo de seguridad importante.
+* Se agregaron algunos secciones extra en el [README](./README.md).
+  - Explicación simple de los comandos más comunes.
+  - Un caso de uso para `/ej`.
+* **Remodelado el comando `/ej`:**
+  - Ahora todo ocurre en mensajes "efímeros" de Discord, con la posibilidad de todavía "imprimir" el mensaje en el canal con un nuevo botón.
+  - Incluidos algunos fixes para que `/ej` _(así como comandos similares)_ puedan funcionar en canales privados o DMs.
+
 
 <hr style="height:4px" />
 
