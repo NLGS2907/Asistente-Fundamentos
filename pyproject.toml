@@ -1,0 +1,5 @@
+[tool.ruff.lint.extend-per-file-ignores]
+# Ignorar imports estrella en archivos __init__
+"__init__.py" = ["F403"]
+# error específico en __main__ porque necesita cargar envs antes que importar
+"__main__.py" = ["E402"]

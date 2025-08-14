@@ -1,0 +1,324 @@
+{
+    "titulo": "Lenguaje C",
+    "1": {
+        "titulo": [
+
+        ],
+        "descripcion": [
+            "Escribir una función que permita calcular el área de un rectángulo dada su base y altura."
+        ],
+        "campos": {
+
+        },
+        "pie": [
+
+        ]
+    },
+    "2": {
+        "titulo": [
+
+        ],
+        "descripcion": [
+            "Escribir una función que reciba un número entero *n* y calcule el factorial de *n*."
+        ],
+        "campos": {
+            "a)": [
+                "En forma iterativa."
+            ],
+            "b)": [
+                "En forma recursiva."
+            ]
+        },
+        "pie": [
+
+        ]
+    },
+    "3": {
+        "titulo": [
+
+        ],
+        "descripcion": [
+            "Escribir una función que reciba un arreglo de números y la cantidad de elementos, y devuelva el promedio."
+        ],
+        "campos": {
+
+        },
+        "pie": [
+
+        ]
+    },
+    "4": {
+        "titulo": [
+
+        ],
+        "descripcion": [
+            "Usando las funciones `printf` y `sizeof`, escribir un programa que imprima el tamaño en bytes de cada uno de los siguientes tipos:",
+            "```c",
+            "bool, char, short, int, long, float, double, bool*, char*, short*, int*, long*, float*, double*",
+            "```"
+        ],
+        "campos": {
+
+        },
+        "pie": [
+
+        ]
+    },
+    "5": {
+        "titulo": [
+
+        ],
+        "descripcion": [
+            "Implementar la función `unsigned int strlen(const char *s)` que devuelve la longitud de la cadena `s` (sin contar el último caracter `'\\0'`)."
+        ],
+        "campos": {
+            "a)": [
+                "En forma iterativa."
+            ],
+            "b)": [
+                "En forma recursiva."
+            ]
+        },
+        "pie": [
+
+        ]
+    },
+    "6": {
+        "titulo": [
+
+        ],
+        "descripcion": [
+            "Implementar la función `void invertir(char *s)` que invierte la cadena `s` (*inplace*)."
+        ],
+        "campos": {
+
+        },
+        "pie": [
+
+        ]
+    },
+    "7": {
+        "titulo": [
+
+        ],
+        "descripcion": [
+            "Implementar la función `void strcpy(const char *origen, char *destino)` que copia la cadena `origen` en la dirección de memoria apuntada por `destino`.",
+            "Asumir que `destino` apunta a un arreglo de caracteres con espacio suficiente `(strlen(origen) + 1`)."
+        ],
+        "campos": {
+
+        },
+        "pie": [
+
+        ]
+    },
+    "8": {
+        "titulo": [
+
+        ],
+        "descripcion": [
+            "Implementar una función que recibe un arreglo de números y su longitud y lo ordena mediante el algoritmo de ordenamiento por selección."
+        ],
+        "campos": {
+
+        },
+        "pie": [
+
+        ]
+    },
+    "9": {
+        "titulo": [
+
+        ],
+        "descripcion": [
+            "Implementar una función que reciba un `mensaje` y dos números enteros `min` y `max`.\n",
+
+            "La función debe pedir al usuario que ingrese un número entero entre `min` y `max` (inclusive) y devolverlo.",
+            "Si el usuario ingresa un valor inválido se le debe informar y pedir que ingrese un",
+            "nuevo valor, repitiendo hasta que ingrese un número válido."
+        ],
+        "campos": {
+
+        },
+        "pie": [
+
+        ]
+    },
+    "10": {
+        "titulo": [
+
+        ],
+        "descripcion": [
+            "Implementar una función que reciba una cadena de texto y luego imprima la cadena enmarcada entre asteriscos (*).",
+            "Asumir que la cadena no contiene ningún caracter `'\\n'`.\n",
+
+            "Por ejemplo, si se recibe la cadena `\"Lenguaje C\"`, debe imprimir:",
+            "```c",
+            "**************",
+            "* Lenguaje C *",
+            "**************",
+            "```"
+        ],
+        "campos": {
+
+        },
+        "pie": [
+
+        ]
+    },
+    "11": {
+        "titulo": [
+
+        ],
+        "descripcion": [
+            "Implementar una función que reciba una cadena de texto _s_ y un número entero _n_,",
+            "y devuelva una cadena de texto que contiene la cadena _s_ repetida _n_ veces.",
+            "La cadena producida debe ser alojada en el _heap_, y debe terminar con un `\\0`."
+        ],
+        "campos": {
+
+        },
+        "pie": [
+
+        ]
+    },
+    "12": {
+        "titulo": [
+
+        ],
+        "descripcion": [
+            "Analizar el funcionamiento de la siguiente función en lenguaje C.",
+            "¿Hay algún problema en su implementación?",
+            "```c",
+            "void f() {",
+            "    int *p = malloc(sizeof(int) * 100);",
+            "    for (int i = 0; i < 10; i++) {",
+            "       p[i] = i+1000;",
+            "    }",
+            "    for (int j = 0; j < 100; j++) {",
+            "       printf(\"%d\\n\", p[i]);",
+            "    }",
+            "}",
+            "```"
+        ],
+        "campos": {
+
+        },
+        "pie": [
+
+        ]
+    },
+    "13": {
+        "titulo": [
+
+        ],
+        "descripcion": [
+            "Considerar el siguiente ejemplo. ¿La invocación a `free` realmente libera la memoria apuntada por el puntero `a`?",
+            "```c",
+            "int *a = malloc(42);",
+            "int *b = a;",
+            "free(b);",
+            "```"
+        ],
+        "campos": {
+
+        },
+        "pie": [
+
+        ]
+    },
+    "14": {
+        "titulo": [
+
+        ],
+        "descripcion": [
+            "Considerar el siguiente ejemplo. ¿Hay algún problema con la implementación?",
+            "```c",
+            "char *nombre;",
+            "fputs\"(Ingresa tu nombre: \", stdout);",
+            "fgets(nombre, 100, stdin);",
+            "printf\"(Hola %s!\\\"n, nombre);",
+            "```"
+        ],
+        "campos": {
+
+        },
+        "pie": [
+
+        ]
+    },
+    "15": {
+        "titulo": [
+
+        ],
+        "descripcion": [
+            "Escribir una función que se comporte como la función `input` de Python. Debe",
+            "recibir un mensaje a imprimir, y luego debe leer una línea de texto de la consola ",
+            "y devolverla. La cadena producida debe ser alojada en el _heap_, y debe terminar ",
+            "con un `\\0`. Asumir que la línea de texto ingresada no puede superar los 100 caracteres.",
+            "Utilizar las funciones de la biblioteca estándar `fputs` y `fgets`."
+        ],
+        "campos": {
+
+        },
+        "pie": [
+
+        ]
+    },
+    "16": {
+        "titulo": [
+
+        ],
+        "descripcion": [
+            "Escribir un programa que genere un archivo binario grabando en él los números",
+            "enteros del 0 al 1000000."
+        ],
+        "campos": {
+
+        },
+        "pie": [
+
+        ]
+    },
+    "17": {
+        "titulo": [
+
+        ],
+        "descripcion": [
+            "Escribir un programa que cargue un arreglo de números enteros con los números almacenados en el archivo generado en el ejercicio anterior."
+        ],
+        "campos": {
+            "a)": [
+                "Asumiendo que se conoce la cantidad de números a leer."
+            ],
+            "b)": [
+                "**⋆** Asumiendo que no se conoce la cantidad de números a leer."
+            ]
+        },
+        "pie": [
+
+        ]
+    },
+    "18": {
+        "titulo": [
+
+        ],
+        "descripcion": [
+            "Dada la definición de la estructura `persona_t` como se muestra a continuación,",
+            "escribir funciones para leer y escribir un arreglo de personas en un archivo:",
+            "```c",
+            "struct persona {",
+            "   unsigned uint32_t dni;",
+            "   char nombre[100];",
+            "};",
+            "typedef struct persona persona_t;",
+            "```"
+        ],
+        "campos": {
+
+        },
+        "pie": [
+
+        ]
+    }
+}

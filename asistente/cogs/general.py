@@ -1,0 +1,130 @@
+"Cog general para uso de herencia."
+
+from traceback import format_exc
+from typing import TYPE_CHECKING, Any, Optional, TypeAlias, Union
+
+from discord import ChannelType, Interaction
+from discord.app_commands import AppCommandError, CheckFailure, Group
+from discord.ext.commands import Cog, Context
+from discord.utils import MISSING
+
+if TYPE_CHECKING:
+    from discord import Permissions
+    from discord.app_commands import locale_str
+
+    from ..bot import Asistente
+
+
+class GrupoGeneral(Group):
+    "Grupo general para que se herede de él."
+
+    def __init__(self,
+                 bot: "Asistente",
+                 *,
+                 name: Union[str, "locale_str"] = MISSING,
+                 description: Union[str, "locale_str"] = MISSING,
+                 parent: Optional[Group] = None,
+                 guild_ids: Optional[list[int]] = None,
+                 guild_only: bool = MISSING,
+                 nsfw: bool = MISSING,
+                 auto_locale_strings: bool = True,
+                 default_permissions: Optional["Permissions"] = MISSING,
+                 extras: dict[Any, Any] = MISSING) -> None:
+        "Inicializa una instancia de 'GrupoGeneral', o el una clase hija."
+
+        super().__init__(name=name,
+                         description=description,
+                         parent=parent,
+                         guild_ids=guild_ids,
+                         guild_only=guild_only,
+                         nsfw=nsfw,
+                         auto_locale_strings=auto_locale_strings,
+                         default_permissions=default_permissions,
+                         extras=extras)
+        self.bot: "Asistente" = bot
+
+
+GroupsList: TypeAlias = list[type[GrupoGeneral]]
+
+
+class CogGeneral(Cog):
+    "Cog General, para que se herede de él."
+
+    def __init__(self, bot: "Asistente") -> None:
+        "Inicializa una instancia de 'CogGeneral', o una clase hija."
+
+        self.bot: "Asistente" = bot
+        self._cargar_grupos()
+
+
+    def _cargar_grupos(self) -> None:
+        "Carga todos los grupos que tiene registrados el cog."
+
+        for clase_grupo in self.grupos():
+            self.bot.tree.add_command(clase_grupo(self.bot))
+
+
+    @classmethod
+    def grupos(cls) -> GroupsList:
+        "Devuelve la lista de grupos asociados a este Cog."
+
+        return []
+
+
+    def mensaje_error(self,
+                      interaccion: Interaction,
+                      error: AppCommandError) -> str:
+        "Muestra el mensaje a mostrar por el chat de Discord en caso de error en este Cog."
+
+        # si es un DM y falla un check, entonces asumimos que es un comando que no
+        # se permite en ese contexto.
+        if (isinstance(error, CheckFailure)
+            and interaccion.channel.type == ChannelType.private):
+            return "Este comando no está soportado en canales privados."
+
+        return "Parece que ha habido un error."
+
+
+    async def cog_app_command_error(self,
+                                    interaccion: Interaction,
+                                    error: AppCommandError) -> None:
+        "Maneja un error de forma predeterminada para todos los cogs."
+
+        err_msg = f"**[ERROR]** {self.mensaje_error(interaccion, error)}"
+
+        if interaccion.response.is_done():
+            await interaccion.edit_original_response(content=err_msg)
+        else:
+            await interaccion.response.send_message(err_msg, ephemeral=True)
+
+        error_bello = "\n\t|\t".join("Excepción en app_commands "
+                                     f"lanzada:\n{format_exc()}".split("\n"))
+        self.bot.log.error(error_bello)
+
+
+    async def cog_before_invoke(self, ctx: Context) -> None:
+        "Registra en el log el comando siendo procesado."
+
+        hay_guild = ("" if ctx.guild is None else f" en {ctx.guild.name!r}")
+        hay_mensaje = ("un mensaje sin contenido"
+                       if not ctx.message.content
+                       else f"el mensaje {ctx.message.content!r}")
+        self.bot.log.info((f"[CMD] {ctx.author.name!r} está tratando de ejecutar el comando " +
+                           f"{ctx.command.name!r}{hay_guild}, mediante {hay_mensaje}."))
+
+
+    async def cog_after_invoke(self, ctx: Context) -> None:
+        "Registra en el log el comando procesado."
+
+        hay_guild = ("" if ctx.guild is None else f" en {ctx.guild.name!r}")
+        hay_mensaje = ("un mensaje sin contenido"
+                       if not ctx.message.content
+                       else f"el mensaje {ctx.message.content!r}")
+        self.bot.log.info((f"[CMD] {ctx.author.name!r} ejecutó el comando " +
+                           f"{ctx.command.name!r}{hay_guild}, mediante {hay_mensaje}."))
+
+
+async def setup(_bot: "Asistente"):
+    "Agrega el cog de este módulo al Asistente."
+
+    # Este Cog no está pensado para agregarse.
