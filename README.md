@@ -1,6 +1,6 @@
 # Asistente de Fundamentos
 
-<img alt="exercise_reader.png" align="left" src="img/exercise_reader.png" height=128 width=128 />
+<img alt="exercise_reader.png" align="left" src="img/logo/v2/lector_logo_con_borde.png" height=128 width=128 />
 
 <p align="left">
 
