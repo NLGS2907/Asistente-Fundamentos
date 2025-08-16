@@ -67,7 +67,7 @@ def es_hilo():
     "Verifica si la interacción ocurrió en un hilo."
 
     def predicado(interaccion: "Interaction") -> bool:
-        return isinstance(interaccion.channel, Thread)
+        return interaccion.channel is not None and isinstance(interaccion.channel, Thread)
 
     return appcheck(predicado)
 
