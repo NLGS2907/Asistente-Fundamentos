@@ -212,11 +212,17 @@ class CogEjercicios(CogGeneral):
         """
 
         guia = get_guia_por_sv(interaccion.guild_id)
+        guia.pop("version")
+
+        if isinstance(sentido, Choice):
+            sentido_parseado = sentido.value
+        else: # str
+            sentido_parseado = sentido
 
         unidad_posible_real = (unidad_posible if unidad_posible is None else unidad_posible.value)
-        unidad_pivote = (unidad_posible_real
-                         if CogEjercicios.existe_unidad(unidad_posible_real, guia)
-                         else choice(list(guia.keys())))
+        unidad_pivote = int(unidad_posible_real
+                            if CogEjercicios.existe_unidad(unidad_posible_real, guia)
+                            else choice(list(guia.keys())))
         unidad_elegida = ''
         ejercicio_elegido = ''
 
@@ -226,29 +232,44 @@ class CogEjercicios(CogGeneral):
             incluirlo entre los candidatos.
             """
 
-            match sentido:
+            match sentido_parseado:
                 case '=':
-                    return unidad == int(unidad_pivote)
+                    return unidad == unidad_pivote
 
                 case '<':
-                    return unidad < int(unidad_pivote)
+                    return unidad < unidad_pivote
 
                 case "<=":
-                    return unidad <= int(unidad_pivote)
+                    return unidad <= unidad_pivote
 
                 case '>':
-                    return unidad > int(unidad_pivote)
+                    return unidad > unidad_pivote
 
                 case ">=":
-                    return unidad >= int(unidad_pivote)
+                    return unidad >= unidad_pivote
 
                 case _:
                     # Viene de un Choice, así que nunca va a ocurrir. Pero por si acaso, suponemos
                     # que una expresión de 'sentido' inválida, hace incorrectas a todos los números.
                     return False
 
-        unidad_elegida = choice([unidad for unidad in list(guia.keys())[1:]
-                                if _expresion_busqueda(int(unidad))])
+        candidatos = [unidad for unidad in guia.keys() if _expresion_busqueda(int(unidad))]
+
+        # El usuario eligió justo un parámetro de búsqueda que no retorna ningún candidato viable:
+        # Un ejemplo sería si se elige la unidad 1 de pivote pero con parámetro "Antes de".
+        # Naturalmente, no va a retornar nada.
+        if not candidatos:
+            await interaccion.response.send_message(
+                content="No hay unidades de la guía que coincidan con los parámetros de búsqueda "
+                        f"dados y la unidad pivote `{unidad_pivote}. "
+                        f"{guia[str(unidad_pivote)]['titulo']}`.",
+                ephemeral=True
+            )
+            return
+
+        unidad_elegida = choice(candidatos)
+        # para que no agarre el titulo ni por casualidad, lo sacamos
+        guia[unidad_elegida].pop("titulo")
         ejercicio_elegido = choice(list(guia[unidad_elegida].keys()))
 
         await self.mandar_ejercicio(interaccion,
