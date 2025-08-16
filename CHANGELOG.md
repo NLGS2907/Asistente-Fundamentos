@@ -4,6 +4,7 @@ Historial con detalles de cambios entre versiones del asistente.
 
 |                  |                  |                  |                  |      Version     |
 |:----------------:|:----------------:|:----------------:|:----------------:|:----------------:|
+|                  |                  |                  |                  |**[2.0.1](#v201)**|
 |                  |                  |                  |  [1.4.1](#v141)  |**[2.0.0](#v200)**|
 |                  |                  |                  |                  |**[1.4.0](#v140)**|
 |                  |                  |                  |  [1.2.1](#v121)  |**[1.3.0](#v130)**|
@@ -12,6 +13,12 @@ Historial con detalles de cambios entre versiones del asistente.
 |                  |                  |                  |                  |**[1.0.0](#v100)**|
 
 <hr/>
+
+### v2.0.1
+
+* _fixes_ para bugs de parámetros de búsqueda en `/random`
+
+<hr style="height:2px" />
 
 ## v2.0.0
 
