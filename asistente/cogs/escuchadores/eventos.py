@@ -19,10 +19,24 @@ class CogEventos(CogGeneral):
     async def on_ready(self) -> None:
         "El bot se conectó y está listo para usarse."
 
-        self.bot.log.info("Actualizando base de datos:")
-        self.bot.actualizar_db()
+        self.bot.log.info("Actualizando base de datos")
+        await self.bot.actualizar_db()
+
+        self.bot.log.info("Iniciando sesión con backend de fundamentos")
+        await self.bot.inicializar_sesion()
 
         self.bot.log.info("¡%s conectado y listo para utilizarse!", self.bot.user)
+
+
+    @Cog.listener()
+    async def on_disconnect(self) -> None:
+        """
+        El bot se desconectó de Discord, ya sea por una caída de la conexión,
+        o porque se está apagando.
+        """
+
+        if self.bot.sesion is not None:
+            await self.bot.sesion.close()
 
 
     @Cog.listener()
