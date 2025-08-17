@@ -66,6 +66,16 @@ class CogIngreso(CogGeneral):
         if not self.es_guild_fundamentos(member.guild.id):
             return
 
+        dm = await member.create_dm()
+        recipient = dm.recipient
+        dm.send(f"¡Hola, {member.display_name if recipient is None else recipient.mention}!\n\n"
+                "Soy el Asistente de Fundamentos, y me encargo de automatizar algunas tareas "
+                "en el servidor de Discord de la materia, ¡Bienvenido!\n\n"
+                "Para empezar, recomendaría incluirte en el sistema con `/inscribirse` para "
+                "que te pueda recordar.")
+
+
+
 
     @appcommand(name="inscribirse",
                 description="[EXLUSIVO FUNDAMENTOS] Ingresa el usuario y le da los "
