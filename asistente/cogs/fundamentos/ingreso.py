@@ -48,6 +48,16 @@ class CogIngreso(CogGeneral):
         return super().mensaje_error(interaccion, error)
 
 
+    async def interaction_check(self, _interaction) -> bool:
+        "Checks especiales a correr antes de cada comando, aparte de los decoradores."
+
+        # Todos los comandos en este Cog van a necesitar, en cierta medida,
+        # interactuar con el Backend
+        self.bot.sesion_bien_iniciada()
+
+        return True
+
+
     @Cog.listener()
     async def on_member_join(self, member: "Member") -> None:
         "Un usuario nuevo entró al servidor de fundamentos."
