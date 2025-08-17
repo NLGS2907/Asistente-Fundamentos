@@ -77,7 +77,8 @@ class Asistente(Bot):
             read_messages=True, # También conocido bajo el alias 'View Channels'
             add_reactions=True,
             use_application_commands=True, # Discord lo llama 'Use Slash Commands'
-            manage_roles=True
+            manage_roles=True,
+            embed_links=True
         )
 
         return perms
@@ -220,13 +221,16 @@ class Asistente(Bot):
         'Fundamentos de Programación'.
         """
 
-        base_url = getenv("PROD_UR")
+        base_url = getenv("DEV_URL")
         self.sesion = (ClientSession(base_url) if base_url is not None else None)
 
         if self.sesion is None:
-            self.log.warning("No se encontró una URL con la que establecer la conexión "
+            self.log.warning("[BACKEND] No se encontró una URL con la que establecer la conexión "
                              "al backend de la página de Fundamentos. Algunos comandos "
                              "no funcionarán.")
+
+        else:
+            self.log.info("[BACKEND] Conectado al Backend con éxito.")
 
 
     def sesion_bien_iniciada(self) -> None:

@@ -19,7 +19,7 @@ Está pensado para usarse en el servidor de Discord de dicha materia, pero puede
 
 <hr style="width: 50%; height: 1" />
 
-* [**Enlace de Invitación**](https://discord.com/api/oauth2/authorize?client_id=889312376036425810&permissions=294473903168&scope=bot%20applications.commands)
+* [**Enlace de Invitación**](https://discord.com/oauth2/authorize?client_id=889312376036425810&permissions=294473919552&integration_type=0&scope=bot+applications.commands)
 
 * **[Dependencias](requirements.txt)**
 
