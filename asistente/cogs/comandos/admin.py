@@ -57,6 +57,8 @@ class CogAdmin(CogGeneral):
                                                 ephemeral=True)
         self.bot.log.info(f"Cerrando bot {str(self.bot.user)}...")
 
+        # por las dudas cerramos la sesión manualmente también
+        await self.bot.sesion.close()
         await self.bot.close()
 
 
