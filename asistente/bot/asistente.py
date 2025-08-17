@@ -76,7 +76,8 @@ class Asistente(Bot):
             mention_everyone=True,
             read_messages=True, # También conocido bajo el alias 'View Channels'
             add_reactions=True,
-            use_application_commands=True # Discord lo llama 'Use Slash Commands'
+            use_application_commands=True, # Discord lo llama 'Use Slash Commands'
+            manage_roles=True
         )
 
         return perms
@@ -219,7 +220,7 @@ class Asistente(Bot):
         'Fundamentos de Programación'.
         """
 
-        base_url = getenv("PROD_URL")
+        base_url = getenv("PROD_UR")
         self.sesion = (ClientSession(base_url) if base_url is not None else None)
 
         if self.sesion is None:
