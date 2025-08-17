@@ -2,13 +2,14 @@
 
 from typing import TYPE_CHECKING
 
-from discord import Interaction
 from discord.enums import TextStyle
 from discord.ui import Modal, TextInput
 
 if TYPE_CHECKING:
-    from .guess_btn import VistaAdivinacion
+    from discord import Interaction
+
     from ...ahorcado import Ahorcado
+    from .guess_btn import VistaAdivinacion
 
 
 class ModalAdivinacion(Modal):
@@ -34,7 +35,7 @@ class ModalAdivinacion(Modal):
         self.vista: "VistaAdivinacion" = vista
 
 
-    async def on_error(self, interaccion: Interaction, error: Exception) -> None:
+    async def on_error(self, interaccion: "Interaction", error: Exception) -> None:
         "Un error ocurrió."
 
         msg = f"**[ERROR]** {str(error)}"
@@ -42,7 +43,7 @@ class ModalAdivinacion(Modal):
                                                 ephemeral=True)
 
 
-    async def on_submit(self, interaccion: Interaction) -> None:
+    async def on_submit(self, interaccion: "Interaction") -> None:
         "Procesa la letra."
 
         await self.hanged_guess(interaccion, self.letra.value)
@@ -53,7 +54,7 @@ class ModalAdivinacion(Modal):
             await self.fin_del_juego(interaccion, es_victoria)
 
 
-    async def hanged_guess(self, interaccion: Interaction, char: str) -> None:
+    async def hanged_guess(self, interaccion: "Interaction", char: str) -> None:
         "Intenta adivinar una letra u otro caracter, si no fue usado ya."
 
         if not char:
@@ -95,7 +96,7 @@ class ModalAdivinacion(Modal):
                                        view=self.vista)
 
 
-    async def fin_del_juego(self, interaccion: Interaction, es_victoria: bool) -> None:
+    async def fin_del_juego(self, interaccion: "Interaction", es_victoria: bool) -> None:
         "Hace las acciones correspondientes una vez que termina el juego."
 
         partida_terminada: "Ahorcado" = self.vista.bot.partidas.pop(str(interaccion.channel.id))
