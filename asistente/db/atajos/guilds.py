@@ -1,4 +1,4 @@
-"Módulo para atajos deconsultas de guilds/servers de Discord."
+"Módulo para atajos de consultas de guilds/servers de Discord."
 
 from ..database import actualizar_dato_de_tabla, existe_dato_en_tabla, insertar_datos_en_tabla
 from .guias import actualizar_version_guia
