@@ -8,6 +8,7 @@ from discord.ext.commands import Cog
 
 from ...auxiliar import GUILD_FUNDAMENTOS, es_servidor_fundamentos
 from ...excepciones import SessionNotSetUp
+from ...interfaces.fundamentos import ModalIngreso
 from ..general import CogGeneral
 
 if TYPE_CHECKING:
@@ -84,7 +85,7 @@ class CogIngreso(CogGeneral):
     async def inscribir_miembro(self, interaccion: "Interaction") -> None:
         "Envía un modal para que el alumno sea reconocido por el asistente y sea asignado un rol."
 
-        await interaccion.response.send_message("_testing..._", ephemeral=True)
+        await interaccion.response.send_modal(ModalIngreso(self.bot))
 
 
 async def setup(bot: "Asistente"):
