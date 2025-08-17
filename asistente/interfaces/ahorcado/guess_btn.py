@@ -14,14 +14,10 @@ if TYPE_CHECKING:
 
 
 class VistaAdivinacion(VistaGeneral):
-    """
-    Vista para adivinar una letra de Ahorcado.
-    """
+    "Vista para adivinar una letra de Ahorcado."
 
     def __init__(self, bot: "Asistente") -> None:
-        """
-        Inicializa una instancia de 'VistaAdivinacion'.
-        """
+        "Inicializa una instancia de 'VistaAdivinacion'."
 
         super().__init__(agregar_btn_cerrar=False)
         self.bot: "Asistente" = bot
