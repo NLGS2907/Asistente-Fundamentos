@@ -3,14 +3,15 @@
 from traceback import format_exc
 from typing import TYPE_CHECKING, Any, Optional, TypeAlias, Union
 
-from discord import ChannelType, Interaction
-from discord.app_commands import AppCommandError, CheckFailure, Group
-from discord.ext.commands import Cog, Context
+from discord import ChannelType
+from discord.app_commands import CheckFailure, Group
+from discord.ext.commands import Cog
 from discord.utils import MISSING
 
 if TYPE_CHECKING:
-    from discord import Permissions
-    from discord.app_commands import locale_str
+    from discord import Interaction, Permissions
+    from discord.app_commands import AppCommandError, locale_str
+    from discord.ext.commands import Context
 
     from ..bot import Asistente
 
@@ -71,9 +72,7 @@ class CogGeneral(Cog):
         return []
 
 
-    def mensaje_error(self,
-                      interaccion: Interaction,
-                      error: AppCommandError) -> str:
+    def mensaje_error(self, interaccion: "Interaction", error: "AppCommandError") -> str:
         "Muestra el mensaje a mostrar por el chat de Discord en caso de error en este Cog."
 
         # si es un DM y falla un check, entonces asumimos que es un comando que no
@@ -86,8 +85,8 @@ class CogGeneral(Cog):
 
 
     async def cog_app_command_error(self,
-                                    interaccion: Interaction,
-                                    error: AppCommandError) -> None:
+                                    interaccion: "Interaction",
+                                    error: "AppCommandError") -> None:
         "Maneja un error de forma predeterminada para todos los cogs."
 
         err_msg = f"**[ERROR]** {self.mensaje_error(interaccion, error)}"
@@ -102,7 +101,7 @@ class CogGeneral(Cog):
         self.bot.log.error(error_bello)
 
 
-    async def cog_before_invoke(self, ctx: Context) -> None:
+    async def cog_before_invoke(self, ctx: "Context") -> None:
         "Registra en el log el comando siendo procesado."
 
         hay_guild = ("" if ctx.guild is None else f" en {ctx.guild.name!r}")
@@ -113,7 +112,7 @@ class CogGeneral(Cog):
                            f"{ctx.command.name!r}{hay_guild}, mediante {hay_mensaje}."))
 
 
-    async def cog_after_invoke(self, ctx: Context) -> None:
+    async def cog_after_invoke(self, ctx: "Context") -> None:
         "Registra en el log el comando procesado."
 
         hay_guild = ("" if ctx.guild is None else f" en {ctx.guild.name!r}")
