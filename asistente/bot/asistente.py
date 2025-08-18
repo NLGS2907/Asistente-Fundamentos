@@ -221,7 +221,7 @@ class Asistente(Bot):
         'Fundamentos de Programación'.
         """
 
-        base_url = getenv("DEV_URL")
+        base_url = getenv("PROD_URL")
         self.sesion = (ClientSession(base_url) if base_url is not None else None)
 
         if self.sesion is None:
