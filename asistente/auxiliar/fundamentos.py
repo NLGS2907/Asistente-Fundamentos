@@ -25,7 +25,7 @@ ROL_ALUMNI: int = 759091780644765713
 async def procesar_padron(padron: int, interaccion: "Interaction") -> str:
     "Procesa el padrón que eligió el alumno, y devuelve un mensaje a mostrar."
 
-    usuario = insertar_padron(padron)
+    usuario = insertar_padron(padron, interaccion.user.id)
 
     if usuario is not None:
         if interaccion.user.id == usuario:
@@ -47,9 +47,13 @@ async def asignar_roles(interaccion: "Interaction") -> str:
     Devuelve un mensaje para mostrar.
     """
 
+    rol_alumno = interaccion.guild.get_role(ROL_ALUMNO)
+
     await interaccion.user.add_roles(
-        interaccion.guild.get_role(ROL_ALUMNO),
+        rol_alumno,
         # opciones
         reason="El usuario ingresó su padrón correctamente.",
         atomic=True
     )
+
+    return f"¡Listo, {interaccion.user.mention}! Te asigné los roles {rol_alumno.mention}."
