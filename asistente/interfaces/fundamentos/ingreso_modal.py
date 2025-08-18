@@ -50,13 +50,19 @@ class ModalIngreso(Modal):
         async with self.bot.sesion.get("/students/exists",
                                        params=dict(padron=self.padron.value)) as response:
             body: dict = await response.json()
+            not_found = f"No se encontró un padrón con el valor `{self.padron.value}`."
 
             match response.status:
                 case 200:
-                    msg = await procesar_padron(self.padron.value, interaccion)
+                    if not body.get("exists", False):
+                        msg = not_found
+                    else:
+                        msg = await procesar_padron(self.padron.value,
+                                                    body["practica"],
+                                                    interaccion)
 
                 case 404:
-                    msg = f"No se encontró un padrón con el valor `{self.padron.value}`."
+                    msg = not_found
 
                 case 400:
                     msg = f"**[ERROR]** {self._mensaje_400(body)}"
