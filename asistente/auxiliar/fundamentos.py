@@ -22,10 +22,12 @@ ROL_GRACE: int = 653342153245982730
 ROL_ALUMNI: int = 759091780644765713
 
 
-async def procesar_padron(padron: int, practica: str, interaccion: "Interaction") -> str:
+async def procesar_padron(padron: int, practica: Optional[str], interaccion: "Interaction") -> str:
     "Procesa el padrón que eligió el alumno, y devuelve un mensaje a mostrar."
 
     usuario = insertar_padron(padron, interaccion.user.id)
+    if practica is None:
+        practica = "" # necesitamos que sea un string sí o sí
 
     if usuario is not None:
         if interaccion.user.id == usuario:

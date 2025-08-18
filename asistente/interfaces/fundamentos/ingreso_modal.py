@@ -58,7 +58,7 @@ class ModalIngreso(Modal):
                         msg = not_found
                     else:
                         msg = await procesar_padron(self.padron.value,
-                                                    body.get("practica", ""),
+                                                    body.get("practica", None),
                                                     interaccion)
 
                 case 404:
