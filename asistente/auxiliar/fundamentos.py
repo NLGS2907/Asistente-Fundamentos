@@ -55,7 +55,8 @@ async def asignar_roles(practica: str, interaccion: "Interaction") -> str:
     roles_a_asignar = [rol_alumno]
 
     if rol_practica is None:
-        los_roles = f"el rol {rol_alumno.mention}"
+        los_roles = (f"el rol {rol_alumno.mention}, pero no parece que tengas una práctica "
+                     "asignada todavía, así que me salté esa parte.")
 
     else:
         los_roles = f"los roles {rol_alumno.mention} y {rol_practica.mention}"
