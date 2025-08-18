@@ -50,7 +50,8 @@ class ModalIngreso(Modal):
         async with self.bot.sesion.get("/students/exists",
                                        params=dict(padron=self.padron.value)) as response:
             body: dict = await response.json()
-            not_found = f"No se encontró un padrón con el valor `{self.padron.value}`."
+            not_found = (f"No se encontró un padrón con el valor `{self.padron.value}` entre "
+                         "los inscriptos en este cuatrimestre.")
 
             match response.status:
                 case 200:
