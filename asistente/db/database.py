@@ -403,3 +403,17 @@ def init_database(db_path: PathLike[str]=DEFAULT_DB) -> None:
     )
     _log_post_tabla(nombre_tabla, res)
     # --------------------------- #
+
+    # --------- PADRONES -------- #
+    nombre_tabla = "padrones"
+    _log_pre_tabla(nombre_tabla)
+    res = crear_tabla(
+        nombre_tabla,
+        db_path=db_path,
+        llave_primaria="padron",
+        # columnas
+        padron=TiposDB.INTEGER,
+        user_id=TiposDB.INTEGER,
+    )
+    _log_post_tabla(nombre_tabla, res)
+    # --------------------------- #
