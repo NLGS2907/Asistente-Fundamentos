@@ -1,9 +1,11 @@
 "Módulo dedicado a contener la clase personalizada del asistente."
 
 from logging import DEBUG, INFO, FileHandler, Formatter, getLogger
+from os import getenv
 from platform import system
 from typing import TYPE_CHECKING, Optional, TypeAlias
 
+from aiohttp import ClientSession
 from discord import Intents, Message, Permissions
 from discord.ext.commands import Bot
 from discord.utils import setup_logging, utcnow
@@ -12,6 +14,7 @@ from ..ahorcado import Ahorcado
 from ..archivos import buscar_archivos
 from ..db.atajos import actualizar_guild, op_usuario
 from ..db.enums import NivelPermisos
+from ..excepciones import SessionNotSetUp
 from ..logger import LOG_PATH, AssistLogger
 
 if TYPE_CHECKING:
@@ -47,7 +50,7 @@ class Asistente(Bot):
         indicando una revisión importante, un parche mayor, o un parche menor respectivamente.
         """
 
-        return (2, 0, 1)
+        return (2, 0, 2)
 
 
     @staticmethod
@@ -73,7 +76,9 @@ class Asistente(Bot):
             mention_everyone=True,
             read_messages=True, # También conocido bajo el alias 'View Channels'
             add_reactions=True,
-            use_application_commands=True # Discord lo llama 'Use Slash Commands'
+            use_application_commands=True, # Discord lo llama 'Use Slash Commands'
+            manage_roles=True,
+            embed_links=True
         )
 
         return perms
@@ -115,6 +120,10 @@ class Asistente(Bot):
         )
         self.ds_log.addHandler(ds_file_handler)
 
+        # Se inicializa después de forma asincrónica
+        self.sesion: Optional[ClientSession] = None
+        "La sesión con el backend de la página de 'Fundamentos de Programación'."
+
 
     async def setup_hook(self) -> None:
         "Realiza acciones iniciales que el bot necesita."
@@ -125,22 +134,23 @@ class Asistente(Bot):
     async def cargar_cogs(self) -> None:
         "Busca y carga recursivamente todos los cogs del bot."
 
-        self.log.info("Cargando cogs:")
+        self.log.info("Cargando cogs")
 
-        ext = "py"
+        ext = ".py"
 
-        for ruta_cog in buscar_archivos(patron=f"*.{ext}",
+        for ruta_cog in buscar_archivos(patron=f"*{ext}",
                                         nombre_ruta=COGS_PATH,
                                         ignorar_patrones=("__init__.*", "*_abc.*", "general.")):
 
-            self.log.debug(f"[COG] Cargando cog {ruta_cog!r}")
-            await self.load_extension(ruta_cog.removesuffix(f".{ext}").replace("/", "."))
+            cog_module = ruta_cog.removesuffix(f"{ext}").replace("/", ".")
+            self.log.debug(f"[COG] Cargando cog '{cog_module}'")
+            await self.load_extension(cog_module)
 
         self.log.info("Sincronizando arbol de comandos...")
         await self.tree.sync()
 
 
-    def actualizar_db(self) -> None:
+    async def actualizar_db(self) -> None:
         """
         Hace todos los procedimientos necesarios para actualizar
         la base de datos de ser necesario.
@@ -166,6 +176,16 @@ class Asistente(Bot):
                 self.log.warning(f"[DB] El usuario dueño '{guild.owner.global_name}' del"
                                  f" guild '{guild.name}' no tenía el nivel más alto de permisos."
                                  " Se cambió el permiso a administrador.")
+
+
+    async def apagar(self) -> None:
+        "Cierra de forma ordenada todos los reucrsos del asistente."
+
+        self.log.info(f"Cerrando bot {self.user}...")
+
+        # por las dudas cerramos la sesión manualmente también
+        await self.sesion.close()
+        await self.close()
 
 
     @property
@@ -204,3 +224,36 @@ class Asistente(Bot):
                 break
 
         return partida_a_devolver
+
+
+    async def inicializar_sesion(self) -> None:
+        """
+        Inicializa la sesión que se comunica con el backend de la página de
+        'Fundamentos de Programación'.
+        """
+
+        base_url = getenv("PROD_URL")
+        self.sesion = (ClientSession(base_url) if base_url is not None else None)
+
+        if self.sesion is None:
+            self.log.warning("[BACKEND] No se encontró una URL con la que establecer la conexión "
+                             "al backend de la página de Fundamentos. Algunos comandos "
+                             "no funcionarán.")
+
+        else:
+            self.log.info("[BACKEND] Conectado al Backend con éxito.")
+
+
+    def sesion_bien_iniciada(self) -> None:
+        """
+        Verifica si la sesión que el asistente tiene con el backend de fundamentos está
+        apropiadamente inicializada.
+
+        Si es así, no hace nada; sino levanta una excepción personalizada.
+        """
+
+        if self.sesion is None:
+            raise SessionNotSetUp("La sesión es None.")
+    
+        elif self.sesion.closed:
+            raise SessionNotSetUp("La sesión se cerró prematuramente.")

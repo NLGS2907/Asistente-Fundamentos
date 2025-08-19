@@ -330,7 +330,7 @@ def init_database(db_path: PathLike[str]=DEFAULT_DB) -> None:
     log = AssistLogger()
     log.debug("[DB] La DB ya existe. Intentando crear tablas aún así:"
               if file_exists(db_path)
-              else f"[DB] La DB no existe. Creando nueva DB en '{db_path}':")
+              else f"[DB] La DB no existe. Creando nueva DB en '{db_path}'")
 
     def _log_pre_tabla(nombre_tabla: str) -> None:
         log.debug(f"[DB] Creando tabla '{nombre_tabla}'...")
@@ -400,6 +400,20 @@ def init_database(db_path: PathLike[str]=DEFAULT_DB) -> None:
         role_id=TiposDB.INTEGER,
         op_level=TiposDB.INTEGER,
         used_in=TiposDB.INTEGER
+    )
+    _log_post_tabla(nombre_tabla, res)
+    # --------------------------- #
+
+    # --------- PADRONES -------- #
+    nombre_tabla = "padrones"
+    _log_pre_tabla(nombre_tabla)
+    res = crear_tabla(
+        nombre_tabla,
+        db_path=db_path,
+        llave_primaria="padron",
+        # columnas
+        padron=TiposDB.INTEGER,
+        user_id=TiposDB.INTEGER,
     )
     _log_post_tabla(nombre_tabla, res)
     # --------------------------- #

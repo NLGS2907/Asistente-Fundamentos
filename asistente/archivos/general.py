@@ -1,5 +1,6 @@
 "Módulo que procesa archivos en general."
 
+from collections import deque
 from pathlib import Path
 from typing import TYPE_CHECKING, Optional
 
@@ -94,3 +95,13 @@ def buscar_carpetas(patron: str="*",
                         incluye_archivos=False,
                         incluye_carpetas=True,
                         ignorar_patrones=ignorar_patrones)
+
+
+def tail(ruta: "PathLike", n: int) -> list[str]:
+    "Devuelve las últimas `n` líneas que hay en un archivo."
+
+    lineas = []
+    with open(ruta, mode="r", encoding="utf-8") as arch:
+        lineas.extend(deque(arch, n))
+
+    return lineas

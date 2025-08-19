@@ -19,10 +19,41 @@ class CogEventos(CogGeneral):
     async def on_ready(self) -> None:
         "El bot se conectó y está listo para usarse."
 
-        self.bot.log.info("Actualizando base de datos:")
-        self.bot.actualizar_db()
+        self.bot.log.info("Actualizando base de datos")
+        await self.bot.actualizar_db()
+
+        self.bot.log.info("Iniciando sesión con backend de fundamentos")
+        await self.bot.inicializar_sesion()
 
         self.bot.log.info("¡%s conectado y listo para utilizarse!", self.bot.user)
+
+
+    @Cog.listener()
+    async def on_disconnect(self) -> None:
+        """
+        El bot se desconectó de Discord, ya sea por una caída de la conexión,
+        o porque se está apagando.
+        """
+
+        self.bot.log.info("El asistente perdió la conexión.")
+
+        if self.bot.sesion is not None:
+            self.bot.log.warning("[BACKEND] Cerrando la sesión HTTP con el Backend.")
+            await self.bot.sesion.close()
+
+
+    @Cog.listener()
+    async def on_resumed(self) -> None:
+        "El bot volvió a resumir una sesión, después de haberse caído."
+
+        # el logger de discord ya lo imprime, así que lo hacemos nivel DEBUG
+        self.bot.log.debug("Resumiendo sesión...")
+
+        if self.bot.sesion is not None and self.bot.sesion.closed:
+            self.bot.log.info("[BACKEND] La sesión con el Backend está caída. "
+                              "Intentando reiniciarla...")
+            await self.bot.inicializar_sesion()
+
 
 
     @Cog.listener()

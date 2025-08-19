@@ -6,7 +6,7 @@
 
 ![status](https://dcbadge.limes.pink/api/shield/889312376036425810?bot=true?logoColor=presence&theme=discord)
 
-![version](https://img.shields.io/badge/version-2.0.1-brightgreen)
+![version](https://img.shields.io/badge/version-2.0.2-brightgreen)
 ![estrellas](https://img.shields.io/github/stars/NLGS2907/Asistente-Fundamentos?label=Estrellas&style=social)
 ![forks](https://img.shields.io/github/forks/NLGS2907/Asistente-Fundamentos?style=social)
 ![Tests](https://github.com/NLGS2907/Asistente-Fundamentos/actions/workflows/tests.yml/badge.svg)
@@ -19,13 +19,14 @@ Está pensado para usarse en el servidor de Discord de dicha materia, pero puede
 
 <hr style="width: 50%; height: 1" />
 
-* [**Enlace de Invitación**](https://discord.com/api/oauth2/authorize?client_id=889312376036425810&permissions=294205467712&scope=bot%20applications.commands)
+* [**Enlace de Invitación**](https://discord.com/oauth2/authorize?client_id=889312376036425810&permissions=294473919552&integration_type=0&scope=bot+applications.commands)
 
 * **[Dependencias](requirements.txt)**
 
   | Nombre | Versión |
   | :-: | :-: |
-  | [discord.py](https://pypi.org/project/discord.py/) | 2.5.2 |
+  | [discord.py](https://pypi.org/project/discord.py/) | 2.6.0 |
+  | [aiohttp](https://pypi.org/project/aiohttp/) | 3.12.15 |
 
 * **[Changelog](./CHANGELOG.md)**
 
@@ -106,6 +107,11 @@ El asistente cuenta con un sistema de permisos propio para comandos privilegiado
 Comandos con efectos misceláneos.
 
 * `/info`: Muestra información general sobre el asistente.
+
+* Comandos para interactuar con los logs del asistente.
+  - `/log get`: Permite descargar el archivo de log entero.
+  - `/log tail <n>`: Imprime por pantalla las últimas `n` líneas del archivo de log.
+  - `/log flush`: Vacía el archivo de log.
 
 <hr/>
 

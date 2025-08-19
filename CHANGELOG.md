@@ -4,7 +4,7 @@ Historial con detalles de cambios entre versiones del asistente.
 
 |                  |                  |                  |                  |      Version     |
 |:----------------:|:----------------:|:----------------:|:----------------:|:----------------:|
-|                  |                  |                  |                  |**[2.0.1](#v201)**|
+|                  |                  |                  |  [2.0.1](#v201)  |**[2.0.2](#v202)**|
 |                  |                  |                  |  [1.4.1](#v141)  |**[2.0.0](#v200)**|
 |                  |                  |                  |                  |**[1.4.0](#v140)**|
 |                  |                  |                  |  [1.2.1](#v121)  |**[1.3.0](#v130)**|
@@ -13,6 +13,20 @@ Historial con detalles de cambios entre versiones del asistente.
 |                  |                  |                  |                  |**[1.0.0](#v100)**|
 
 <hr/>
+
+### v2.0.2
+
+* **Actualizadas las dependencias.**
+  - `discord.py` (2.5.2 → **2.6.0**)
+  - Se agregó `aiohttp` (**3.12.15**)
+* **Agregado grupo de comandos `/log`**.
+  - `/log get`
+  - `/log tail`
+  - `/log flush`
+* **Agregada sesión asincrónica** para poder hacer _requests_ HTTP.
+* Nuevo comando `/inscribirse` para recibir roles en el servidor de Fundamentos de Programación.
+
+<hr style="height:2px" />
 
 ### v2.0.1
 
