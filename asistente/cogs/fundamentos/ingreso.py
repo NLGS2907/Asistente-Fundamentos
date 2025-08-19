@@ -7,9 +7,8 @@ from discord.app_commands import command as appcommand
 from discord.ext.commands import Cog
 
 from ...auxiliar import GUILD_FUNDAMENTOS, es_servidor_fundamentos
-from ...excepciones import SessionNotSetUp
 from ...interfaces.fundamentos import ModalIngreso
-from ..general import CogGeneral
+from ..con_sesion import CogHTTP
 
 if TYPE_CHECKING:
     from discord import Interaction, Member
@@ -18,7 +17,7 @@ if TYPE_CHECKING:
     from ...bot import Asistente
 
 
-class CogIngreso(CogGeneral):
+class CogIngreso(CogHTTP):
     "Cog para comandos y eventos relacionados con el ingreso de alumnos."
 
     @staticmethod
@@ -39,30 +38,7 @@ class CogIngreso(CogGeneral):
             return (f"Este comando es exclusivo para el servidor `{nombre_guild}`.\n"
                     "No está disponible en este contexto.")
 
-        # no se inicio la sesión correctamente
-        if self.bot.sesion is None and isinstance(error, SessionNotSetUp):
-            return ("La sesión con el backend no parece estar correctamente configurada.\n"
-                    "Este comando no estará disponible en este conexto.")
-
-
-        # se inició la sesión en algún momento, pero ahora mismo está cerrada
-        if self.bot.sesion.closed and isinstance(error, SessionNotSetUp):
-            return ("La sesión con el backend parece haber sido cerrada prematuramente, por lo "
-                    "que no puedo procesar este comando.")
-
-
-        # si todo falla, le delegamos la lógica al Cog general
         return super().mensaje_error(interaccion, error)
-
-
-    async def interaction_check(self, _interaction) -> bool:
-        "Checks especiales a correr antes de cada comando, aparte de los decoradores."
-
-        # Todos los comandos en este Cog van a necesitar, en cierta medida,
-        # interactuar con el Backend
-        self.bot.sesion_bien_iniciada()
-
-        return True
 
 
     @Cog.listener()
