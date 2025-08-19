@@ -4,6 +4,11 @@
 
 <p align="left">
 
+<!--
+Si esta badge no se actualiza en el repo de GitHub, recordar correr el comando:
+curl -X PURGE camo.githubusercontent.com/...
+según corresponda al link cacheado de la imagen de esta badge.
+-->
 ![status](https://dcbadge.limes.pink/api/shield/889312376036425810?bot=true?logoColor=presence&theme=discord)
 
 ![version](https://img.shields.io/badge/version-2.0.2-brightgreen)
