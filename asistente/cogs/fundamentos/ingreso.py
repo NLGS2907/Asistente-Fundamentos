@@ -84,7 +84,7 @@ class CogIngreso(CogGeneral):
         # )
 
 
-    @appcommand(name="inscribirse",
+    @appcommand(name="roles",
                 description="[EXLUSIVO FUNDAMENTOS] Ingresa el padrón para poder recibir los"
                             "roles de alumno y potencialmente de las prácticas.")
     @es_servidor_fundamentos()
