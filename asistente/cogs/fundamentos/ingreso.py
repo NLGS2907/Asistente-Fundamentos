@@ -45,6 +45,12 @@ class CogIngreso(CogGeneral):
                     "Este comando no estará disponible en este conexto.")
 
 
+        # se inició la sesión en algún momento, pero ahora mismo está cerrada
+        if self.bot.sesion.closed and isinstance(error, SessionNotSetUp):
+            return ("La sesión con el backend parece haber sido cerrada prematuramente, por lo "
+                    "que no puedo procesar este comando.")
+
+
         # si todo falla, le delegamos la lógica al Cog general
         return super().mensaje_error(interaccion, error)
 
@@ -67,15 +73,15 @@ class CogIngreso(CogGeneral):
         if not self.es_guild_fundamentos(member.guild.id):
             return
 
-        dm = await member.create_dm()
-        recipient = dm.recipient
-        await dm.send(
-            f"¡Hola, {member.display_name if recipient is None else recipient.mention}!\n\n"
-            "Soy el Asistente de Fundamentos, y me encargo de automatizar algunas tareas "
-            "en el servidor de Discord de la materia, ¡Bienvenido!\n\n"
-            "Para empezar, recomendaría incluirte en el sistema con `/inscribirse` para "
-            "que te pueda recordar."
-        )
+        # dm = await member.create_dm()
+        # recipient = dm.recipient
+        # await dm.send(
+        #     f"¡Hola, {member.display_name if recipient is None else recipient.mention}!\n\n"
+        #     "Soy el Asistente de Fundamentos, y me encargo de automatizar algunas tareas "
+        #     "en el servidor de Discord de la materia, ¡Bienvenido!\n\n"
+        #     "Para empezar, recomendaría incluirte en el sistema con `/inscribirse` para "
+        #     "que te pueda recordar."
+        # )
 
 
     @appcommand(name="inscribirse",

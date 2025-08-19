@@ -243,3 +243,6 @@ class Asistente(Bot):
 
         if self.sesion is None:
             raise SessionNotSetUp("La sesión es None.")
+    
+        elif self.sesion.closed:
+            raise SessionNotSetUp("La sesión se cerró prematuramente.")
