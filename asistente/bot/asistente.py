@@ -50,7 +50,7 @@ class Asistente(Bot):
         indicando una revisión importante, un parche mayor, o un parche menor respectivamente.
         """
 
-        return (2, 0, 1)
+        return (2, 0, 2)
 
 
     @staticmethod
