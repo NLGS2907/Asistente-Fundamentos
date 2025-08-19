@@ -69,18 +69,16 @@ class CogAdmin(CogGeneral):
         "Reinicia el bot, apagándolo y volviéndolo a conectar."
 
         if not sys_executable:
-            mensaje = "**[ERROR]** No se pudo reiniciar el asistente."
+            mensaje = "No se pudo reiniciar el asistente."
 
-            await interaccion.response.send_message(content=mensaje,
+            await interaccion.response.send_message(content=f"**[ERROR]** {mensaje}",
                                                     ephemeral=True)
             self.bot.log.error(mensaje)
             return
 
-        mensaje = f"Reiniciando bot **{str(self.bot.user)}...**"
-
-        await interaccion.response.send_message(content=mensaje,
+        await interaccion.response.send_message(content="Reiniciando el asistente...",
                                                 ephemeral=True)
-        self.bot.log.info(mensaje)
+        self.bot.log.info(f"Reiniciando bot {str(self.bot.user)}...")
 
         execl(sys_executable, sys_executable, "-m", "asistente")
 
