@@ -108,6 +108,11 @@ Comandos con efectos misceláneos.
 
 * `/info`: Muestra información general sobre el asistente.
 
+* Comandos para interactuar con los logs del asistente.
+  - `/log get`: Permite descargar el archivo de log entero.
+  - `/log tail <n>`: Imprime por pantalla las últimas `n` líneas del archivo de log.
+  - `/log flush`: Vacía el archivo de log.
+
 <hr/>
 
 ## Ejemplos de Uso
