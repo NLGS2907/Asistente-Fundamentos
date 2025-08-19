@@ -39,7 +39,7 @@ class CogIngreso(CogHTTP):
         "Un usuario nuevo entró al servidor de fundamentos."
 
         # No nos interesa otro caso que no sea el de fundamentos
-        if not self.es_guild_fundamentos(member.guild.id):
+        if not es_guild_fundamentos(member.guild.id):
             return
 
         # dm = await member.create_dm()
