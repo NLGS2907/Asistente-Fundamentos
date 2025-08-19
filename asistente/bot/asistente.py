@@ -134,16 +134,17 @@ class Asistente(Bot):
     async def cargar_cogs(self) -> None:
         "Busca y carga recursivamente todos los cogs del bot."
 
-        self.log.info("Cargando cogs:")
+        self.log.info("Cargando cogs")
 
-        ext = "py"
+        ext = ".py"
 
-        for ruta_cog in buscar_archivos(patron=f"*.{ext}",
+        for ruta_cog in buscar_archivos(patron=f"*{ext}",
                                         nombre_ruta=COGS_PATH,
                                         ignorar_patrones=("__init__.*", "*_abc.*", "general.")):
 
-            self.log.debug(f"[COG] Cargando cog {ruta_cog!r}")
-            await self.load_extension(ruta_cog.removesuffix(f".{ext}").replace("/", "."))
+            cog_module = ruta_cog.removesuffix(f"{ext}").replace("/", ".")
+            self.log.debug(f"[COG] Cargando cog '{cog_module}'")
+            await self.load_extension(cog_module)
 
         self.log.info("Sincronizando arbol de comandos...")
         await self.tree.sync()
