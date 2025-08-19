@@ -1,12 +1,12 @@
 "Cogs para comandos y eventos de ingreso de alumnos al servidor."
 
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
 from discord.app_commands import CheckFailure
 from discord.app_commands import command as appcommand
 from discord.ext.commands import Cog
 
-from ...auxiliar import GUILD_FUNDAMENTOS, es_servidor_fundamentos
+from ...auxiliar import GUILD_FUNDAMENTOS, es_guild_fundamentos, es_servidor_fundamentos
 from ...interfaces.fundamentos import ModalIngreso
 from ..con_sesion import CogHTTP
 
@@ -20,18 +20,12 @@ if TYPE_CHECKING:
 class CogIngreso(CogHTTP):
     "Cog para comandos y eventos relacionados con el ingreso de alumnos."
 
-    @staticmethod
-    def es_guild_fundamentos(guild_id: Optional[int]) -> bool:
-        "Verifica brevemente si el servidor actual es el de 'Fundamentos de Programación'."
-
-        return guild_id is not None and guild_id == GUILD_FUNDAMENTOS
-
 
     def mensaje_error(self, interaccion: "Interaction", error: "AppCommandError"):
         "Muestra el mensaje a mostrar por el chat de Discord en caso de error en este Cog."
 
         # no es el servidor de fundamentos
-        if not self.es_guild_fundamentos(interaccion.guild_id) and isinstance(error, CheckFailure):
+        if not es_guild_fundamentos(interaccion.guild_id) and isinstance(error, CheckFailure):
             guild_fundamentos = self.bot.get_guild(GUILD_FUNDAMENTOS)
             nombre_guild = ("Fundamentos de Programación" if guild_fundamentos is None
                             else guild_fundamentos.name)

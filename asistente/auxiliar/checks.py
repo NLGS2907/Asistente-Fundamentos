@@ -8,11 +8,10 @@ from discord.app_commands import check as appcheck
 from ..db.atajos import get_admins_por_nivel_y_guild
 from ..db.enums import NivelPermisos
 
+from .fundamentos import GUILD_FUNDAMENTOS
+
 if TYPE_CHECKING:
     from discord import Interaction
-
-GUILD_FUNDAMENTOS: int = 653341065767550976
-"ID del servidor de Fundamentos de Programación."
 
 
 def _verificar_permisos(interaccion: "Interaction",

@@ -14,12 +14,21 @@ INVALID_PADRON: str = "INVALID_PADRON"
 NO_CURRENT_CUATRI: str = "NO_CURRENT_CUATRI"
 INERNAL_SERVER_ERROR: str = "INERNAL_SERVER_ERROR"
 
+GUILD_FUNDAMENTOS: int = 653341065767550976
+"ID del servidor de Fundamentos de Programación."
+
 # IDs de roles relevantes
 ROL_ALUMNO: int = 653342053018632192
 ROL_ALAN: int = 653342149349474334
 ROL_BARBARA: int = 653342150683263005
 ROL_GRACE: int = 653342153245982730
 ROL_ALUMNI: int = 759091780644765713
+
+
+def es_guild_fundamentos(guild_id: Optional[int]) -> bool:
+    "Verifica brevemente si el servidor actual es el de 'Fundamentos de Programación'."
+
+    return guild_id is not None and guild_id == GUILD_FUNDAMENTOS
 
 
 async def procesar_padron(padron: int, practica: Optional[str], interaccion: "Interaction") -> str:
