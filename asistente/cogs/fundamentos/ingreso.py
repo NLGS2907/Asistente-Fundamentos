@@ -54,8 +54,8 @@ class CogIngreso(CogHTTP):
 
 
     @appcommand(name="roles",
-                description="[EXLUSIVO FUNDAMENTOS] Ingresa el padrón para poder recibir los"
-                            "roles de alumno y potencialmente de las prácticas.")
+                description="[EXLUSIVO FUNDAMENTOS] Ingresa el padrón para poder recibir los "
+                            "roles de alumno y de las prácticas.")
     @es_servidor_fundamentos()
     async def inscribir_miembro(self, interaccion: "Interaction") -> None:
         "Envía un modal para que el alumno sea reconocido por el asistente y sea asignado un rol."
