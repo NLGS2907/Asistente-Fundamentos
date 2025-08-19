@@ -20,7 +20,6 @@ if TYPE_CHECKING:
 class CogIngreso(CogHTTP):
     "Cog para comandos y eventos relacionados con el ingreso de alumnos."
 
-
     def mensaje_error(self, interaccion: "Interaction", error: "AppCommandError"):
         "Muestra el mensaje a mostrar por el chat de Discord en caso de error en este Cog."
 
