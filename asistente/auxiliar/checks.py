@@ -14,6 +14,16 @@ if TYPE_CHECKING:
     from discord import Interaction
 
 
+def es_owner():
+    async def predicado(interaccion: "Interaction") -> bool:
+        "Verifica si el invocador del comando es el dueño de la aplicación."
+
+        app_info = await interaccion.client.application_info()
+        return interaccion.user.id == app_info.owner.id
+
+    return appcheck(predicado)
+
+
 def _verificar_permisos(interaccion: "Interaction",
                         nivel: NivelPermisos,
                         al_menos: bool) -> bool:

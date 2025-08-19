@@ -42,14 +42,18 @@ class CogIngreso(CogHTTP):
         if not es_guild_fundamentos(member.guild.id):
             return
 
+        # guild_fundamentos = self.bot.get_guild(GUILD_FUNDAMENTOS)
+        # nombre_guild = ("Fundamentos de Programación" if guild_fundamentos is None
+        #                 else guild_fundamentos.name)
+
         # dm = await member.create_dm()
         # recipient = dm.recipient
         # await dm.send(
-        #     f"¡Hola, {member.display_name if recipient is None else recipient.mention}!\n\n"
+        #     f"¡Hola, {member.display_name if recipient is None else recipient.mention}!\n"
         #     "Soy el Asistente de Fundamentos, y me encargo de automatizar algunas tareas "
-        #     "en el servidor de Discord de la materia, ¡Bienvenido!\n\n"
-        #     "Para empezar, recomendaría incluirte en el sistema con `/inscribirse` para "
-        #     "que te pueda recordar."
+        #     f"en el servidor de Discord de la materia `{nombre_guild}`, ¡Bienvenido!\n\n"
+        #     "Parece que es la primera vez que ingresaste al servidor. Para comenzar, "
+        #     "recomendaría ir "
         # )
 
 

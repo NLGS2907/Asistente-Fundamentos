@@ -6,11 +6,10 @@ from typing import TYPE_CHECKING
 from discord import Colour, File
 from discord.app_commands import command as appcommand
 from discord.app_commands import describe
-from discord.ext.commands import is_owner
 from discord.utils import oauth_url
 
 from ...archivos import tail
-from ...auxiliar import permisos_de_al_menos_nivel
+from ...auxiliar import es_owner, permisos_de_al_menos_nivel
 from ...db.enums import NivelPermisos
 from ...embebido import Embebido
 from ...logger import LOG_PATH
@@ -88,7 +87,7 @@ class GrupoLog(GrupoGeneral):
 
     @appcommand(name="flush",
                 description="[OWNER] Limpia los contenidos del archivo de log.")
-    @is_owner()
+    @es_owner()
     async def log_flush(self, interaccion: "Interaction") -> None:
         "Limpia el archivo de log."
 

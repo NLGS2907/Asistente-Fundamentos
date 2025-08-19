@@ -7,9 +7,8 @@ from typing import TYPE_CHECKING
 from discord import Interaction
 from discord.app_commands import command as appcommand
 from discord.app_commands import describe
-from discord.ext.commands import is_owner
 
-from ...auxiliar import permisos_de_al_menos_nivel
+from ...auxiliar import es_owner, permisos_de_al_menos_nivel
 from ...db.enums import NivelPermisos
 from ...logger import LOG_PATH
 from ..general import CogGeneral
@@ -49,7 +48,7 @@ class CogAdmin(CogGeneral):
 
     @appcommand(name="shutdown",
                 description="[OWNER] Apaga el bot.")
-    @is_owner()
+    @es_owner()
     async def shutdown(self, interaccion: Interaction) -> None:
         "Apaga el bot y lo desconecta."
 
@@ -60,7 +59,7 @@ class CogAdmin(CogGeneral):
 
     @appcommand(name="reboot",
                 description="[OWNER] Reinicia el bot.")
-    @is_owner()
+    @es_owner()
     async def reboot(self, interaccion: Interaction) -> None:
         "Reinicia el bot, apagándolo y volviéndolo a conectar."
 
