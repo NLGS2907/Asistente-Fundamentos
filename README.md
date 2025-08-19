@@ -25,7 +25,7 @@ Está pensado para usarse en el servidor de Discord de dicha materia, pero puede
 
   | Nombre | Versión |
   | :-: | :-: |
-  | [discord.py](https://pypi.org/project/discord.py/) | 2.5.2 |
+  | [discord.py](https://pypi.org/project/discord.py/) | 2.6.0 |
   | [aiohttp](https://pypi.org/project/aiohttp/) | 3.12.15 |
 
 * **[Changelog](./CHANGELOG.md)**

@@ -1,4 +1,4 @@
-discord.py==2.5.2
+discord.py==2.6.0
 # discord.py ya explicita entre sus propias dependencias que es compatible con cualquier
 # versión de aiohttp entre la 3.7.4 y una posible serie de versiones 4.X.Y.
 # Sin embargo, preferimos usar una versión específica de la librería para nuestros propios fines.
