@@ -55,11 +55,7 @@ class CogAdmin(CogGeneral):
 
         await interaccion.response.send_message(content="Apagando el asistente...",
                                                 ephemeral=True)
-        self.bot.log.info(f"Cerrando bot {str(self.bot.user)}...")
-
-        # por las dudas cerramos la sesión manualmente también
-        await self.bot.sesion.close()
-        await self.bot.close()
+        await self.bot.apagar()
 
 
     @appcommand(name="reboot",
@@ -78,7 +74,10 @@ class CogAdmin(CogGeneral):
 
         await interaccion.response.send_message(content="Reiniciando el asistente...",
                                                 ephemeral=True)
-        self.bot.log.info(f"Reiniciando bot {str(self.bot.user)}...")
+        self.bot.log.info(f"Reiniciando bot {self.bot.user}...")
+
+        # y lo cerramos también primero por las dudas
+        await self.bot.apagar()
 
         execl(sys_executable, sys_executable, "-m", "asistente")
 

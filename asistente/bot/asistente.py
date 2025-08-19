@@ -177,6 +177,16 @@ class Asistente(Bot):
                                  " Se cambió el permiso a administrador.")
 
 
+    async def apagar(self) -> None:
+        "Cierra de forma ordenada todos los reucrsos del asistente."
+
+        self.log.info(f"Cerrando bot {self.user}...")
+
+        # por las dudas cerramos la sesión manualmente también
+        await self.sesion.close()
+        await self.close()
+
+
     @property
     def uptime(self) -> "timedelta":
         "Calcula cuánto tiempo el bot lleva activo."
