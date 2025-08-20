@@ -14,12 +14,24 @@ INVALID_PADRON: str = "INVALID_PADRON"
 NO_CURRENT_CUATRI: str = "NO_CURRENT_CUATRI"
 INERNAL_SERVER_ERROR: str = "INERNAL_SERVER_ERROR"
 
+GUILD_FUNDAMENTOS: int = 653341065767550976
+"ID del servidor de Fundamentos de Programación."
+
+CANAL_INGRESO: int = 685226917720227926
+"ID del canal `#ingreso` en el servidor de fundamentos."
+
 # IDs de roles relevantes
 ROL_ALUMNO: int = 653342053018632192
 ROL_ALAN: int = 653342149349474334
 ROL_BARBARA: int = 653342150683263005
 ROL_GRACE: int = 653342153245982730
 ROL_ALUMNI: int = 759091780644765713
+
+
+def es_guild_fundamentos(guild_id: Optional[int]) -> bool:
+    "Verifica brevemente si el servidor actual es el de 'Fundamentos de Programación'."
+
+    return guild_id is not None and guild_id == GUILD_FUNDAMENTOS
 
 
 async def procesar_padron(padron: int, practica: Optional[str], interaccion: "Interaction") -> str:
@@ -31,7 +43,9 @@ async def procesar_padron(padron: int, practica: Optional[str], interaccion: "In
 
     if usuario is not None:
         if interaccion.user.id == usuario:
-            return f"{interaccion.user.mention}, vos ya estás registrado con este padrón."
+            return (f"{interaccion.user.mention}, vos ya estás registrado con este padrón. "
+                    "Aún así, voy a verificar si te faltan roles:\n\n"
+                    f"{await asignar_roles(practica, interaccion)}")
 
         return (f"Lo siento {interaccion.user.mention}, pero el padrón `{padron}` "
                 f"ya está tomado por el usuario <@{usuario}>.")
@@ -52,14 +66,33 @@ async def asignar_roles(practica: str, interaccion: "Interaction") -> str:
     rol_alumno = interaccion.guild.get_role(ROL_ALUMNO)
     rol_practica = rol_por_practica(practica, interaccion.guild)
 
+    tiene_alumno = interaccion.user.get_role(ROL_ALUMNO) is not None
     roles_a_asignar = [rol_alumno]
 
     if rol_practica is None:
-        los_roles = (f"el rol {rol_alumno.mention}, pero no parece que tengas una práctica "
-                     "asignada todavía, así que me salté esa parte.")
+        mencion_alumno = (f"Te asigné el rol {rol_alumno.mention}, pero"
+                          if tiene_alumno else
+                          f"Intenté asignarte el rol {rol_alumno.mention} pero ya lo tenés, y")
+        los_roles = (f"{mencion_alumno} no parece que tengas una práctica "
+                     "asignada todavía, así que me salté esa parte")
 
     else:
-        los_roles = f"los roles {rol_alumno.mention} y {rol_practica.mention}"
+        tiene_practica = interaccion.user.get_role(rol_practica.id) is not None
+        match (tiene_alumno, tiene_practica):
+            case (False, False):
+                los_roles = f"\nTe asigné los roles {rol_alumno.mention} y {rol_practica.mention}."
+            case (False, True):
+                los_roles = (f"\nParece que ya estabas en la práctica {rol_practica.mention}, "
+                             f"pero todavía te faltaba el rol {rol_alumno.mention}: ahí te lo "
+                             "agregué.")
+            case (True, False):
+                los_roles = (f"\nParece que ya tenés {rol_alumno.mention}, pero te agregué "
+                             f"{rol_practica.mention}, que te faltaba.")
+            case (True, True):
+                los_roles = (f"\nYa tenés tanto {rol_alumno.mention} como {rol_practica.mention}. "
+                             "No hace falta que haga nada.")
+            case _:
+                los_roles = ""
         roles_a_asignar.append(rol_practica)
 
     await interaccion.user.add_roles(
@@ -69,7 +102,7 @@ async def asignar_roles(practica: str, interaccion: "Interaction") -> str:
         atomic=True
     )
 
-    return f"¡Listo, {interaccion.user.mention}! Te asigné {los_roles}."
+    return f"**¡Listo, {interaccion.user.mention}!**{los_roles}"
 
 
 def rol_por_practica(practica: str, guild: "Guild") -> Optional["Role"]:

@@ -17,6 +17,6 @@ jobs:
         run: >
           gh release create '${{ github.ref_name }}'
           --repo '${{ github.repository }}'
-          --notes "* [Detalles de Cambios](${{ github.server_url }}/${{ github.repository }}/blob/${{ github.ref_name }}/CHANGELOG.md#${GITHUB_REF_NAME//./})"
+          --notes "Detalles de Cambios: [CHANGELOG.md (${{ github.ref_name }})](${{ github.server_url }}/${{ github.repository }}/blob/${{ github.ref_name }}/CHANGELOG.md#${GITHUB_REF_NAME//./})"
           --generate-notes
           --fail-on-no-commits

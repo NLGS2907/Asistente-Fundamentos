@@ -4,7 +4,7 @@ Historial con detalles de cambios entre versiones del asistente.
 
 |                  |                  |                  |                  |      Version     |
 |:----------------:|:----------------:|:----------------:|:----------------:|:----------------:|
-|                  |                  |                  |  [2.0.1](#v201)  |**[2.0.2](#v202)**|
+|                  |                  |  [2.0.1](#v201)  |**[2.0.2](#v202)**|**[2.0.3](#v203)**|
 |                  |                  |                  |  [1.4.1](#v141)  |**[2.0.0](#v200)**|
 |                  |                  |                  |                  |**[1.4.0](#v140)**|
 |                  |                  |                  |  [1.2.1](#v121)  |**[1.3.0](#v130)**|
@@ -13,6 +13,15 @@ Historial con detalles de cambios entre versiones del asistente.
 |                  |                  |                  |                  |**[1.0.0](#v100)**|
 
 <hr/>
+
+### v2.0.3
+
+* **Mejorado el _workflow_ de _releases_:** Ahora debería tener notas personalizadas que refieren a este _changelog_.
+* `/inscribirse` pasa a llamarse `/roles`.
+* **Modularizada la lógica de sesión HTTP y de Cogs.** Entre otras cosas, cambiar mensajes de error.
+* _Varios bugfixes._
+
+<hr style="height:2px" />
 
 ### v2.0.2
 

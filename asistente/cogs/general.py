@@ -75,11 +75,14 @@ class CogGeneral(Cog):
     def mensaje_error(self, interaccion: "Interaction", error: "AppCommandError") -> str:
         "Muestra el mensaje a mostrar por el chat de Discord en caso de error en este Cog."
 
-        # si es un DM y falla un check, entonces asumimos que es un comando que no
-        # se permite en ese contexto.
-        if (isinstance(error, CheckFailure)
-            and interaccion.channel.type == ChannelType.private):
-            return "Este comando no está soportado en canales privados."
+        if isinstance(error, CheckFailure):
+            # si es un DM y falla un check, entonces asumimos que es un comando que no
+            # se permite en ese contexto.
+            if interaccion.channel.type == ChannelType.private:
+                return "Este comando no está soportado en canales privados."
+
+            return ("No se cumplieron las condiciones para validar este comando. Probablemente "
+                    "porque no se tienen los permisos necesarios.")
 
         return "Parece que ha habido un error."
 
