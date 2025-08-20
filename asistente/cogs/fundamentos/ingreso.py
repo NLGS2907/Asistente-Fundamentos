@@ -6,7 +6,12 @@ from discord.app_commands import CheckFailure
 from discord.app_commands import command as appcommand
 from discord.ext.commands import Cog
 
-from ...auxiliar import GUILD_FUNDAMENTOS, es_guild_fundamentos, es_servidor_fundamentos
+from ...auxiliar import (
+    CANAL_INGRESO,
+    GUILD_FUNDAMENTOS,
+    es_guild_fundamentos,
+    es_servidor_fundamentos,
+)
 from ...interfaces.fundamentos import ModalIngreso
 from ..con_sesion import CogHTTP
 
@@ -42,19 +47,23 @@ class CogIngreso(CogHTTP):
         if not es_guild_fundamentos(member.guild.id):
             return
 
-        # guild_fundamentos = self.bot.get_guild(GUILD_FUNDAMENTOS)
-        # nombre_guild = ("Fundamentos de Programación" if guild_fundamentos is None
-        #                 else guild_fundamentos.name)
+        guild_fundamentos = self.bot.get_guild(GUILD_FUNDAMENTOS)
+        nombre_guild = ("Fundamentos de Programación" if guild_fundamentos is None
+                        else guild_fundamentos.name)
+        link_ingreso = f"https://discord.com/channels/{GUILD_FUNDAMENTOS}/{CANAL_INGRESO}"
 
-        # dm = await member.create_dm()
-        # recipient = dm.recipient
-        # await dm.send(
-        #     f"¡Hola, {member.display_name if recipient is None else recipient.mention}!\n"
-        #     "Soy el Asistente de Fundamentos, y me encargo de automatizar algunas tareas "
-        #     f"en el servidor de Discord de la materia `{nombre_guild}`, ¡Bienvenido!\n\n"
-        #     "Parece que es la primera vez que ingresaste al servidor. Para comenzar, "
-        #     "recomendaría ir "
-        # )
+        dm = await member.create_dm()
+        recipient = dm.recipient
+        await dm.send(
+            f"¡Hola, {member.display_name if recipient is None else recipient.mention}!\n"
+            "Soy el Asistente de Fundamentos, y me encargo de automatizar algunas tareas "
+            f"en el servidor de Discord de la materia `{nombre_guild}`, ¡Bienvenido!\n\n"
+
+            "Parece que es la primera vez que ingresaste al servidor. Para comenzar, "
+            f"recomendaría ir al canal de ingreso {link_ingreso} y correr ahí el comando `/roles` "
+            "para recibir los roles de alumno y, si están disponibles, también el rol "
+            "de la práctica si ya fuiste asignado a una."
+        )
 
 
     @appcommand(name="roles",

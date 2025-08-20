@@ -17,6 +17,9 @@ INERNAL_SERVER_ERROR: str = "INERNAL_SERVER_ERROR"
 GUILD_FUNDAMENTOS: int = 653341065767550976
 "ID del servidor de Fundamentos de Programación."
 
+CANAL_INGRESO: int = 685226917720227926
+"ID del canal `#ingreso` en el servidor de fundamentos."
+
 # IDs de roles relevantes
 ROL_ALUMNO: int = 653342053018632192
 ROL_ALAN: int = 653342149349474334
