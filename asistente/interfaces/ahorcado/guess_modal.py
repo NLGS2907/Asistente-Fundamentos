@@ -115,6 +115,7 @@ class ModalAdivinacion(Modal):
             f"\n\n¡Vergüenza para {interaccion.user.mention}! Ha fastidiado la partida " +
             f"diciendo el caracter `{ultimo_caracter}`. La frase era `{frase_magica}`.")
 
+        await self.vista.stop() # cerramos la vista madre
         await interaccion.channel.parent.send(content=contenido,
                                               delete_after=10.0)
         mensaje_original = await interaccion.channel.parent.fetch_message(partida_terminada.id_mensaje_padre)
