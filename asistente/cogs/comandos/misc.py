@@ -80,9 +80,10 @@ class GrupoLog(GrupoGeneral):
             return
 
         archivo_log = StringIO(mensaje)
-        await interaccion.response.send_message(file=File(archivo_log,
-                                                          filename=f"log_{n}_ultimas_lineas.txt"),
-                                                ephemeral=True)
+        await interaccion.response.send_message(
+            file=File(archivo_log,
+                      filename=f"asistente_{n}_ultimas_lineas.log"),
+            ephemeral=True)
 
 
     @appcommand(name="flush",
