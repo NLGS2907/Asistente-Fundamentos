@@ -11,7 +11,7 @@ según corresponda al link cacheado de la imagen de esta badge.
 -->
 ![status](https://dcbadge.limes.pink/api/shield/889312376036425810?bot=true?logoColor=presence&theme=discord)
 
-![version](https://img.shields.io/badge/version-2.0.2-brightgreen)
+![version](https://img.shields.io/badge/version-2.0.3-brightgreen)
 ![estrellas](https://img.shields.io/github/stars/NLGS2907/Asistente-Fundamentos?label=Estrellas&style=social)
 ![forks](https://img.shields.io/github/forks/NLGS2907/Asistente-Fundamentos?style=social)
 ![Tests](https://github.com/NLGS2907/Asistente-Fundamentos/actions/workflows/tests.yml/badge.svg)
